@@ -1,0 +1,352 @@
+# PatientClaw 项目开发指导文档
+
+> **本文档供 AI 助手（如 Claude）阅读，用于理解项目全貌并指导后续所有开发工作。**
+> 每次开始新任务前，请先读完本文档再动手。
+
+---
+
+## 一、项目概述
+
+**项目名称**：PatientClaw：患者诊后病情全自动跟踪统计系统
+**副标题**：助力医生提升医术
+**比赛**：北纬·龙虾大赛（第一届）· OpenClaw Hackathon
+**主办方**：中关村人工智能研究院
+**Gitee 仓库**：https://gitee.com/happytianhao/doctor.git
+**工作目录**：`/Users/zth/Documents/Code/Doctor`
+**比赛截止**：2026年3月22日
+
+---
+
+## 二、系统核心设计
+
+### 2.1 模拟医生
+
+参见 `docs/doctor-profile.md`，心血管内科主任医师，北京协和医院，专长冠心病介入、高血压管理、心律失常、心力衰竭。
+
+### 2.2 患者规模
+
+- **100名患者**（patients.csv），全部为心血管科病患
+- 病种覆盖：高血压（P001-P040）、冠心病/心绞痛（P041-P060）、心律失常（P061-P075）、心力衰竭（P076-P085）、高脂血症（P086-P095）、其他心脏病（P096-P100）
+- 就诊次数：慢性病患者3-6次，稳定患者2-3次，急症/筛查患者1次
+
+### 2.3 时间压缩模型
+
+**核心约定：系统内每过 10 分钟 = 现实中过了 1 天**
+
+- 患者就诊后第3天（30分钟后）进行首次随访
+- 患者就诊后第7天（70分钟后）进行中期随访
+- 患者就诊后第14天（140分钟后）进行末期随访
+- 每30天（300分钟后）生成一次医生月报，推送至飞书
+
+### 2.4 随访频率动态调整规则
+
+| 患者状态 | 随访频率 |
+|---------|---------|
+| 病情控制良好，依从性好 | 标准：第3/7/14天 |
+| 慢性病（心衰、高血压3级） | 加密：第3/7/10/14/21天 |
+| 病情加重或未遵医嘱 | 高频：第3/5/7/10/14天 + 立即提醒医生 |
+| 已痊愈或状态极佳 | 减频：只做第14天末期随访 |
+
+### 2.5 随访消息设计原则
+
+- **个性化**：必须结合患者具体诊断、用药、就诊天数生成，不能用通用模板
+- **专业且温暖**：语气关心但不夸张，问题具体（"血压今天测了多少"而非"你好吗"）
+- **简洁**：150字以内，明确告诉患者需要回复什么
+- **渐进**：第3天问基础服药情况，第7天问效果，第14天做总结性评估
+
+### 2.6 患者回复模拟规则
+
+由于这是演示系统，患者回复由 OpenClaw 模拟生成，模拟以下现实情况：
+- **立即回复**（30%）：发送后几分钟内（2-5min后回复）
+- **延迟回复**（40%）：发送后数小时（30-120min后回复）
+- **长时延迟**（20%）：发送后一两天（200-400min后回复）
+- **不回复**（10%）：超过3天（300min）未回复，标记为 `no_reply`，触发关注提醒
+
+回复内容也要模拟真实性：
+- 有时患者说病情好了（但用药没严格遵守）
+- 有时患者反映不良反应（但没有立即来复诊）
+- 有时患者回复很简短（"挺好的"）
+- 有时患者会问问题
+
+---
+
+## 三、数据结构
+
+所有数据在 `data/` 目录下，CSV 格式。
+
+### 3.1 doctors.csv
+字段：`doctor_id, name, age, gender, title, department, hospital, specialty, education, feishu_account, papers, awards`
+
+详细内容见 `docs/doctor-profile.md`
+
+### 3.2 patients.csv
+字段：`patient_id, name, age, gender, occupation, feishu_account, primary_condition, medical_history, allergies, emergency_contact, first_visit_date`
+
+100名患者，P001-P100，全部心血管科相关。
+
+### 3.3 visits.csv
+字段：`visit_id, patient_id, doctor_id, visit_date, visit_num, chief_complaint, diagnosis, bp, hr, notes`
+
+慢性病患者有多条就诊记录（visit_num 递增）。
+
+### 3.4 prescriptions.csv
+字段：`prescription_id, visit_id, medication, dosage, frequency, duration_days, instructions`
+
+与 visits.csv 通过 visit_id 关联。
+
+### 3.5 followups.csv（系统运行时生成）
+字段：
+```
+followup_id, patient_id, visit_id, followup_day, scheduled_time, sent_time,
+message_sent, reply_received, reply_time, reply_delay_type,
+medication_adherence, condition_status, adverse_reaction,
+needs_followup, priority_level, ai_summary
+```
+
+字段说明：
+- `reply_delay_type`：immediate / delayed / long_delayed / no_reply
+- `medication_adherence`：good / partial / none / unknown
+- `condition_status`：improved / stable / unchanged / worsened / recovered
+- `priority_level`：normal / attention / urgent（urgent 触发立即通知医生）
+
+### 3.6 chat_logs.csv（系统运行时生成，实时追加）
+字段：
+```
+log_id, patient_id, timestamp, sender, message_type, content
+```
+
+字段说明：
+- `sender`：system（系统发出）/ patient（患者回复）
+- `message_type`：followup_question / patient_reply / system_note / doctor_alert
+
+---
+
+## 四、OpenClaw 工作流设计
+
+### 4.1 工作流总览
+
+```
+┌─────────────────────────────────────────────────────┐
+│              定时调度引擎（每10分钟扫描一次）            │
+└──────────────────────┬──────────────────────────────┘
+                       │
+          ┌────────────▼──────────────┐
+          │  扫描任务：               │
+          │  1. 检查需要随访的患者     │
+          │  2. 检查超时未回复的患者   │
+          │  3. 检查是否触发月报       │
+          └────────────┬──────────────┘
+                       │
+          ┌────────────▼──────────────┐
+          │  任务执行：               │
+          │  A. 生成个性化随访消息     │
+          │  B. 通过飞书发送给患者     │
+          │  C. 监听并处理患者回复     │
+          │  D. 解析回复→写入数据      │
+          │  E. 生成患者病情报告       │
+          │  F. 生成医生综合报告       │
+          └───────────────────────────┘
+```
+
+### 4.2 随访消息生成 Prompt（核心）
+
+```
+你是北京协和医院心血管内科李晓峰主任医师的智能随访助理。
+
+当前任务：为以下患者生成第{day}天随访消息。
+
+患者信息：
+- 姓名：{name}，{age}岁，{gender}
+- 就诊日期：{visit_date}
+- 诊断：{diagnosis}
+- 当前用药：{medications}
+- 医嘱要点：{notes}
+- 历次随访摘要：{previous_followups}
+
+要求：
+1. 语气温暖专业，像医生助理一样关心患者
+2. 针对该患者的具体病情和用药提问（不能用通用问题）
+3. 根据第{day}天调整问题重点：
+   - 第3天：重点问是否已开始服药、有无初始不适
+   - 第7天：重点问用药效果、症状变化（血压/心率/胸痛等）
+   - 第14天：重点做总结性评估，问是否需要复诊
+4. 字数控制在120-150字
+5. 结尾引导患者简要回复（如"请告知您最近的血压数值和用药情况"）
+
+禁止：不得出现任何与该患者诊断无关的通用问候语；不得出现诊断结论或用药建议（只问，不改方案）。
+```
+
+### 4.3 患者回复解析 Prompt
+
+```
+你是一个医疗数据结构化助手。请分析以下患者对随访消息的回复，提取关键信息。
+
+患者背景：
+- 诊断：{diagnosis}
+- 当前用药：{medications}
+
+患者回复原文：
+"{reply_text}"
+
+请输出以下 JSON 格式（不要输出其他内容）：
+{
+  "medication_adherence": "good/partial/none/unknown",
+  "condition_status": "improved/stable/unchanged/worsened/recovered",
+  "adverse_reaction": "描述不良反应，无则填null",
+  "key_values": {"blood_pressure": "如有提及血压值", "heart_rate": "如有提及心率", "other": "其他关键指标"},
+  "needs_immediate_attention": true/false,
+  "attention_reason": "如果needs_immediate_attention=true，说明原因",
+  "priority_level": "normal/attention/urgent",
+  "summary": "50字以内的中文摘要"
+}
+
+判断标准：
+- urgent：患者描述胸痛加重/呼吸困难/晕厥/严重不适，需立即通知医生
+- attention：用药依从性差/症状无改善/出现不良反应
+- normal：用药正常/症状改善/无明显不适
+```
+
+### 4.4 患者病情追踪报告 Prompt
+
+```
+你是一个医疗文书助手。请根据以下数据，为患者{name}生成一份标准化病情追踪报告。
+
+患者基础信息：{patient_info}
+就诊记录：{visit_info}
+用药方案：{prescriptions}
+随访记录（按时间顺序）：{followups}
+
+报告要求：
+- 格式：结构化Markdown，包含以下章节
+  1. 患者基本信息
+  2. 诊断与就诊记录
+  3. 用药方案
+  4. 随访时间线（每次随访一行）
+  5. 病情趋势分析（客观描述变化）
+  6. 用药依从性评估
+  7. 后续随访建议
+- 语言：专业、客观、准确
+- 长度：500-800字
+- 不得做出诊断或修改用药建议
+```
+
+### 4.5 医生每日综合报告 Prompt
+
+```
+你是一个医疗数据分析助手。请根据以下患者数据，为李晓峰主任医师生成今日患者综合报告。
+
+数据范围：最近24小时（系统时间×10分钟）内所有随访更新
+患者随访汇总：{all_followup_summaries}
+用药统计数据：{medication_stats}
+
+报告格式（严格按此结构）：
+
+# PatientClaw 日报 | {date}
+李晓峰主任 · 本日随访更新：{n}人
+
+## ⚠️ 需立即关注（{n}人）
+[列出priority=urgent的患者，包含：姓名、诊断、问题描述、建议行动]
+
+## 🔔 需关注（{n}人）
+[列出priority=attention的患者：姓名、诊断、问题描述]
+
+## ✅ 状态良好（{n}人）
+[简表：姓名 | 诊断 | 状态]
+
+## 📊 用药方案效果统计
+[药物名称 | 使用患者数 | 依从率 | 症状改善率 | 不良反应]
+
+## 🔁 未回复患者（{n}人）
+[姓名 | 诊断 | 已发随访消息 | 等待天数]
+
+## 💡 用药洞察
+[基于本周数据，对特定药物/病种给出观察性总结，辅助医生调整策略]
+
+要求：重点突出，数据准确，建议可操作，格式清晰便于手机阅读。
+```
+
+---
+
+## 五、项目文件结构
+
+```
+Doctor/
+├── README.md                         # 项目介绍（入门用）
+├── CLAUDE.md                         # 本文件：AI 开发指导总文档
+├── .gitignore
+│
+├── data/                             # 数据层（CSV）
+│   ├── doctors.csv                   # 医生档案
+│   ├── patients.csv                  # 100名患者
+│   ├── visits.csv                    # 就诊记录（~100条，含多次就诊）
+│   ├── prescriptions.csv             # 药方记录
+│   ├── followups.csv                 # 随访记录（系统生成）
+│   └── chat_logs.csv                 # 聊天记录（系统实时写入）
+│
+├── docs/
+│   ├── doctor-profile.md             # 医生简介文档
+│   ├── report/
+│   │   └── PatientClaw项目说明书.md  # 比赛提交说明书
+│   ├── openclaw-setup-guide.md       # OpenClaw 配置教程（小白版）
+│   ├── poster/                       # 海报
+│   └── video/                        # 视频说明
+│
+└── materials/                        # 参考材料（不提交）
+```
+
+---
+
+## 六、待完成清单
+
+### 数据 ✅
+- [x] doctors.csv（1名心内科主任医师）
+- [x] patients.csv（100名患者）
+- [x] visits.csv（~100条记录，含多次就诊）
+- [x] prescriptions.csv（88条药方记录）
+- [x] doctor-profile.md（医生详细简介）
+
+### 文档
+- [x] README.md（项目入门介绍）
+- [x] CLAUDE.md（AI 开发指导）
+- [x] docs/doctor-profile.md（医生简介）
+- [x] docs/report/PatientClaw项目说明书.md
+- [ ] docs/openclaw-setup-guide.md（OpenClaw 配置教程）
+
+### 功能开发（等 OpenClaw 配置后进行）
+- [ ] 了解 OpenClaw 本地安装配置和接口
+- [ ] 配置飞书机器人（获取 Bot Token）
+- [ ] 实现定时扫描调度
+- [ ] 实现随访消息生成（接入上述 Prompt）
+- [ ] 实现患者回复模拟（含延迟/不回复逻辑）
+- [ ] 实现回复解析（结构化数据写入 followups.csv + chat_logs.csv）
+- [ ] 实现患者病情追踪报告生成
+- [ ] 实现医生每日综合报告生成+飞书推送
+- [ ] 端到端测试（跑通完整流程）
+
+### 提交材料
+- [ ] 海报制作 → docs/poster/
+- [ ] 演示视频录制（≤3分钟）→ 上传B站/YouTube
+- [ ] 所有公开链接填入 README
+- [ ] 首次推送到 Gitee
+- [ ] 在 claw.lab.bza.edu.cn 提交报名
+
+---
+
+## 七、开发约定
+
+- 所有代码提交到 `main` 分支
+- 提交格式：`feat/fix/docs/data: 描述`
+- 视频文件不提交 git，用外链
+- 完成每个模块后更新本文档的待完成清单
+- 如遇技术方案选择，先列选项+权衡，再实施
+
+---
+
+## 八、AI 助手工作指引
+
+1. **优先读完本文档**再开始任何任务
+2. 不要在未确认 OpenClaw API 的情况下写具体调用代码，先探索其文档/配置
+3. 数据字段不要擅自修改（其他模块依赖这些字段）
+4. Prompt 语气要体现心血管科专业性（精准的医学术语 + 温暖的患者沟通）
+5. 完成任何模块后更新第六节的待完成清单
+6. 不确定的技术方案，先列出选项和权衡，由用户决策
