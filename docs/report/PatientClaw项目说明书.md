@@ -199,5 +199,5 @@ OpenClaw 从患者的自然语言回复中提取结构化信息：
 
 ---
 
-**代码仓库**：https://gitee.com/happytianhao/doctor.git
+**代码仓库**：https://github.com/happytianhao/PatientClaw.git
 **比赛**：北纬·龙虾大赛（第一届）· OpenClaw Hackathon · 中关村人工智能研究院

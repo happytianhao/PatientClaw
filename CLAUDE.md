@@ -11,8 +11,7 @@
 **副标题**：助力医生提升医术
 **比赛**：北纬·龙虾大赛（第一届）· OpenClaw Hackathon
 **主办方**：中关村人工智能研究院
-**Gitee 仓库**：https://gitee.com/happytianhao/doctor.git
-**工作目录**：`/Users/zth/Documents/Code/Doctor`
+**GitHub 仓库**：https://github.com/happytianhao/PatientClaw.git
 **比赛截止**：2026年3月22日
 
 ---
@@ -346,7 +345,7 @@ Doctor/
 - [ ] 海报制作 → docs/poster/
 - [ ] 演示视频录制（≤3分钟）→ 上传B站/YouTube
 - [ ] 所有公开链接填入 README
-- [ ] 首次推送到 Gitee
+- [x] 首次推送到 GitHub
 - [ ] 在 claw.lab.bza.edu.cn 提交报名
 
 ---

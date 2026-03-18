@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatientClaw · 患者诊后病情全自动跟踪统计系统</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --accent: #7c3aed;
+      --accent2: #3b82f6;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --border: #30363d;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    #hero { padding: 100px 0 80px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.15) 0%, transparent 70%); }
+    .badge { display: inline-block; background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4); color: #a78bfa; padding: 4px 14px; border-radius: 20px; font-size: 13px; margin-bottom: 24px; }
+    h1 { font-size: clamp(48px, 8vw, 80px); font-weight: 800; letter-spacing: -2px; margin-bottom: 16px; }
+    .accent { background: linear-gradient(135deg, #7c3aed, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .tagline { font-size: clamp(18px, 3vw, 24px); color: var(--text2); margin-bottom: 16px; }
+    .sub { font-size: 16px; color: var(--text2); max-width: 600px; margin: 0 auto 32px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+    .tags span { background: var(--bg3); border: 1px solid var(--border); padding: 6px 16px; border-radius: 20px; font-size: 14px; }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: linear-gradient(135deg, #7c3aed, #3b82f6); color: white; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; }
+    .btn-primary:hover { opacity: 0.9; text-decoration: none; }
+    .btn-secondary { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; }
+    .btn-secondary:hover { border-color: var(--accent); text-decoration: none; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .section-title { text-align: center; font-size: clamp(24px, 4vw, 36px); font-weight: 700; margin-bottom: 48px; }
+
+    /* Features */
+    #features { background: var(--bg2); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color 0.2s, transform 0.2s; }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card-icon { font-size: 32px; margin-bottom: 16px; }
+    .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+    .card p { color: var(--text2); font-size: 14px; line-height: 1.7; }
+
+    /* Arch */
+    #arch { background: var(--bg); }
+    .flow { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .flow-item { width: 100%; max-width: 400px; }
+    .flow-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%; }
+    .flow-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; text-align: center; font-size: 15px; }
+    .flow-box.small { flex: 1; min-width: 160px; font-size: 13px; padding: 12px 16px; }
+    .flow-box.accent-box { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.1); }
+    .flow-box.highlight-box { border-color: var(--accent2); background: rgba(59,130,246,0.1); font-weight: 600; }
+    .flow-box small { display: block; color: var(--text2); font-size: 12px; margin-top: 4px; }
+    .flow-arrow { color: var(--text2); font-size: 20px; }
+
+    /* Resources */
+    #resources { background: var(--bg2); }
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .resource-card { display: flex; align-items: center; gap: 16px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; transition: border-color 0.2s; color: var(--text); }
+    .resource-card:hover:not(.disabled) { border-color: var(--accent2); text-decoration: none; }
+    .resource-card.disabled { opacity: 0.5; cursor: default; }
+    .resource-icon { font-size: 28px; flex-shrink: 0; }
+    .resource-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+    .resource-desc { color: var(--text2); font-size: 13px; }
+
+    /* Footer */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 32px 0; text-align: center; color: var(--text2); font-size: 13px; line-height: 2; }
+  </style>
+</head>
+<body>
+
+  <header id="hero">
+    <div class="container">
+      <div class="badge">北纬·龙虾大赛（第一届）· OpenClaw Hackathon</div>
+      <h1>Patient<span class="accent">Claw</span></h1>
+      <p class="tagline">患者诊后病情全自动跟踪统计系统</p>
+      <p class="sub">医生不改变任何工作习惯，系统在后台静默运行——自动随访、理解回复、生成日报。</p>
+      <div class="tags">
+        <span>全自动随访</span>
+        <span>AI 回复解析</span>
+        <span>飞书日报推送</span>
+        <span>30名患者模拟</span>
+      </div>
+      <div class="hero-actions">
+        <a href="https://github.com/happytianhao/PatientClaw" class="btn-primary" target="_blank">查看代码</a>
+        <a href="report/PatientClaw项目说明书.md" class="btn-secondary" target="_blank">项目说明书</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">核心功能</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">📅</div>
+          <h3>全自动随访</h3>
+          <p>就诊后第 3 / 7 / 14 天自动触发，根据病情动态调整随访频率，无需人工干预。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h3>个性化问询</h3>
+          <p>结合每位患者的诊断、用药、就诊天数生成专属消息，不是通用模板。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3>患者回复模拟</h3>
+          <p>OpenClaw 自动模拟患者回复，含立即回复、延迟回复、不回复等真实场景。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>回复智能解析</h3>
+          <p>解析患者自然语言回复，提取用药依从性、症状变化、不良反应等结构化数据。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>病情追踪报告</h3>
+          <p>为每位患者生成标准化病情追踪档案，记录完整随访时间线和趋势分析。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>医生每日日报</h3>
+          <p>每天汇总所有患者情况，重点标注需关注患者和用药效果，推送至飞书。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="arch">
+    <div class="container">
+      <h2 class="section-title">系统架构</h2>
+      <div class="flow">
+        <div class="flow-item">
+          <div class="flow-box">定时调度引擎<small>每10分钟 = 系统内1天</small></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-box small">扫描需随访患者</div>
+          <div class="flow-box small">检查超时未回复</div>
+          <div class="flow-box small">触发每日日报</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-box small accent-box">生成个性化随访消息</div>
+          <div class="flow-box small accent-box">模拟患者回复</div>
+          <div class="flow-box small accent-box">解析回复→写入数据</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">
+          <div class="flow-box highlight-box">飞书日报推送给医生 📱</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <div class="container">
+      <h2 class="section-title">项目资源</h2>
+      <div class="resource-grid">
+        <a href="report/PatientClaw项目说明书.md" class="resource-card" target="_blank">
+          <div class="resource-icon">📄</div>
+          <div>
+            <div class="resource-title">项目说明书</div>
+            <div class="resource-desc">完整技术文档与设计说明</div>
+          </div>
+        </a>
+        <div class="resource-card disabled">
+          <div class="resource-icon">🖼️</div>
+          <div>
+            <div class="resource-title">项目海报</div>
+            <div class="resource-desc">即将上线</div>
+          </div>
+        </div>
+        <div class="resource-card disabled">
+          <div class="resource-icon">🎬</div>
+          <div>
+            <div class="resource-title">演示视频</div>
+            <div class="resource-desc">即将上线</div>
+          </div>
+        </div>
+        <a href="https://github.com/happytianhao/PatientClaw" class="resource-card" target="_blank">
+          <div class="resource-icon">💻</div>
+          <div>
+            <div class="resource-title">代码仓库</div>
+            <div class="resource-desc">GitHub · happytianhao/PatientClaw</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>PatientClaw · 北纬·龙虾大赛（第一届）· OpenClaw Hackathon</p>
+      <p>主办方：中关村人工智能研究院 · 截止日期：2026年3月22日</p>
+    </div>
+  </footer>
+
+</body>
+</html>

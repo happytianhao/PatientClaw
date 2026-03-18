@@ -110,7 +110,7 @@ node bridge-webhook.mjs
 1. 打开 OpenClaw Web 界面
 2. 点击「**新建项目**」或「**New Agent**」
 3. 项目名称：`PatientClaw`
-4. 工作目录指向：`/Users/zth/Documents/Code/Doctor`
+4. 工作目录指向：PatientClaw 项目根目录
 
 ---
 
@@ -126,7 +126,7 @@ node bridge-webhook.mjs
 你是北京协和医院心血管内科李晓峰主任医师的智能随访助理——PatientClaw。
 
 你的职责：
-1. 每次被激活时，读取 /Users/zth/Documents/Code/Doctor/data/ 下的患者数据
+1. 每次被激活时，读取项目 data/ 目录下的患者数据
 2. 判断哪些患者今天需要随访（根据就诊日期和系统时间）
 3. 为需要随访的患者生成个性化随访消息并通过飞书发送
 4. 记录所有操作到 chat_logs.csv 和 followups.csv
@@ -414,7 +414,7 @@ PatientClaw 日报
 | 飞书消息发不出去 | App ID/Secret 配置错误 | 重新检查飞书开放平台的凭证 |
 | 消息发出但内容是模板 | Prompt 未读取到患者数据 | 检查 CSV 文件路径和字段名是否匹配 |
 | 回复没有被解析 | 消息监听未正确配置 | 检查飞书 Webhook 配置 |
-| CSV 文件写入失败 | 文件权限或路径问题 | 检查 `/Users/zth/Documents/Code/Doctor/data/` 目录权限 |
+| CSV 文件写入失败 | 文件权限或路径问题 | 检查项目 `data/` 目录权限 |
 | 定时任务没有触发 | 时区设置错误 | 确认 OpenClaw 时区设置为 Asia/Shanghai |
 
 ---

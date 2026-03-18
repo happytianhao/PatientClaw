@@ -76,4 +76,4 @@ Doctor/
 
 ---
 
-**代码仓库**：https://gitee.com/happytianhao/doctor.git
+**代码仓库**：https://github.com/happytianhao/PatientClaw.git
