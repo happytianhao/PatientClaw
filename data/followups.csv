@@ -1,0 +1,1 @@
+followup_id,patient_id,visit_id,followup_day,scheduled_time,sent_time,message_sent,reply_received,reply_time,reply_delay_type,medication_adherence,condition_status,adverse_reaction,needs_followup,priority_level,ai_summary

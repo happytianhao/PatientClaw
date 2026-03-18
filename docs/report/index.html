@@ -167,18 +167,17 @@
     <h3>2.3 工作流程</h3>
     <pre><code>就诊 (Day 0)
   ↓
-  Day 3 ── OpenClaw 生成个性化随访消息
-              ↑
-        病例数据 + 药方信息 + 历史随访记录
+  Day 1 ─── OpenClaw 生成个性化随访消息（首次随访，就诊后10分钟触发）
                     ↓
-            OpenClaw 模拟患者回复
+            OpenClaw 模拟患者回复 → 解析回复 → 更新病情档案
                     ↓
-            OpenClaw 解析回复，提取结构化信息
+  Day 3/5 ── 同上（中期随访，30/50分钟触发）
                     ↓
-  Day 7 ──────────── 同上 ──────────────→ 更新随访记录
-  Day 14 ─────────── 同上 ──────────────→ 触发个人病情追踪报告
+  Day 7/10 ── 同上（70/100分钟触发）
+                    ↓
+  Day 14 ─── 同上（末期随访，140分钟触发）→ 生成完整版病情追踪报告
                                             ↓
-  每天 ─────── OpenClaw 汇总分析 ──────────→ 医生综合日报（飞书推送）</code></pre>
+  每10分钟 ── OpenClaw 汇总分析 ──────────→ 医生综合日报（飞书推送）</code></pre>
 
     <h3>2.4 OpenClaw 能力映射</h3>
     <div class="table-wrap">
@@ -206,7 +205,7 @@
     <ul>
       <li>患者的具体诊断结果</li>
       <li>所用药物及服用方式</li>
-      <li>就诊已过天数（Day 3 / Day 7 / Day 14 问法不同）</li>
+      <li>就诊已过天数（Day 1 / 3 / 5 / 7 / 10 / 14 问法不同）</li>
       <li>本患者的随访历史（避免重复提问）</li>
     </ul>
 
@@ -264,8 +263,8 @@
         <tbody>
           <tr><td>AI 推理与编排</td><td>OpenClaw（本地部署）</td></tr>
           <tr><td>消息通道</td><td>飞书机器人（Feishu Bot API）</td></tr>
-          <tr><td>数据存储</td><td>CSV 文件（patients / visits / prescriptions / followups）</td></tr>
-          <tr><td>任务调度</td><td>OpenClaw 内置定时任务</td></tr>
+          <tr><td>数据存储</td><td>CSV 文件 + Markdown 病情档案（data/reports/）</td></tr>
+          <tr><td>任务调度</td><td>患者询问每30分钟、日报与病情总结每1小时</td></tr>
         </tbody>
       </table>
     </div>
