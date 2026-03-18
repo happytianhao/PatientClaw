@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatientClaw · 项目说明书</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --accent: #7c3aed;
+      --accent2: #3b82f6;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --border: #30363d;
+      --green: #3fb950;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.8; }
+
+    /* Nav */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .nav-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 700; font-size: 16px; color: var(--text); text-decoration: none; }
+    .nav-logo span { background: linear-gradient(135deg, #7c3aed, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-back { font-size: 13px; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--text); }
+
+    /* Hero */
+    .doc-hero { padding: 64px 24px 48px; text-align: center; max-width: 860px; margin: 0 auto; }
+    .doc-badge { display: inline-block; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35); color: #a78bfa; padding: 4px 14px; border-radius: 20px; font-size: 12px; margin-bottom: 20px; }
+    .doc-title { font-size: clamp(28px, 5vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+    .doc-subtitle { color: var(--text2); font-size: 15px; }
+
+    /* Content */
+    .doc-body { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* TOC */
+    .toc { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 48px; }
+    .toc-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin: 6px 0; }
+    .toc a { color: var(--text2); text-decoration: none; font-size: 14px; }
+    .toc a:hover { color: var(--accent2); }
+
+    /* Sections */
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    h2 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    h3 { font-size: 17px; font-weight: 600; margin: 28px 0 12px; color: var(--text); }
+    p { color: #c9d1d9; font-size: 15px; margin-bottom: 14px; }
+    strong { color: var(--text); }
+
+    /* Blockquote */
+    blockquote { border-left: 3px solid var(--accent); background: rgba(124,58,237,0.08); padding: 14px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+    blockquote p { margin: 0; color: #c9d1d9; font-style: italic; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin: 16px 0; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { background: var(--bg3); color: var(--text2); font-weight: 600; padding: 10px 16px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 10px 16px; border-top: 1px solid var(--border); color: #c9d1d9; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* Code */
+    pre { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; overflow-x: auto; margin: 16px 0; }
+    code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; color: #79c0ff; }
+    pre code { color: #c9d1d9; }
+    p code, li code { background: var(--bg3); padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #79c0ff; }
+
+    /* Lists */
+    ul, ol { padding-left: 22px; margin-bottom: 14px; }
+    li { color: #c9d1d9; font-size: 15px; margin: 6px 0; }
+
+    /* Example cards */
+    .example-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 12px 0; }
+    .example-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .example-text { font-size: 14px; color: #c9d1d9; line-height: 1.7; }
+
+    /* Priority badges */
+    .badge-urgent { display: inline-block; background: rgba(248,81,73,0.15); border: 1px solid rgba(248,81,73,0.4); color: #f85149; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .badge-attention { display: inline-block; background: rgba(210,153,34,0.15); border: 1px solid rgba(210,153,34,0.4); color: #d2a520; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .badge-normal { display: inline-block; background: rgba(63,185,80,0.15); border: 1px solid rgba(63,185,80,0.4); color: #3fb950; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; color: var(--text2); font-size: 13px; line-height: 2; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../" class="nav-logo">Patient<span>Claw</span></a>
+    <a href="../" class="nav-back">← 返回项目主页</a>
+  </div>
+</nav>
+
+<div class="doc-hero">
+  <div class="doc-badge">北纬·龙虾大赛（第一届）· OpenClaw Hackathon</div>
+  <div class="doc-title">项目说明书</div>
+  <div class="doc-subtitle">PatientClaw · 患者诊后病情全自动跟踪统计系统</div>
+</div>
+
+<div class="doc-body">
+
+  <div class="toc">
+    <div class="toc-title">目录</div>
+    <ol>
+      <li><a href="#s1">项目背景与问题定义</a></li>
+      <li><a href="#s2">解决方案：PatientClaw</a></li>
+      <li><a href="#s3">系统功能详解</a></li>
+      <li><a href="#s4">技术实现</a></li>
+      <li><a href="#s5">演示说明</a></li>
+      <li><a href="#s6">项目价值与影响</a></li>
+      <li><a href="#s7">团队信息</a></li>
+    </ol>
+  </div>
+
+  <!-- 一 -->
+  <div class="section" id="s1">
+    <div class="section-num">一</div>
+    <h2>项目背景与问题定义</h2>
+
+    <h3>1.1 医疗随访的现实困境</h3>
+    <p>在基层医疗场景中，患者就诊后的"诊后断联"现象是一个长期被忽视却影响深远的系统性问题。</p>
+    <p><strong>患者维度</strong>：大多数患者在取药离诊后不会主动复诊或反馈治疗效果。数据显示，基层门诊的自然复诊率不足 30%，意味着超过 70% 的患者就诊结果对医生而言是完全黑盒的。</p>
+    <p><strong>医生维度</strong>：基层全科医生每日接诊量通常在 30 至 50 人次，繁重的日常工作使得主动随访几乎不可能实现。即便有意愿，也缺乏系统化工具支持。</p>
+    <p><strong>医术成长维度</strong>：临床医术的精进依赖"诊断→治疗→反馈→调整"的闭环。当反馈环节几乎不存在时，医生只能依赖有限的显性案例积累经验，难以系统性地评估自己的用药方案是否最优、诊断思路是否准确。</p>
+
+    <h3>1.2 核心痛点总结</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>痛点</th><th>影响</th></tr></thead>
+        <tbody>
+          <tr><td>患者复诊率极低</td><td>医生无法获知治疗效果</td></tr>
+          <tr><td>随访工作全靠人力</td><td>医生没有时间和精力执行</td></tr>
+          <tr><td>治疗反馈断链</td><td>无法积累数据优化用药策略</td></tr>
+          <tr><td>依从性不透明</td><td>无法区分"药不对症"和"患者未遵医嘱"</td></tr>
+          <tr><td>高危患者缺乏预警</td><td>可能错过最佳干预时机</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 二 -->
+  <div class="section" id="s2">
+    <div class="section-num">二</div>
+    <h2>解决方案：PatientClaw</h2>
+
+    <h3>2.1 核心思路</h3>
+    <p>PatientClaw 是一个基于 <strong>OpenClaw</strong>（本地 AI 智能体框架）构建的患者诊后智能随访系统。其核心思路是：</p>
+    <blockquote><p>用 AI 全自动承担随访工作，医生只需查看日报，无需任何额外操作。</p></blockquote>
+    <p>系统在医生完全不改变工作习惯的前提下，自动模拟患者随访全流程：生成随访消息、模拟患者回复、解析回复数据，最终将洞察以结构化日报的形式推送给医生。</p>
+
+    <h3>2.2 角色分工</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>角色</th><th>由谁扮演</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>医生（李晓峰）</td><td>真实用户</td><td>只需被动接收飞书日报</td></tr>
+          <tr><td>患者（P001-P030）</td><td>OpenClaw 模拟</td><td>自动生成回复，模拟真实延迟和内容</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2.3 工作流程</h3>
+    <pre><code>就诊 (Day 0)
+  ↓
+  Day 3 ── OpenClaw 生成个性化随访消息
+              ↑
+        病例数据 + 药方信息 + 历史随访记录
+                    ↓
+            OpenClaw 模拟患者回复
+                    ↓
+            OpenClaw 解析回复，提取结构化信息
+                    ↓
+  Day 7 ──────────── 同上 ──────────────→ 更新随访记录
+  Day 14 ─────────── 同上 ──────────────→ 触发个人病情追踪报告
+                                            ↓
+  每天 ─────── OpenClaw 汇总分析 ──────────→ 医生综合日报（飞书推送）</code></pre>
+
+    <h3>2.4 OpenClaw 能力映射</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>功能模块</th><th>使用的 OpenClaw 能力</th></tr></thead>
+        <tbody>
+          <tr><td>定时触发随访</td><td>调度引擎（定时任务）</td></tr>
+          <tr><td>个性化消息生成</td><td>LLM 推理 + 模板引擎</td></tr>
+          <tr><td>飞书消息收发</td><td>飞书 Bot 集成（Tool Use）</td></tr>
+          <tr><td>患者回复理解</td><td>LLM NLP 解析 + JSON 结构化输出</td></tr>
+          <tr><td>随访数据写入</td><td>文件操作（CSV 读写）</td></tr>
+          <tr><td>报告生成</td><td>LLM 生成 + 格式化输出</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 三 -->
+  <div class="section" id="s3">
+    <div class="section-num">三</div>
+    <h2>系统功能详解</h2>
+
+    <h3>3.1 智能个性化随访消息</h3>
+    <p>区别于通用模板，PatientClaw 的随访消息由 OpenClaw 结合以下上下文动态生成：</p>
+    <ul>
+      <li>患者的具体诊断结果</li>
+      <li>所用药物及服用方式</li>
+      <li>就诊已过天数（Day 3 / Day 7 / Day 14 问法不同）</li>
+      <li>本患者的随访历史（避免重复提问）</li>
+    </ul>
+
+    <div class="example-card">
+      <div class="example-label">示例 · 王建国，高血压，Day 3</div>
+      <div class="example-text">您好，王建国先生！我是李晓峰主任医师诊室的智能随访助手。您上次就诊后已经过去3天了，氨氯地平片是否已经开始规律服用？这几天血压自测情况怎么样？有没有出现踝部水肿或头痛加重的情况？请简单告知，医生会及时了解您的情况。</div>
+    </div>
+    <div class="example-card">
+      <div class="example-label">示例 · 韩梅，心力衰竭，Day 7</div>
+      <div class="example-text">韩阿姨您好！距上次李晓峰主任调整您的心衰方案（加用沙库巴曲缬沙坦）已一周了，新方案服用是否顺利？这几天气短和双踝水肿情况有没有改善？每天早晨的体重记录怎么样？您的情况对医生评估用药效果非常重要，期待您的回复。</div>
+    </div>
+
+    <h3>3.2 患者回复智能解析</h3>
+    <p>OpenClaw 从患者的自然语言回复中提取结构化信息，并自动判断优先级：</p>
+    <pre><code>{
+  "medication_adherence": "good",
+  "condition_status": "improved",
+  "adverse_reaction": "轻微踝部水肿",
+  "needs_followup": true,
+  "priority_level": "attention",
+  "summary": "患者按时服药，血压下降至138/88mmHg，出现轻度踝部水肿，需关注"
+}</code></pre>
+    <p>优先级判断标准：<span class="badge-urgent">urgent</span> 胸痛加重/呼吸困难/晕厥 &nbsp; <span class="badge-attention">attention</span> 依从性差/症状无改善 &nbsp; <span class="badge-normal">normal</span> 用药正常/症状改善</p>
+
+    <h3>3.3 个人病情追踪报告</h3>
+    <p>每位患者在 Day 14 随访后触发生成，包含：</p>
+    <ul>
+      <li>基本信息与诊断摘要</li>
+      <li>药方详情</li>
+      <li>三次随访记录时间线</li>
+      <li>用药依从性评估</li>
+      <li>病情进展趋势分析</li>
+      <li>后续建议</li>
+    </ul>
+
+    <h3>3.4 医生综合日报（每天）</h3>
+    <p>每天自动生成并推送，采用"重点优先"结构：</p>
+    <ol>
+      <li>⚠️ 需重点关注的患者（未痊愈 / 症状加重 / 依从性差）</li>
+      <li>✅ 情况良好 / 已痊愈的患者</li>
+      <li>📊 用药方案效果统计</li>
+      <li>🔔 建议主动联系或安排复诊的患者</li>
+    </ol>
+  </div>
+
+  <!-- 四 -->
+  <div class="section" id="s4">
+    <div class="section-num">四</div>
+    <h2>技术实现</h2>
+
+    <h3>4.1 技术栈</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>组件</th><th>方案</th></tr></thead>
+        <tbody>
+          <tr><td>AI 推理与编排</td><td>OpenClaw（本地部署）</td></tr>
+          <tr><td>消息通道</td><td>飞书机器人（Feishu Bot API）</td></tr>
+          <tr><td>数据存储</td><td>CSV 文件（patients / visits / prescriptions / followups）</td></tr>
+          <tr><td>任务调度</td><td>OpenClaw 内置定时任务</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>4.2 数据模型</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>文件</th><th>核心字段</th></tr></thead>
+        <tbody>
+          <tr><td><code>patients.csv</code></td><td>patient_id, name, age, gender, feishu_account, medical_history, allergies</td></tr>
+          <tr><td><code>visits.csv</code></td><td>visit_id, patient_id, doctor_id, visit_date, diagnosis, notes</td></tr>
+          <tr><td><code>prescriptions.csv</code></td><td>prescription_id, visit_id, medication, dosage, frequency, duration_days</td></tr>
+          <tr><td><code>followups.csv</code></td><td>followup_id, patient_id, followup_day, medication_adherence, condition_status, priority_level, ai_summary</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>4.3 核心 Prompt 设计原则</h3>
+    <ul>
+      <li><strong>随访消息</strong>：温暖专业，结合诊断定制问题，150字以内，引导简短回复</li>
+      <li><strong>回复解析</strong>：输出固定 JSON 结构，不确定项标记 unknown，不猜测</li>
+      <li><strong>医生报告</strong>：重点突出，数据驱动，每条建议可操作</li>
+    </ul>
+  </div>
+
+  <!-- 五 -->
+  <div class="section" id="s5">
+    <div class="section-num">五</div>
+    <h2>演示说明</h2>
+
+    <h3>模拟数据集</h3>
+    <p>内置 1 名医生 × 30 名患者的完整数据，覆盖高血压、冠心病、心律失常、心力衰竭、高脂血症等心血管科常见疾病场景。</p>
+
+    <h3>演示流程</h3>
+    <ol>
+      <li>系统读取病例数据，扫描需随访患者</li>
+      <li>OpenClaw 生成个性化随访消息（展示不同诊断的消息样本）</li>
+      <li>OpenClaw 模拟患者回复（不同依从性和病情状态）</li>
+      <li>OpenClaw 解析回复，写入随访记录</li>
+      <li>生成 2 份个人病情追踪报告示例</li>
+      <li>生成 1 份医生综合日报示例</li>
+    </ol>
+  </div>
+
+  <!-- 六 -->
+  <div class="section" id="s6">
+    <div class="section-num">六</div>
+    <h2>项目价值与影响</h2>
+
+    <p><strong>对医生</strong>：从"经验积累靠感觉"到"数据驱动的临床反思"，低成本获得过去几乎不可能拥有的随访数据。</p>
+    <p><strong>对患者</strong>：每位患者感受到被关注，同时获得用药提醒和专业问询，提升治疗依从性和满意度。</p>
+    <p><strong>对医疗系统</strong>：随访的自动化降低了医疗资源压力，同时为早期识别高危患者提供了可能。</p>
+
+    <h3>可扩展性</h3>
+    <ul>
+      <li>支持接入电子病历系统（替换 CSV 数据层）</li>
+      <li>支持更多消息渠道（微信、短信）</li>
+      <li>支持多医生、多科室模式</li>
+      <li>可积累数据后进行横向用药效果分析</li>
+    </ul>
+  </div>
+
+  <!-- 七 -->
+  <div class="section" id="s7">
+    <div class="section-num">七</div>
+    <h2>团队信息</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>成员</th><th>角色</th></tr></thead>
+        <tbody>
+          <tr><td>[待填写]</td><td>开发 / 设计 / 项目负责人</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:20px;">代码仓库：<a href="https://github.com/happytianhao/PatientClaw" style="color:#3b82f6;">github.com/happytianhao/PatientClaw</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <p>PatientClaw · 北纬·龙虾大赛（第一届）· OpenClaw Hackathon</p>
+  <p>主办方：中关村人工智能研究院 · 截止日期：2026年3月22日</p>
+</footer>
+
+</body>
+</html>
