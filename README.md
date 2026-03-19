@@ -96,6 +96,7 @@ PatientClaw/
 
 ## 项目资源
 
+- 🌐 [项目主页](https://happytianhao.github.io/PatientClaw/)
 - 📄 [项目说明书](https://happytianhao.github.io/PatientClaw/report/)
 - 🖼️ [项目海报](https://happytianhao.github.io/PatientClaw/poster/)
 - 🎬 [演示视频](https://youtu.be/3f7pIgkAC7s)
