@@ -83,6 +83,46 @@
     .badge-attention { display: inline-block; background: rgba(210,153,34,0.15); border: 1px solid rgba(210,153,34,0.4); color: #d2a520; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
     .badge-normal { display: inline-block; background: rgba(63,185,80,0.15); border: 1px solid rgba(63,185,80,0.4); color: #3fb950; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
 
+    /* Stats cards */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 20px 0; }
+    .stat-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 18px 16px; text-align: center; }
+    .stat-num { font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #7c3aed, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+    .stat-label { font-size: 12px; color: var(--text2); margin-top: 6px; }
+
+    /* Disease tags */
+    .disease-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .disease-tag { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: #79c0ff; padding: 4px 14px; border-radius: 20px; font-size: 13px; }
+    .disease-tag span { color: var(--text2); font-size: 12px; margin-left: 4px; }
+
+    /* Task cards */
+    .task-cards { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+    .task-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
+    .task-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .task-badge { background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4); color: #a78bfa; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .task-title { font-size: 15px; font-weight: 600; color: var(--text); }
+    .task-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .task-step { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); padding: 3px 10px; border-radius: 6px; font-size: 12px; }
+    .task-step::before { content: "→ "; color: var(--accent2); }
+    .task-step:first-child::before { content: ""; }
+
+    /* Case cards */
+    .case-cards { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+    .case-card { background: var(--bg2); border-left: 3px solid var(--border); border-radius: 0 10px 10px 0; padding: 14px 18px; }
+    .case-card.urgent { border-left-color: #f85149; }
+    .case-card.attention { border-left-color: #d2a520; }
+    .case-card.normal { border-left-color: #3fb950; }
+    .case-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .case-id { font-size: 12px; font-weight: 700; color: var(--text2); }
+    .case-name { font-size: 14px; font-weight: 600; }
+    .case-desc { font-size: 13px; color: #c9d1d9; line-height: 1.6; }
+
+    /* Delay type grid */
+    .delay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+    .delay-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .delay-pct { font-size: 24px; font-weight: 800; color: var(--accent2); }
+    .delay-type { font-size: 13px; font-weight: 600; margin: 4px 0 2px; }
+    .delay-desc { font-size: 12px; color: var(--text2); }
+
     /* Footer */
     footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; color: var(--text2); font-size: 13px; line-height: 2; }
   </style>
@@ -111,7 +151,10 @@
       <li><a href="#s2">解决方案：PatientClaw</a></li>
       <li><a href="#s3">系统功能详解</a></li>
       <li><a href="#s4">技术实现</a></li>
-      <li><a href="#s5">演示说明</a></li>
+      <li><a href="#s5">演示说明与真实数据</a></li>
+      <li><a href="#s5b">龙虾如何工作</a></li>
+      <li><a href="#s5c">真实随访示例</a></li>
+      <li><a href="#s5d">依从性与异常处理</a></li>
       <li><a href="#s6">项目价值与影响</a></li>
       <li><a href="#s7">团队信息</a></li>
     </ol>
@@ -262,7 +305,7 @@
           <tr><td>AI 推理与编排</td><td>OpenClaw（本地部署）</td></tr>
           <tr><td>消息通道</td><td>飞书机器人（Feishu Bot API）</td></tr>
           <tr><td>数据存储</td><td>CSV 文件 + Markdown 病情档案（data/reports/）</td></tr>
-          <tr><td>任务调度</td><td>患者询问每30分钟、日报与病情总结每1小时</td></tr>
+          <tr><td>任务调度</td><td>三类定时任务均每 10 分钟触发一次（= 系统内 1 天）</td></tr>
         </tbody>
       </table>
     </div>
@@ -291,10 +334,41 @@
   <!-- 五 -->
   <div class="section" id="s5">
     <div class="section-num">五</div>
-    <h2>演示说明</h2>
+    <h2>演示说明与真实数据</h2>
 
-    <h3>模拟数据集</h3>
-    <p>内置 1 名医生 × 30 名患者的完整数据，覆盖高血压、冠心病、心律失常、心力衰竭、高脂血症等心血管科常见疾病场景。</p>
+    <h3>模拟数据集规模</h3>
+    <p>内置 1 名医生 × 30 名患者的完整数据，覆盖心血管科四大病种，系统已完整运行 10 天演示周期。</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">30</div>
+        <div class="stat-label">心血管科患者</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">50</div>
+        <div class="stat-label">随访记录条数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10</div>
+        <div class="stat-label">天完整日报</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">30</div>
+        <div class="stat-label">份病情追踪报告</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">92%</div>
+        <div class="stat-label">整体用药依从率</div>
+      </div>
+    </div>
+
+    <h3>病种分布</h3>
+    <div class="disease-tags">
+      <div class="disease-tag">高血压<span>13人</span></div>
+      <div class="disease-tag">冠心病 / 心绞痛<span>8人</span></div>
+      <div class="disease-tag">心律失常<span>4人</span></div>
+      <div class="disease-tag">心力衰竭<span>5人</span></div>
+    </div>
 
     <h3>演示流程</h3>
     <ol>
@@ -302,9 +376,167 @@
       <li>OpenClaw 生成个性化随访消息（展示不同诊断的消息样本）</li>
       <li>OpenClaw 模拟患者回复（不同依从性和病情状态）</li>
       <li>OpenClaw 解析回复，写入随访记录</li>
-      <li>生成 2 份个人病情追踪报告示例</li>
-      <li>生成 1 份医生综合日报示例</li>
+      <li>为每位患者持续更新病情追踪报告（<code>data/reports/{patient_id}_report.md</code>）</li>
+      <li>每 10 分钟生成一份医生综合日报并推送飞书</li>
     </ol>
+  </div>
+
+  <!-- 五B -->
+  <div class="section" id="s5b">
+    <div class="section-num">五 · 补充</div>
+    <h2>龙虾如何工作</h2>
+    <p>PatientClaw 的全部自动化逻辑由 OpenClaw 的三个定时任务驱动，每 10 分钟（= 系统内 1 天）扫描一次：</p>
+
+    <div class="task-cards">
+      <div class="task-card">
+        <div class="task-card-header">
+          <div class="task-badge">每 10 分钟</div>
+          <div class="task-title">📅 患者随访询问</div>
+        </div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:8px;">扫描所有患者，判断是否到达随访节点（Day 3 / 7 / 14），生成并发送个性化消息，模拟患者回复，解析后写入数据。</p>
+        <div class="task-steps">
+          <div class="task-step">扫描随访节点</div>
+          <div class="task-step">生成个性化消息</div>
+          <div class="task-step">模拟患者回复</div>
+          <div class="task-step">AI 解析结构化数据</div>
+          <div class="task-step">写入 followups.csv + chat_logs.csv</div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-card-header">
+          <div class="task-badge">每 10 分钟</div>
+          <div class="task-title">📊 医生日报生成</div>
+        </div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:8px;">汇总过去 10 分钟内所有随访更新，分析用药效果，生成结构化日报并通过飞书 Bot 推送给医生。</p>
+        <div class="task-steps">
+          <div class="task-step">汇总所有患者状态</div>
+          <div class="task-step">分析用药效果</div>
+          <div class="task-step">生成 Markdown 日报</div>
+          <div class="task-step">飞书 Bot 推送</div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-card-header">
+          <div class="task-badge">每 10 分钟</div>
+          <div class="task-title">📋 患者病情报告更新</div>
+        </div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:8px;">为每位患者维护独立的病情追踪档案，每轮随访后追加最新摘要，Day 14 后生成完整版终期报告。</p>
+        <div class="task-steps">
+          <div class="task-step">读取最新随访数据</div>
+          <div class="task-step">追加随访摘要</div>
+          <div class="task-step">更新 data/reports/{id}_report.md</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>时间压缩模型</h3>
+    <p>为在演示中完整呈现随访全流程，系统采用时间压缩设计：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>系统时间</th><th>现实含义</th><th>触发事件</th></tr></thead>
+        <tbody>
+          <tr><td>+30 分钟</td><td>就诊后第 3 天</td><td>首次随访询问</td></tr>
+          <tr><td>+70 分钟</td><td>就诊后第 7 天</td><td>中期随访询问</td></tr>
+          <tr><td>+140 分钟</td><td>就诊后第 14 天</td><td>末期随访 + 完整报告生成</td></tr>
+          <tr><td>每 10 分钟</td><td>每天</td><td>医生日报生成 + 推送</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 五C -->
+  <div class="section" id="s5c">
+    <div class="section-num">五 · 示例</div>
+    <h2>真实随访示例</h2>
+    <p>以下消息来自系统实际生成的随访记录（<code>followups.csv</code>），展示个性化问询与患者回复的真实样貌。</p>
+
+    <div class="example-card">
+      <div class="example-label">系统发出 · P005 陈强 · 心力衰竭 · Day 7</div>
+      <div class="example-text">陈强您好！我是李晓峰主任诊室的随访助理。您就诊已满一周，请问这几天沙库巴曲缬沙坦、美托洛尔、螺内酯、达格列净是否每日按时服用？今日体重是多少？有无气短复发或双踝水肿？血压今天测了多少？心衰患者体重每日变化很重要，如近两天体重增加超过2kg请及时告知。请简要回复。</div>
+    </div>
+    <div class="example-card" style="border-color: rgba(63,185,80,0.3); background: rgba(63,185,80,0.04);">
+      <div class="example-label" style="color:#3fb950;">患者回复 · P005 陈强</div>
+      <div class="example-text">药都按时吃了，今天体重62.8kg，血压128/80，没有气短，脚也不肿，感觉比上周好多了，走路轻松了不少。</div>
+    </div>
+
+    <div class="example-card" style="margin-top:20px;">
+      <div class="example-label">系统发出 · P001 王建国 · 高血压 · Day 3</div>
+      <div class="example-text">您好，王建国先生！我是李晓峰主任医师诊室的智能随访助手。您上次就诊后已经过去3天了，氨氯地平片是否已经开始规律服用？这几天血压自测情况怎么样？有没有出现踝部水肿或头痛加重的情况？请简单告知，医生会及时了解您的情况。</div>
+    </div>
+    <div class="example-card" style="border-color: rgba(63,185,80,0.3); background: rgba(63,185,80,0.04);">
+      <div class="example-label" style="color:#3fb950;">患者回复 · P001 王建国</div>
+      <div class="example-text">按时吃了，血压今天测了135/85，比之前低了一些，没有水肿，头也不疼了。</div>
+    </div>
+  </div>
+
+  <!-- 五D -->
+  <div class="section" id="s5d">
+    <div class="section-num">五 · 异常</div>
+    <h2>依从性与异常处理</h2>
+
+    <h3>患者回复延迟模型</h3>
+    <p>系统模拟真实患者的回复行为，包含四种延迟类型：</p>
+    <div class="delay-grid">
+      <div class="delay-card">
+        <div class="delay-pct">40%</div>
+        <div class="delay-type">本轮回复</div>
+        <div class="delay-desc">随访触发时立即生成回复</div>
+      </div>
+      <div class="delay-card">
+        <div class="delay-pct">30%</div>
+        <div class="delay-type">下轮才回复</div>
+        <div class="delay-desc">下次随访触发时补回复</div>
+      </div>
+      <div class="delay-card">
+        <div class="delay-pct">20%</div>
+        <div class="delay-type">再下轮才回复</div>
+        <div class="delay-desc">再等一轮后生成回复</div>
+      </div>
+      <div class="delay-card">
+        <div class="delay-pct">10%</div>
+        <div class="delay-type">不回复</div>
+        <div class="delay-desc">超过3次触发后标记 no_reply</div>
+      </div>
+    </div>
+
+    <h3>真实问题案例</h3>
+    <p>系统在 10 天演示中自动识别并标记了以下真实异常案例：</p>
+    <div class="case-cards">
+      <div class="case-card attention">
+        <div class="case-header">
+          <span class="case-id">P010</span>
+          <span class="case-name">吴霞</span>
+          <span class="badge-attention">attention</span>
+        </div>
+        <div class="case-desc">高血压患者自行将比索洛尔改为隔日服用，血压反弹至 134/86 mmHg，心率升至 82 bpm，焦虑症状回升。系统自动标记依从性差，提醒医生关注。</div>
+      </div>
+      <div class="case-card attention">
+        <div class="case-header">
+          <span class="case-id">P019</span>
+          <span class="case-name">段勇</span>
+          <span class="badge-attention">attention</span>
+        </div>
+        <div class="case-desc">冠心病支架术后患者因胃部不适，阿司匹林漏服 3 次。系统识别到单抗中断风险，标记为需关注，建议医生评估是否需要加用胃黏膜保护剂。</div>
+      </div>
+      <div class="case-card urgent">
+        <div class="case-header">
+          <span class="case-id">P029</span>
+          <span class="case-name">邓凯</span>
+          <span class="badge-urgent">urgent</span>
+        </div>
+        <div class="case-desc">重度心衰患者（EF 30%），随访发现体重较上次增加 1.6 kg，气短症状无改善。系统自动升级为 urgent 预警，立即通知医生，建议评估是否需要调整利尿剂剂量。</div>
+      </div>
+      <div class="case-card attention">
+        <div class="case-header">
+          <span class="case-id">P012</span>
+          <span class="case-name">马超</span>
+          <span class="badge-attention">attention</span>
+        </div>
+        <div class="case-desc">CKD 3 期合并高血压患者，随访中反映近期乏力明显，系统结合其肾功能背景标记为需关注，建议复查肾功能及电解质。</div>
+      </div>
+    </div>
   </div>
 
   <!-- 六 -->
@@ -331,9 +563,9 @@
     <h2>团队信息</h2>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>成员</th><th>角色</th></tr></thead>
+        <thead><tr><th>成员</th><th>学校</th><th>赛道</th><th>联系方式</th></tr></thead>
         <tbody>
-          <tr><td>[待填写]</td><td>开发 / 设计 / 项目负责人</td></tr>
+          <tr><td><strong>赵天浩</strong></td><td>北京中关村学院</td><td>生产力赛道</td><td>zthwhucs@gmail.com · 18512450950</td></tr>
         </tbody>
       </table>
     </div>
