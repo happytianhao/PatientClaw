@@ -358,7 +358,7 @@ Doctor/
 
 ### 提交材料
 - [ ] 海报制作 → docs/poster/
-- [ ] 演示视频录制（≤3分钟）→ 上传B站/YouTube
+- [x] 演示视频录制（≤3分钟）→ 上传YouTube：https://youtu.be/3f7pIgkAC7s
 - [ ] 所有公开链接填入 README
 - [x] 首次推送到 GitHub
 - [ ] 在 claw.lab.bza.edu.cn 提交报名

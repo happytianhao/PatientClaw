@@ -98,7 +98,8 @@ PatientClaw/
 
 - 📄 [项目说明书](https://happytianhao.github.io/PatientClaw/report/)
 - 🖼️ [项目海报](https://happytianhao.github.io/PatientClaw/poster/poster.html)
-- 🎬 [演示视频稿 PPT](https://happytianhao.github.io/PatientClaw/video/slides.html)
+- 🎬 [演示视频](https://youtu.be/3f7pIgkAC7s)
+- 📽️ [演示视频稿 PPT](https://happytianhao.github.io/PatientClaw/video/slides.html)
 - 💻 [代码仓库](https://github.com/happytianhao/PatientClaw)
 
 ---
