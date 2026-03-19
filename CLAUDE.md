@@ -322,6 +322,7 @@ Doctor/
 │   │   └── PatientClaw项目说明书.md  # 比赛提交说明书
 │   ├── openclaw-setup-guide.md       # OpenClaw 配置教程（小白版）
 │   ├── poster/                       # 海报
+│   ├── slides/                       # 演示视频稿 PPT
 │   └── video/                        # 视频说明
 │
 └── materials/                        # 参考材料（不提交）
