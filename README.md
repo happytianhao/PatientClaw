@@ -77,16 +77,19 @@ PatientClaw/
 ├── README.md
 ├── CLAUDE.md                          # AI 开发指导文档
 ├── data/
+│   ├── doctors.csv                    # 医生档案
 │   ├── patients.csv                   # 30名患者基础信息
 │   ├── visits.csv                     # 就诊记录（~91条）
 │   ├── prescriptions.csv              # 药方详情（88条）
 │   ├── followups.csv                  # 随访记录（50条）
-│   └── reports/                       # 患者病情报告 + 每日日报
+│   ├── chat_logs.csv                  # 聊天记录（系统运行时实时写入）
+│   └── reports/                       # 患者病情报告（30份）+ 每日日报（10天）
 └── docs/
     ├── index.html                     # 项目主页
-    ├── report/                        # 项目说明书
+    ├── report/                        # 项目说明书（MD + HTML）
     ├── poster/poster.html             # 项目海报
-    └── video/slides.html              # 演示视频稿 PPT
+    ├── video/slides.html              # 演示视频稿 PPT
+    └── doctor-profile.md             # 模拟医生简介
 ```
 
 ---
