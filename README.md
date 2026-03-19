@@ -87,8 +87,8 @@ PatientClaw/
 └── docs/
     ├── index.html                     # 项目主页
     ├── report/                        # 项目说明书（MD + HTML）
-    ├── poster/poster.html             # 项目海报
-    ├── video/slides.html              # 演示视频稿 PPT
+    ├── poster/index.html              # 项目海报
+    ├── video/index.html               # 演示视频稿 PPT
     └── doctor-profile.md             # 模拟医生简介
 ```
 
@@ -97,9 +97,9 @@ PatientClaw/
 ## 项目资源
 
 - 📄 [项目说明书](https://happytianhao.github.io/PatientClaw/report/)
-- 🖼️ [项目海报](https://happytianhao.github.io/PatientClaw/poster/poster.html)
+- 🖼️ [项目海报](https://happytianhao.github.io/PatientClaw/poster/)
 - 🎬 [演示视频](https://youtu.be/3f7pIgkAC7s)
-- 📽️ [演示视频稿 PPT](https://happytianhao.github.io/PatientClaw/video/slides.html)
+- 📽️ [演示视频稿 PPT](https://happytianhao.github.io/PatientClaw/video/)
 - 💻 [代码仓库](https://github.com/happytianhao/PatientClaw)
 
 ---

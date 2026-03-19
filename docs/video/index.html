@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatientClaw · 演示视频稿</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --accent: #7c3aed;
+      --accent2: #3b82f6;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --border: #30363d;
+      --green: #3fb950;
+      --red: #f85149;
+      --yellow: #d2a520;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+    /* ── Slide container ── */
+    #deck { width: 100vw; height: 100vh; position: relative; }
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 60px 80px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .slide.active { opacity: 1; pointer-events: all; }
+
+    /* Click zone for advancing */
+    #click-next { position: fixed; right: 0; top: 0; width: 50%; height: 100%; z-index: 10; cursor: pointer; }
+    #click-prev { position: fixed; left: 0; top: 0; width: 50%; height: 100%; z-index: 10; cursor: pointer; }
+
+    /* ── Progress bar ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #7c3aed, #3b82f6);
+      transition: width 0.4s ease; z-index: 100;
+    }
+
+    /* ── Page counter ── */
+    #page-counter {
+      position: fixed; bottom: 60px; right: 32px;
+      font-size: 13px; color: var(--text2); z-index: 100;
+    }
+
+    /* ── Script panel ── */
+    #script-panel {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(13,17,23,0.95); border-top: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    #script-panel.collapsed { transform: translateY(calc(100% - 36px)); }
+    #script-toggle {
+      height: 36px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; cursor: pointer; user-select: none;
+    }
+    #script-toggle span { font-size: 12px; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    #script-toggle .arrow { font-size: 12px; color: var(--text2); transition: transform 0.3s; }
+    #script-panel.collapsed #script-toggle .arrow { transform: rotate(180deg); }
+    #script-content { padding: 16px 24px 20px; font-size: 14px; color: #c9d1d9; line-height: 1.8; max-height: 120px; overflow-y: auto; }
+
+    /* ── Common slide elements ── */
+    .slide-badge {
+      display: inline-block;
+      background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.4);
+      color: #a78bfa; padding: 4px 16px; border-radius: 20px;
+      font-size: 12px; letter-spacing: 0.04em; margin-bottom: 20px;
+    }
+    .slide-title {
+      font-size: clamp(36px, 6vw, 64px); font-weight: 900;
+      letter-spacing: -2px; text-align: center; line-height: 1.1; margin-bottom: 16px;
+    }
+    .slide-title .grad {
+      background: linear-gradient(135deg, #a78bfa, #7c3aed, #3b82f6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .slide-subtitle { font-size: clamp(16px, 2.5vw, 22px); color: var(--text2); text-align: center; margin-bottom: 12px; }
+    .slide-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
+    .slide-tag { background: var(--bg3); border: 1px solid var(--border); padding: 6px 18px; border-radius: 20px; font-size: 13px; color: var(--text2); }
+
+    /* ── Slide 2: bullet points ── */
+    .bullet-list { list-style: none; max-width: 680px; width: 100%; margin-top: 8px; }
+    .bullet-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 20px; margin-bottom: 12px; font-size: clamp(14px, 2vw, 17px); color: #c9d1d9;
+    }
+    .bullet-list li .icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Slide 3: flow ── */
+    .flow-chain {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+      justify-content: center; max-width: 900px; margin-top: 16px;
+    }
+    .flow-node {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 18px; font-size: 13px; text-align: center; white-space: nowrap;
+    }
+    .flow-node.purple { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.1); color: #a78bfa; }
+    .flow-node.blue { border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.1); color: #79c0ff; font-weight: 600; }
+    .flow-node small { display: block; color: var(--text2); font-size: 11px; margin-top: 3px; }
+    .flow-arrow { color: var(--text2); font-size: 16px; padding: 0 8px; }
+    .highlight-box {
+      background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.3);
+      border-radius: 10px; padding: 14px 24px; color: #3fb950;
+      font-size: 15px; font-weight: 600; text-align: center; margin-top: 20px;
+    }
+
+    /* ── Slide 4: task cards ── */
+    .task-cards { display: flex; flex-direction: column; gap: 14px; max-width: 760px; width: 100%; margin-top: 8px; }
+    .task-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 20px; display: flex; align-items: flex-start; gap: 16px;
+    }
+    .task-num {
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      color: white; width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; flex-shrink: 0;
+    }
+    .task-body { flex: 1; }
+    .task-title { font-size: 15px; font-weight: 600; margin-bottom: 5px; }
+    .task-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .task-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .task-step { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); padding: 3px 10px; border-radius: 6px; font-size: 11px; }
+
+    /* ── Slide 5: stats + cases ── */
+    .stats-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .stat-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 22px; text-align: center; min-width: 130px;
+    }
+    .stat-num { font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #7c3aed, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+    .cases-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; max-width: 860px; }
+    .case-card {
+      background: var(--bg2); border-radius: 10px; padding: 14px 18px;
+      border-left: 3px solid var(--border); flex: 1; min-width: 220px; max-width: 260px;
+    }
+    .case-card.ok { border-left-color: var(--green); }
+    .case-card.warn { border-left-color: var(--yellow); }
+    .case-card.alert { border-left-color: var(--red); }
+    .case-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .case-id { font-size: 11px; color: var(--text2); font-weight: 700; }
+    .case-name { font-size: 14px; font-weight: 600; }
+    .case-diag { font-size: 11px; color: var(--text2); margin-bottom: 5px; }
+    .case-desc { font-size: 12px; color: #c9d1d9; line-height: 1.5; }
+
+    /* ── Slide 6: capability cards ── */
+    .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 800px; width: 100%; margin-top: 8px; }
+    .cap-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 16px; text-align: center;
+    }
+    .cap-icon { font-size: 28px; margin-bottom: 10px; }
+    .cap-title { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+    .cap-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+    /* ── Slide 7: value cards ── */
+    .value-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; max-width: 860px; margin-top: 8px; }
+    .value-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 22px 24px; flex: 1; min-width: 220px; max-width: 260px;
+    }
+    .value-icon { font-size: 28px; margin-bottom: 12px; }
+    .value-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .value-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .author-line { margin-top: 32px; font-size: 14px; color: var(--text2); text-align: center; }
+    .author-line a { color: #79c0ff; }
+  </style>
+</head>
+<body>
+
+<div id="deck">
+
+  <!-- Slide 1: Cover -->
+  <div class="slide active" data-script="大家好，我是赵天浩，来自北京中关村学院。今天我要介绍的项目叫 PatientClaw，一个用 OpenClaw 龙虾框架搭建的患者诊后病情全自动跟踪统计系统。">
+    <div class="slide-badge">北纬·龙虾大赛（第一届）· OpenClaw Hackathon · 生产力赛道</div>
+    <div class="slide-title"><span class="grad">PatientClaw</span></div>
+    <div class="slide-subtitle">患者诊后病情全自动跟踪统计系统</div>
+    <div class="slide-tags">
+      <span class="slide-tag">全自动随访</span>
+      <span class="slide-tag">AI 回复解析</span>
+      <span class="slide-tag">飞书日报推送</span>
+      <span class="slide-tag">30名患者模拟</span>
+    </div>
+  </div>
+
+  <!-- Slide 2: Problem -->
+  <div class="slide" data-script="在基层医疗中，患者就诊后的诊后断联是个严重问题。超过70%的患者取药后就消失了，医生完全不知道药方是否有效。每天接诊几十人的医生，根本没有时间和精力主动随访每一位患者。">
+    <div class="slide-title" style="font-size:clamp(28px,4vw,48px);margin-bottom:32px;">医生面临的困境</div>
+    <ul class="bullet-list">
+      <li><span class="icon">📉</span>基层门诊自然复诊率不足 30%</li>
+      <li><span class="icon">⏱️</span>医生每日接诊 30-50 人，无暇主动随访</li>
+      <li><span class="icon">🔲</span>70% 患者就诊结果对医生是黑盒</li>
+      <li><span class="icon">❓</span>无法区分"药不对症"还是"患者没吃药"</li>
+    </ul>
+  </div>
+
+  <!-- Slide 3: Solution -->
+  <div class="slide" data-script="我用 OpenClaw 龙虾框架，给医生配了一个不知疲倦的数字助理。龙虾每隔10分钟扫描一次，自动判断哪些患者需要随访，生成个性化的随访消息，模拟患者回复，解析数据，最后把所有信息汇总成日报推送给医生。医生什么都不用做，只需要早上打开飞书看一眼。">
+    <div class="slide-title" style="font-size:clamp(24px,3.5vw,42px);margin-bottom:8px;">我用龙虾解决了这个问题</div>
+    <div class="slide-subtitle" style="margin-bottom:24px;">OpenClaw 全自动承担随访工作，医生只需查看飞书日报</div>
+    <div class="flow-chain">
+      <div class="flow-node purple">就诊<small>Day 0</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">龙虾定时触发<small>每10分钟</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">生成随访消息</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">模拟患者回复</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">AI 解析</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">写入数据</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node blue">飞书日报 📱</div>
+    </div>
+    <div class="highlight-box">医生只需打开飞书，其余全部自动完成</div>
+  </div>
+
+  <!-- Slide 4: Three tasks -->
+  <div class="slide" data-script="龙虾在后台运行着三个定时任务。第一个，每10分钟检查需要随访的患者，生成结合具体诊断和用药的个性化消息，然后模拟患者回复，用AI解析后写入数据库。第二个，每天生成一份医生综合日报，重点标注需要关注的患者，推送到飞书。第三个，持续更新每位患者的病情追踪档案。">
+    <div class="slide-title" style="font-size:clamp(24px,3.5vw,42px);margin-bottom:24px;">龙虾在后台做了什么</div>
+    <div class="task-cards">
+      <div class="task-card">
+        <div class="task-num">1</div>
+        <div class="task-body">
+          <div class="task-title">📅 患者随访询问（每 10 分钟）</div>
+          <div class="task-desc">扫描所有患者，判断是否到达随访节点，生成个性化消息，模拟患者回复，AI 解析后写入数据。</div>
+          <div class="task-steps">
+            <span class="task-step">扫描随访节点</span>
+            <span class="task-step">生成个性化消息</span>
+            <span class="task-step">模拟患者回复</span>
+            <span class="task-step">AI 解析</span>
+            <span class="task-step">写入 CSV</span>
+          </div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">2</div>
+        <div class="task-body">
+          <div class="task-title">📊 医生日报生成（每 10 分钟）</div>
+          <div class="task-desc">汇总所有患者状态，分析用药效果，生成结构化日报并通过飞书 Bot 推送给医生。</div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">3</div>
+        <div class="task-body">
+          <div class="task-title">📋 病情报告更新（每 10 分钟）</div>
+          <div class="task-desc">为每位患者维护独立的病情追踪档案，每轮随访后追加摘要，Day 14 生成完整版终期报告。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Real data -->
+  <div class="slide" data-script="我用30名心血管科患者的真实模拟数据跑了10天演示。系统产生了50条随访记录，整体依从率92%。龙虾不只记录好消息，也能识别问题：比如这位高血压患者自行减药，血压反弹了，系统立刻标记需要关注；这位重度心衰患者体重增加接近预警线，系统自动升级了关注级别。">
+    <div class="slide-title" style="font-size:clamp(24px,3.5vw,42px);margin-bottom:20px;">10 天演示数据</div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">30</div><div class="stat-label">名患者</div></div>
+      <div class="stat-card"><div class="stat-num">50</div><div class="stat-label">条随访记录</div></div>
+      <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">天日报</div></div>
+      <div class="stat-card"><div class="stat-num">92%</div><div class="stat-label">整体依从率</div></div>
+    </div>
+    <div class="cases-row">
+      <div class="case-card ok">
+        <div class="case-top"><span>✅</span><span class="case-id">P005</span><span class="case-name">陈强</span></div>
+        <div class="case-diag">心力衰竭 · Day 7</div>
+        <div class="case-desc">体重 62.8 kg 稳定，血压 128/80，症状持续改善</div>
+      </div>
+      <div class="case-card warn">
+        <div class="case-top"><span>⚠️</span><span class="case-id">P010</span><span class="case-name">吴霞</span></div>
+        <div class="case-diag">高血压 · 自行减药</div>
+        <div class="case-desc">血压反弹至 134/86，系统标记需关注</div>
+      </div>
+      <div class="case-card alert">
+        <div class="case-top"><span>🔔</span><span class="case-id">P029</span><span class="case-name">邓凯</span></div>
+        <div class="case-diag">重度心衰 EF 30%</div>
+        <div class="case-desc">体重增加 1.6 kg，系统自动升级 urgent 预警</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Tech capabilities -->
+  <div class="slide" data-script="这个项目充分发挥了龙虾的各项能力：调度引擎负责定时触发，LLM推理生成个性化消息，Tool Use对接飞书机器人，NLP解析把患者的自然语言回复转成结构化数据，文件操作实时读写CSV，最后生成标准化的Markdown病情档案。">
+    <div class="slide-title" style="font-size:clamp(24px,3.5vw,42px);margin-bottom:24px;">OpenClaw 能力全面发挥</div>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="cap-icon">⏰</div>
+        <div class="cap-title">调度引擎</div>
+        <div class="cap-desc">定时任务精确触发，三类任务并行运行</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🧠</div>
+        <div class="cap-title">LLM 推理</div>
+        <div class="cap-desc">个性化随访消息生成，结合诊断用药定制</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🔧</div>
+        <div class="cap-title">Tool Use</div>
+        <div class="cap-desc">飞书 Bot 消息收发，实时推送日报</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🔍</div>
+        <div class="cap-title">NLP 解析</div>
+        <div class="cap-desc">结构化 JSON 输出，自然语言→数据</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📁</div>
+        <div class="cap-title">文件操作</div>
+        <div class="cap-desc">CSV 实时读写，数据持久化存储</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📋</div>
+        <div class="cap-title">报告生成</div>
+        <div class="cap-desc">Markdown 病情档案，标准化格式输出</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Summary -->
+  <div class="slide" data-script="PatientClaw 让每一次就诊都有后续。对医生，它提供了过去几乎不可能获得的随访数据，让临床决策更有依据。对患者，每个人都感受到被关注，依从性自然提升。这就是我用龙虾做的事——把一个几乎不可能靠人力完成的工作，变成了全自动运行的系统。谢谢大家。">
+    <div class="slide-title" style="margin-bottom:8px;"><span class="grad">PatientClaw</span></div>
+    <div class="slide-subtitle" style="margin-bottom:28px;">让每一次就诊都有后续</div>
+    <div class="value-cards">
+      <div class="value-card">
+        <div class="value-icon">👨‍⚕️</div>
+        <div class="value-title">对医生</div>
+        <div class="value-desc">数据驱动的临床反思，低成本获得随访数据，让用药决策更有依据</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🧑‍🤝‍🧑</div>
+        <div class="value-title">对患者</div>
+        <div class="value-desc">感受到被关注，获得专业问询和用药提醒，依从性自然提升</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏥</div>
+        <div class="value-title">对系统</div>
+        <div class="value-desc">自动化随访降低医疗资源压力，早期识别高危患者</div>
+      </div>
+    </div>
+    <div class="author-line">
+      赵天浩 · 北京中关村学院 · zthwhucs@gmail.com
+      &nbsp;·&nbsp; <a href="https://github.com/happytianhao/PatientClaw" target="_blank">github.com/happytianhao/PatientClaw</a>
+    </div>
+  </div>
+
+</div><!-- #deck -->
+
+<!-- Progress bar -->
+<div id="progress-bar"></div>
+
+<!-- Page counter -->
+<div id="page-counter">1 / 7</div>
+
+<!-- Script panel -->
+<div id="script-panel" class="collapsed">
+  <div id="script-toggle">
+    <span>📖 朗读文案</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div id="script-content"></div>
+</div>
+
+<!-- Click zones -->
+<div id="click-prev"></div>
+<div id="click-next"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const progressBar = document.getElementById('progress-bar');
+  const pageCounter = document.getElementById('page-counter');
+  const scriptContent = document.getElementById('script-content');
+  const scriptPanel = document.getElementById('script-panel');
+  const scriptToggle = document.getElementById('script-toggle');
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, n));
+    slides[current].classList.add('active');
+    progressBar.style.width = ((current + 1) / total * 100) + '%';
+    pageCounter.textContent = (current + 1) + ' / ' + total;
+    scriptContent.textContent = slides[current].dataset.script || '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+  });
+
+  document.getElementById('click-next').addEventListener('click', () => goTo(current + 1));
+  document.getElementById('click-prev').addEventListener('click', () => goTo(current - 1));
+
+  scriptToggle.addEventListener('click', e => {
+    e.stopPropagation();
+    scriptPanel.classList.toggle('collapsed');
+  });
+
+  // Init
+  goTo(0);
+</script>
+</body>
+</html>
