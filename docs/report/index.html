@@ -116,6 +116,58 @@
     .case-name { font-size: 14px; font-weight: 600; }
     .case-desc { font-size: 13px; color: #c9d1d9; line-height: 1.6; }
 
+    /* Daily report render */
+    .daily-report { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 20px 0; }
+    .daily-report-header { background: var(--bg3); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .daily-report-title { font-size: 14px; font-weight: 700; color: var(--text); }
+    .daily-report-meta { font-size: 12px; color: var(--text2); }
+    .daily-report-body { padding: 20px; font-size: 13px; line-height: 2; color: #c9d1d9; font-family: 'SF Mono', 'Fira Code', monospace; white-space: pre-wrap; }
+    .dr-section-title { font-weight: 700; font-size: 13px; }
+    .dr-urgent { color: #f85149; }
+    .dr-attention { color: #d2a520; }
+    .dr-good { color: #3fb950; }
+    .dr-muted { color: var(--text2); }
+    .dr-insight { color: #79c0ff; }
+    .dr-divider { display: block; border-top: 1px solid var(--border); margin: 8px 0; }
+
+    /* Chat thread */
+    .chat-thread { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
+    .chat-thread-meta { text-align: center; font-size: 12px; color: var(--text2); padding: 6px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 4px 0; }
+    .chat-thread-meta:first-child { border-top: none; }
+    .msg-wrap { display: flex; flex-direction: column; gap: 4px; }
+    .msg-wrap.sys { align-items: flex-start; }
+    .msg-wrap.pat { align-items: flex-end; }
+    .msg-label { font-size: 11px; color: var(--text2); padding: 0 4px; }
+    .msg-bubble { padding: 11px 15px; border-radius: 12px; font-size: 13px; line-height: 1.75; max-width: 90%; }
+    .msg-bubble.sys { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px 12px 12px 2px; color: #c9d1d9; }
+    .msg-bubble.pat { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); border-radius: 12px 12px 2px 12px; color: var(--text); }
+    .msg-parsed { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 12px; color: var(--text2); max-width: 90%; align-self: flex-end; line-height: 1.7; }
+    .msg-parsed .ok { color: #3fb950; font-weight: 600; }
+    .msg-parsed .warn { color: #d2a520; font-weight: 600; }
+    .msg-parsed .urg { color: #f85149; font-weight: 600; }
+
+    /* Tracking report */
+    .track-report { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 20px 0; }
+    .track-report-header { background: var(--bg3); border-bottom: 1px solid var(--border); padding: 14px 20px; }
+    .track-report-title { font-size: 15px; font-weight: 700; color: var(--text); }
+    .track-report-sub { font-size: 12px; color: var(--text2); margin-top: 3px; }
+    .track-report-body { padding: 20px; }
+    .track-section { margin-bottom: 18px; }
+    .track-section:last-child { margin-bottom: 0; }
+    .track-section-label { font-size: 11px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+    .track-meds { display: flex; flex-direction: column; gap: 4px; }
+    .track-med { font-size: 13px; color: #c9d1d9; display: flex; gap: 8px; }
+    .track-med-name { color: var(--text); font-weight: 600; min-width: 160px; }
+    .track-timeline { display: flex; flex-direction: column; gap: 8px; }
+    .track-tl-row { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; }
+    .track-tl-day { width: 52px; flex-shrink: 0; font-weight: 700; color: var(--accent2); }
+    .track-tl-badge { flex-shrink: 0; }
+    .track-tl-text { color: #c9d1d9; line-height: 1.65; }
+    .tbadge-good { background: rgba(63,185,80,0.15); border: 1px solid rgba(63,185,80,0.35); color: #3fb950; padding: 1px 8px; border-radius: 8px; font-size: 11px; white-space: nowrap; }
+    .tbadge-warn { background: rgba(210,153,34,0.15); border: 1px solid rgba(210,153,34,0.35); color: #d2a520; padding: 1px 8px; border-radius: 8px; font-size: 11px; white-space: nowrap; }
+    .track-trend { background: var(--bg3); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #c9d1d9; line-height: 1.75; }
+    .track-recs { font-size: 13px; color: #c9d1d9; line-height: 2; }
+
     /* Delay type grid */
     .delay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
     .delay-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
@@ -153,7 +205,9 @@
       <li><a href="#s4">技术实现</a></li>
       <li><a href="#s5">演示说明与真实数据</a></li>
       <li><a href="#s5b">龙虾如何工作</a></li>
-      <li><a href="#s5c">真实随访示例</a></li>
+      <li><a href="#s5c">真实随访对话</a></li>
+      <li><a href="#s5e">真实医生日报</a></li>
+      <li><a href="#s5f">真实病情追踪报告</a></li>
       <li><a href="#s5d">依从性与异常处理</a></li>
       <li><a href="#s6">项目价值与影响</a></li>
       <li><a href="#s7">团队信息</a></li>
@@ -448,26 +502,228 @@
 
   <!-- 五C -->
   <div class="section" id="s5c">
-    <div class="section-num">五 · 示例</div>
-    <h2>真实随访示例</h2>
-    <p>以下消息来自系统实际生成的随访记录（<code>followups.csv</code>），展示个性化问询与患者回复的真实样貌。</p>
+    <div class="section-num">五 · 对话</div>
+    <h2>真实随访对话</h2>
+    <p>以下对话来自系统实际生成的随访记录（<code>followups.csv</code>），展示个性化问询、患者回复与 AI 解析的完整流程。</p>
 
-    <div class="example-card">
-      <div class="example-label">系统发出 · P005 陈强 · 心力衰竭 · Day 7</div>
-      <div class="example-text">陈强您好！我是李晓峰主任诊室的随访助理。您就诊已满一周，请问这几天沙库巴曲缬沙坦、美托洛尔、螺内酯、达格列净是否每日按时服用？今日体重是多少？有无气短复发或双踝水肿？血压今天测了多少？心衰患者体重每日变化很重要，如近两天体重增加超过2kg请及时告知。请简要回复。</div>
+    <div class="chat-thread">
+      <div class="chat-thread-meta">P005 陈强 · 心力衰竭（HFrEF）· Day 7 随访 · 2026-03-18</div>
+      <div class="msg-wrap sys">
+        <div class="msg-label">系统（李晓峰主任诊室随访助理）</div>
+        <div class="msg-bubble sys">陈强您好！我是李晓峰主任诊室的随访助理。您就诊已满一周，请问这几天沙库巴曲缬沙坦、美托洛尔、螺内酯、达格列净是否每日按时服用？今日体重是多少？有无气短复发或双踝水肿？血压今天测了多少？心衰患者体重每日变化很重要，如近两天体重增加超过2kg请及时告知。请简要回复。</div>
+      </div>
+      <div class="msg-wrap pat">
+        <div class="msg-label">患者回复</div>
+        <div class="msg-bubble pat">药都按时吃了，今天体重62.8kg，血压128/80，没有气短，脚也不肿，感觉比上周好多了，走路轻松了不少。</div>
+        <div class="msg-parsed">AI 解析 → 依从性：<span class="ok">good</span> · 病情：<span class="ok">improved</span> · 优先级：<span class="ok">normal</span><br>摘要：体重62.8kg稳定，血压128/80，无气短水肿，心衰症状持续改善</div>
+      </div>
+
+      <div class="chat-thread-meta">P013 胡杰 · 高血压合并睡眠呼吸暂停 · Day 3 随访 · 2026-03-18</div>
+      <div class="msg-wrap sys">
+        <div class="msg-label">系统（李晓峰主任诊室随访助理）</div>
+        <div class="msg-bubble sys">胡杰您好！我是李晓峰主任诊室的随访助理。您就诊后已过3天，请问氨氯地平是否已开始规律服用？CPAP呼吸机这几天是否坚持使用？血压今天测了多少？有无头痛、踝部水肿或其他不适？请简要告知用药和血压情况。</div>
+      </div>
+      <div class="msg-wrap pat">
+        <div class="msg-label">患者回复</div>
+        <div class="msg-bubble pat">氨氯地平每天都吃，CPAP也在用，血压今天测了140/88，头痛少多了，没有脚肿，就是CPAP戴着有点不习惯，但在坚持。</div>
+        <div class="msg-parsed">AI 解析 → 依从性：<span class="ok">good</span> · 病情：<span class="ok">improved</span> · 优先级：<span class="ok">normal</span><br>摘要：血压140/88较前改善，氨氯地平规律服用，CPAP坚持使用，头痛减少</div>
+      </div>
+
+      <div class="chat-thread-meta">P012 马超 · 高血压/心房颤动/CKD 3期 · Day 7 随访 · 2026-03-21</div>
+      <div class="msg-wrap sys">
+        <div class="msg-label">系统（李晓峰主任诊室随访助理）</div>
+        <div class="msg-bubble sys">马超您好！我是李晓峰主任诊室的随访助理。您就诊已满一周，请问地尔硫卓和利伐沙班是否每日按时服用？心悸感觉如何？有无异常出血迹象？利伐沙班需随餐服用，请注意。肾功能不全患者需定期监测，请记得按时复查。请简要回复。</div>
+      </div>
+      <div class="msg-wrap pat">
+        <div class="msg-label">患者回复</div>
+        <div class="msg-bubble pat">地尔硫卓和利伐沙班都在吃，心跳感觉还好，没有出血，血压136/84，就是最近有点乏力，不知道是不是肾的问题。</div>
+        <div class="msg-parsed">AI 解析 → 依从性：<span class="ok">good</span> · 病情：<span class="warn">stable</span> · 不良反应：<span class="warn">乏力（可能与CKD相关）</span> · 优先级：<span class="warn">attention</span><br>摘要：血压136/84，两药规律服用，无出血，出现乏力需关注CKD进展，建议复查肾功</div>
+      </div>
+
+      <div class="chat-thread-meta">P005 陈强 · 心力衰竭（HFrEF）· Day 14 随访 · 2026-03-25</div>
+      <div class="msg-wrap sys">
+        <div class="msg-label">系统（李晓峰主任诊室随访助理）</div>
+        <div class="msg-bubble sys">陈强您好！我是李晓峰主任诊室的随访助理。您就诊已满两周，请问沙库巴曲缬沙坦、美托洛尔、螺内酯、达格列净四种药物是否坚持每日服用？今日体重是多少？血压近几日测了多少？活动耐力如何？有无气短或水肿复发？请综合告知近期情况。</div>
+      </div>
+      <div class="msg-wrap pat">
+        <div class="msg-label">患者回复</div>
+        <div class="msg-bubble pat">四种药一直在吃，今天体重62.5kg，血压126/78，没有气短，脚不肿，现在能爬三层楼不喘，比刚来看病时好太多了。</div>
+        <div class="msg-parsed">AI 解析 → 依从性：<span class="ok">good</span> · 病情：<span class="ok">improved</span> · 优先级：<span class="ok">normal</span><br>摘要：体重62.5kg稳定，血压126/78，可爬三层楼，无气短水肿，心衰两周随访圆满</div>
+      </div>
     </div>
-    <div class="example-card" style="border-color: rgba(63,185,80,0.3); background: rgba(63,185,80,0.04);">
-      <div class="example-label" style="color:#3fb950;">患者回复 · P005 陈强</div>
-      <div class="example-text">药都按时吃了，今天体重62.8kg，血压128/80，没有气短，脚也不肿，感觉比上周好多了，走路轻松了不少。</div>
+  </div>
+
+  <!-- 五E -->
+  <div class="section" id="s5e">
+    <div class="section-num">五 · 日报</div>
+    <h2>真实医生日报</h2>
+    <p>以下为系统实际生成并推送至飞书的医生日报（<code>data/reports/daily_report_*.md</code>），每 10 分钟（= 系统内 1 天）自动生成一次。</p>
+
+    <div class="daily-report">
+      <div class="daily-report-header">
+        <div class="daily-report-title">PatientClaw 日报 · 李晓峰主任医师</div>
+        <div class="daily-report-meta">2026-03-25 · 系统第8天 · 今日随访更新：7人 · 在管患者总计：30人</div>
+      </div>
+      <div class="daily-report-body"><span class="dr-urgent dr-section-title">⚠️ 需立即关注（1人）</span>
+<span class="dr-muted">──────────────────────</span>
+• <strong>马超（P012）</strong> - 高血压 / 心房颤动 / CKD 3期
+  问题：乏力症状持续，CKD 3期患者肾功能变化可能影响利伐沙班代谢和剂量
+  患者原话："就是最近有点乏力，不知道是不是肾的问题"
+  建议：立即安排复查肾功能、血钾、肌酐，根据结果评估是否需要调整利伐沙班剂量
+
+<span class="dr-attention dr-section-title">🔔 需持续关注（1人）</span>
+<span class="dr-muted">──────────────────────</span>
+• <strong>徐慧（P022）</strong> - 阵发性心房颤动/高血压
+  问题：第7天随访未回复，胺碘酮和利伐沙班依从性待确认
+  建议：下轮继续跟进，房颤患者抗凝药物不可中断
+
+<span class="dr-good dr-section-title">✅ 今日状态良好（5人）</span>
+<span class="dr-muted">──────────────────────</span>
+陈强（P005） | 心力衰竭（HFrEF）NYHA I-II级 | 依从：good | 体重62.5kg，血压126/78，可爬三层楼，两周随访圆满
+杨梅（P006） | 原发性高血压（1级）           | 依从：good | 血压128-130/80-82，缬沙坦规律服用，两周随访圆满
+汤波（P020） | 心肌梗死后稳定期              | 依从：good | 血压128/80，用药规律，无气短胸痛
+张丽（P021） | 冠心病/心力衰竭（HFrEF）      | 依从：good | 体重58.2kg，血压126/80，无气短水肿，持续改善
+许静（P028） | 扩张型心肌病/ICD植入后        | 依从：good | 体重62.0kg，血压124/78，ICD无放电，四药规律服用
+
+<span class="dr-muted dr-section-title">📭 未回复患者（1人）</span>
+<span class="dr-muted">──────────────────────</span>
+徐慧（P022） | 阵发性心房颤动/高血压 | 第7天随访 | 下轮触发时回复
+
+<span class="dr-muted dr-section-title">📊 用药方案效果（累计统计，8天）</span>
+<span class="dr-muted">──────────────────────</span>
+沙库巴曲缬沙坦 | 4人使用 | 依从率100% | 改善率100% | 不良反应0%
+达格列净       | 4人使用 | 依从率100% | 改善率100% | 不良反应0%
+缬沙坦         | 6人使用 | 依从率100% | 改善率100% | 不良反应0%
+利伐沙班       | 3人使用 | 依从率100% | 改善率100% | 不良反应0%
+
+<span class="dr-insight dr-section-title">💡 今日用药洞察与建议</span>
+<span class="dr-muted">──────────────────────</span>
+<span class="dr-insight">· P005 陈强心衰四联GDMT方案两周效果卓越，NYHA从III级改善至I-II级，体重稳定，血压达标，活动耐力显著提升，是本周最佳案例。</span>
+<span class="dr-insight">· P028 许静扩张型心肌病ICD植入后GDMT维持，EF从28%改善至40%，本次随访体重稳定、无放电事件，方案有效。</span>
+<span class="dr-insight">· P012 马超CKD 3期乏力持续，需优先安排肾功能复查，避免利伐沙班蓄积导致出血风险升高。</span></div>
     </div>
 
-    <div class="example-card" style="margin-top:20px;">
-      <div class="example-label">系统发出 · P001 王建国 · 高血压 · Day 3</div>
-      <div class="example-text">您好，王建国先生！我是李晓峰主任医师诊室的智能随访助手。您上次就诊后已经过去3天了，氨氯地平片是否已经开始规律服用？这几天血压自测情况怎么样？有没有出现踝部水肿或头痛加重的情况？请简单告知，医生会及时了解您的情况。</div>
+    <div class="daily-report" style="margin-top:24px;">
+      <div class="daily-report-header">
+        <div class="daily-report-title">PatientClaw 日报 · 李晓峰主任医师</div>
+        <div class="daily-report-meta">2026-03-19 · 系统第2天 · 今日随访更新：6人 · 在管患者总计：30人</div>
+      </div>
+      <div class="daily-report-body"><span class="dr-good dr-section-title">✅ 今日状态良好（4人）</span>
+<span class="dr-muted">──────────────────────</span>
+杨梅（P006） | 原发性高血压（1级）          | 依从：good | 血压132/84，缬沙坦规律服用，较就诊时下降，病情改善
+赵磊（P007） | 高血压/高脂血症/糖尿病前期   | 依从：good | 血压134-136/82-84，血糖6.2，三药规律服用，控制良好
+罗健（P014） | 冠心病支架术后               | 依从：good | 血压128/80心率72，四药规律服用，无胸闷胸痛，状态良好
+韩旭（P015） | 心力衰竭（HFpEF）            | 依从：good | 体重68.2kg，血压128/80，无气短水肿，控制良好
+
+<span class="dr-muted dr-section-title">📭 未回复患者（2人）</span>
+<span class="dr-muted">──────────────────────</span>
+黄丽（P008） | 原发性高血压（2级） | 第7天随访 | 下轮触发时回复
+彭宇（P016） | 心功能不全（HFrEF） | 第3天随访 | 后续轮次回复
+
+<span class="dr-insight dr-section-title">💡 今日用药洞察与建议</span>
+<span class="dr-muted">──────────────────────</span>
+<span class="dr-insight">· P006 杨梅缬沙坦80mg起效明显，7天内血压从138/88降至132/84，ARB一线用药效果良好。</span>
+<span class="dr-insight">· P007 赵磊三联方案（氨氯地平+阿托伐他汀+二甲双胍）整体控制满意，血糖6.2接近正常，建议继续观察是否需要调整二甲双胍剂量。</span>
+<span class="dr-insight">· P014 罗健支架术后四药方案依从性优秀，LDL已达标（1.7mmol/L），下次复诊可与医生讨论双抗改单抗时机。</span></div>
     </div>
-    <div class="example-card" style="border-color: rgba(63,185,80,0.3); background: rgba(63,185,80,0.04);">
-      <div class="example-label" style="color:#3fb950;">患者回复 · P001 王建国</div>
-      <div class="example-text">按时吃了，血压今天测了135/85，比之前低了一些，没有水肿，头也不疼了。</div>
+  </div>
+
+  <!-- 五F -->
+  <div class="section" id="s5f">
+    <div class="section-num">五 · 报告</div>
+    <h2>真实病情追踪报告</h2>
+    <p>每位患者拥有独立的病情追踪档案（<code>data/reports/{patient_id}_report.md</code>），每轮随访后自动更新，Day 14 后生成完整版终期报告。</p>
+
+    <div class="track-report">
+      <div class="track-report-header">
+        <div class="track-report-title">陈强（P005）病情追踪档案</div>
+        <div class="track-report-sub">心力衰竭（HFrEF）— 改善，NYHA I-II级 · 最近就诊：2026-03-11 · 中期报告 · 生成时间：2026-03-18</div>
+      </div>
+      <div class="track-report-body">
+        <div class="track-section">
+          <div class="track-section-label">当前用药方案</div>
+          <div class="track-meds">
+            <div class="track-med"><span class="track-med-name">沙库巴曲缬沙坦钠片 50mg</span><span>每日2次 · 心衰核心治疗；监测血压</span></div>
+            <div class="track-med"><span class="track-med-name">琥珀酸美托洛尔缓释片 23.75mg</span><span>每日1次（晨起）· 心率目标55-65bpm</span></div>
+            <div class="track-med"><span class="track-med-name">螺内酯片 20mg</span><span>每日1次 · MRA；监测血钾+肾功</span></div>
+            <div class="track-med"><span class="track-med-name">达格列净片 10mg</span><span>每日1次（晨起）· SGLT2i；降低心衰再住院</span></div>
+          </div>
+        </div>
+        <div class="track-section">
+          <div class="track-section-label">随访时间线</div>
+          <div class="track-timeline">
+            <div class="track-tl-row">
+              <div class="track-tl-day">Day 7</div>
+              <div class="track-tl-badge"><span class="tbadge-good">改善</span></div>
+              <div class="track-tl-text">体重62.8kg稳定，血压128/80，无气短水肿，心衰症状持续改善，用药依从性好。</div>
+            </div>
+            <div class="track-tl-row">
+              <div class="track-tl-day">Day 14</div>
+              <div class="track-tl-badge"><span class="tbadge-good">改善</span></div>
+              <div class="track-tl-text">体重62.5kg稳定，血压126/78，可爬三层楼，无气短水肿，四药规律服用，心衰两周随访圆满。</div>
+            </div>
+          </div>
+        </div>
+        <div class="track-section">
+          <div class="track-section-label">病情趋势分析</div>
+          <div class="track-trend">体重稳定在62-63 kg，无明显波动，提示无液体潴留加重。血压从就诊时132/82 mmHg降至126/78 mmHg，控制良好。活动耐力持续改善：Day 7可步行平路无碍，Day 14可爬三层楼不明显气喘，较就诊前明显改善。四联GDMT方案（沙库巴曲缬沙坦+美托洛尔+螺内酯+达格列净）效果显著。</div>
+        </div>
+        <div class="track-section">
+          <div class="track-section-label">用药依从性评估</div>
+          <div style="font-size:13px;color:#c9d1d9;">依从率估算：<strong style="color:#3fb950;">100%</strong>（有回复节点均按时服药）。患者为退休教授，理解力强，依从性极好，每日监测体重。需定期复查血钾和肾功能（螺内酯+SGLT2i联用）。</div>
+        </div>
+        <div class="track-section">
+          <div class="track-section-label">后续随访建议</div>
+          <div class="track-recs">
+            1. Day 21 加密随访（心衰患者）<br>
+            2. 复查 BNP、血钾、肾功能、超声心动图<br>
+            3. 如体重单日增加超过 2kg，立即联系医生<br>
+            4. 继续限水（1500-2000ml/日）、限盐（&lt;3g/日）
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-report" style="margin-top:24px;">
+      <div class="track-report-header">
+        <div class="track-report-title">邓凯（P029）病情追踪档案</div>
+        <div class="track-report-sub">缺血性心肌病 / 慢性心力衰竭（HFrEF，EF 30%）/ 冠心病多支病变 · 最近就诊：2026-03-23 · 初期报告</div>
+      </div>
+      <div class="track-report-body">
+        <div class="track-section">
+          <div class="track-section-label">当前用药方案</div>
+          <div class="track-meds">
+            <div class="track-med"><span class="track-med-name">沙库巴曲缬沙坦钠片 50mg</span><span>每日2次 · 最大耐受剂量，重度心衰从低剂量维持</span></div>
+            <div class="track-med"><span class="track-med-name">卡维地洛片 6.25mg</span><span>每日2次（餐后）· 低剂量维持，心率目标60-70bpm</span></div>
+            <div class="track-med"><span class="track-med-name">螺内酯片 25mg</span><span>每日1次 · MRA，监测血钾（重度心衰低钾风险高）</span></div>
+            <div class="track-med"><span class="track-med-name">达格列净片 10mg</span><span>每日1次 · SGLT2i降低心衰再住院</span></div>
+            <div class="track-med"><span class="track-med-name">呋塞米片 40-80mg</span><span>每日1-2次（根据体重调整）· 重度心衰利尿，每日晨起监测体重</span></div>
+          </div>
+        </div>
+        <div class="track-section">
+          <div class="track-section-label">随访时间线</div>
+          <div class="track-timeline">
+            <div class="track-tl-row">
+              <div class="track-tl-day">Day 3</div>
+              <div class="track-tl-badge"><span class="tbadge-warn">需关注</span></div>
+              <div class="track-tl-text">体重80.1kg（较就诊增加1.6kg），血压122/78，气短无明显改善，双下肢水肿未减轻，四药规律服用，需密切关注。</div>
+            </div>
+          </div>
+        </div>
+        <div class="track-section">
+          <div class="track-section-label">病情趋势分析</div>
+          <div class="track-trend">就诊时（2026-03-23）血压126/82 mmHg，EF 30%，BNP 1400pg/ml，NYHA III级。Day 3随访：体重80.1kg，较就诊时增加1.6kg，接近2kg预警线。血压122/78 mmHg偏低，气短无明显改善，双下肢水肿未见减轻。GDMT方案初期利尿效果不理想，体重增加提示液体潴留未得到有效控制。血压偏低需警惕沙库巴曲缬沙坦+卡维地洛联合低血压风险。</div>
+        </div>
+        <div class="track-section">
+          <div class="track-section-label">后续随访建议</div>
+          <div class="track-recs">
+            1. 立即告知患者体重增加接近预警线，需严格限水限盐<br>
+            2. 评估是否需要增加呋塞米剂量或就诊复查BNP、肾功能、电解质<br>
+            3. 如体重继续增加或气短加重，立即就医，不可等待下次随访<br>
+            4. Day 7随访重点评估：体重变化、气短是否改善、有无低血压症状
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

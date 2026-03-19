@@ -63,8 +63,62 @@
     .flow-box small { display: block; color: var(--text2); font-size: 12px; margin-top: 4px; }
     .flow-arrow { color: var(--text2); font-size: 20px; }
 
+    /* Demo Data */
+    #demo { background: var(--bg2); }
+    .demo-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; justify-content: center; }
+    .demo-tab { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); padding: 8px 20px; border-radius: 20px; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+    .demo-tab.active { background: rgba(124,58,237,0.2); border-color: rgba(124,58,237,0.5); color: #a78bfa; }
+    .demo-panel { display: none; }
+    .demo-panel.active { display: block; }
+
+    /* Report block */
+    .report-block { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; max-width: 720px; margin: 0 auto; }
+    .report-header { background: var(--bg3); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .report-header-title { font-size: 13px; font-weight: 600; color: var(--text2); }
+    .report-header-badge { font-size: 11px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #79c0ff; padding: 2px 10px; border-radius: 10px; }
+    .report-body { padding: 20px; font-size: 13px; line-height: 1.9; color: #c9d1d9; font-family: 'SF Mono', 'Fira Code', monospace; white-space: pre-wrap; }
+    .report-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+    .r-title { color: var(--text); font-weight: 700; font-size: 14px; }
+    .r-day { color: var(--text2); font-size: 12px; }
+    .r-urgent { color: #f85149; font-weight: 600; }
+    .r-attention { color: #d2a520; font-weight: 600; }
+    .r-good { color: #3fb950; font-weight: 600; }
+    .r-muted { color: var(--text2); }
+    .r-insight { color: #79c0ff; }
+
+    /* Chat */
+    .chat-wrap { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .chat-meta { text-align: center; font-size: 12px; color: var(--text2); margin-bottom: 4px; }
+    .chat-bubble-wrap { display: flex; flex-direction: column; gap: 4px; }
+    .chat-bubble-wrap.system { align-items: flex-start; }
+    .chat-bubble-wrap.patient { align-items: flex-end; }
+    .chat-sender { font-size: 11px; color: var(--text2); padding: 0 4px; }
+    .chat-bubble { padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.7; max-width: 88%; }
+    .chat-bubble.system { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px 12px 12px 2px; color: #c9d1d9; }
+    .chat-bubble.patient { background: rgba(124,58,237,0.18); border: 1px solid rgba(124,58,237,0.3); border-radius: 12px 12px 2px 12px; color: var(--text); }
+    .chat-parsed { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text2); margin-top: 6px; max-width: 88%; align-self: flex-end; }
+    .chat-parsed span { color: #3fb950; font-weight: 600; }
+    .chat-parsed span.warn { color: #d2a520; }
+
+    /* Tracking report */
+    .tracking-block { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; max-width: 720px; margin: 0 auto; }
+    .tracking-header { background: var(--bg3); border-bottom: 1px solid var(--border); padding: 14px 20px; }
+    .tracking-title { font-size: 15px; font-weight: 700; color: var(--text); }
+    .tracking-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+    .tracking-body { padding: 20px; }
+    .tracking-section { margin-bottom: 18px; }
+    .tracking-section-title { font-size: 12px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .tracking-timeline { display: flex; flex-direction: column; gap: 8px; }
+    .timeline-row { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; }
+    .timeline-day { width: 52px; flex-shrink: 0; font-weight: 600; color: var(--accent2); }
+    .timeline-status { width: 60px; flex-shrink: 0; }
+    .timeline-text { color: #c9d1d9; line-height: 1.6; }
+    .badge-sm-good { background: rgba(63,185,80,0.15); border: 1px solid rgba(63,185,80,0.35); color: #3fb950; padding: 1px 8px; border-radius: 8px; font-size: 11px; }
+    .badge-sm-warn { background: rgba(210,153,34,0.15); border: 1px solid rgba(210,153,34,0.35); color: #d2a520; padding: 1px 8px; border-radius: 8px; font-size: 11px; }
+    .tracking-trend { background: var(--bg3); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #c9d1d9; line-height: 1.7; }
+
     /* Resources */
-    #resources { background: var(--bg2); }
+    #resources { background: var(--bg); }
     .resource-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
     .resource-card { display: flex; align-items: center; gap: 16px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; transition: border-color 0.2s; color: var(--text); }
     .resource-card:hover:not(.disabled) { border-color: var(--accent2); text-decoration: none; }
@@ -166,6 +220,159 @@
     </div>
   </section>
 
+  <section id="demo">
+    <div class="container">
+      <h2 class="section-title">真实运行数据</h2>
+      <p style="text-align:center;color:var(--text2);font-size:15px;margin-top:-28px;margin-bottom:36px;">系统已完整运行 10 天演示周期，以下均为真实生成的数据</p>
+
+      <div class="demo-tabs">
+        <div class="demo-tab active" onclick="switchTab(this,'tab-report')">📊 医生日报</div>
+        <div class="demo-tab" onclick="switchTab(this,'tab-chat')">💬 患者对话</div>
+        <div class="demo-tab" onclick="switchTab(this,'tab-track')">📋 病情追踪报告</div>
+      </div>
+
+      <!-- 日报 -->
+      <div class="demo-panel active" id="tab-report">
+        <div class="report-block">
+          <div class="report-header">
+            <div class="report-header-title">PatientClaw 日报 · 李晓峰主任医师</div>
+            <div class="report-header-badge">2026-03-25 · 系统第8天</div>
+          </div>
+          <div class="report-body"><span class="r-title">今日随访更新：7人 · 在管患者总计：30人</span>
+
+<span class="r-urgent">⚠️ 需立即关注（1人）</span>
+<span class="r-muted">──────────────────────</span>
+• <span style="color:var(--text);font-weight:600;">马超（P012）</span> - 高血压 / 心房颤动 / CKD 3期
+  问题：乏力症状持续，CKD 3期患者肾功能变化可能影响利伐沙班代谢和剂量
+  患者原话："就是最近有点乏力，不知道是不是肾的问题"
+  建议：立即安排复查肾功能、血钾、肌酐，根据结果评估是否需要调整利伐沙班剂量
+
+<span class="r-attention">🔔 需持续关注（1人）</span>
+<span class="r-muted">──────────────────────</span>
+• <span style="color:var(--text);font-weight:600;">徐慧（P022）</span> - 阵发性心房颤动/高血压
+  问题：第7天随访未回复，胺碘酮和利伐沙班依从性待确认
+  建议：下轮继续跟进，房颤患者抗凝药物不可中断
+
+<span class="r-good">✅ 今日状态良好（5人）</span>
+<span class="r-muted">──────────────────────</span>
+陈强（P005） | 心力衰竭（HFrEF）NYHA I-II级 | 体重62.5kg，血压126/78，可爬三层楼，两周随访圆满
+杨梅（P006） | 原发性高血压（1级）           | 血压128-130/80-82，缬沙坦规律服用，两周随访圆满
+汤波（P020） | 心肌梗死后稳定期              | 血压128/80，用药规律，无气短胸痛
+张丽（P021） | 冠心病/心力衰竭（HFrEF）      | 体重58.2kg，血压126/80，无气短水肿，持续改善
+许静（P028） | 扩张型心肌病/ICD植入后        | 体重62.0kg，血压124/78，ICD无放电，四药规律服用
+
+<span class="r-muted">📭 未回复患者（1人）</span>
+<span class="r-muted">──────────────────────</span>
+徐慧（P022） | 阵发性心房颤动/高血压 | 第7天随访 | 下轮触发时回复
+
+<span class="r-insight">💡 今日用药洞察</span>
+<span class="r-muted">──────────────────────</span>
+<span class="r-insight">· P005 陈强心衰四联GDMT方案两周效果卓越，NYHA从III级改善至I-II级，活动耐力显著提升，是本周最佳案例。</span>
+<span class="r-insight">· P028 许静扩张型心肌病ICD植入后GDMT维持，EF从28%改善至40%，本次随访体重稳定、无放电事件。</span>
+<span class="r-insight">· P012 马超CKD 3期乏力持续，需优先安排肾功能复查，避免利伐沙班蓄积导致出血风险升高。</span></div>
+        </div>
+      </div>
+
+      <!-- 对话 -->
+      <div class="demo-panel" id="tab-chat">
+        <div class="chat-wrap">
+          <div class="chat-meta">P005 陈强 · 心力衰竭（HFrEF）· Day 7 随访 · 2026-03-18</div>
+
+          <div class="chat-bubble-wrap system">
+            <div class="chat-sender">系统（李晓峰主任诊室随访助理）</div>
+            <div class="chat-bubble system">陈强您好！我是李晓峰主任诊室的随访助理。您就诊已满一周，请问这几天沙库巴曲缬沙坦、美托洛尔、螺内酯、达格列净是否每日按时服用？今日体重是多少？有无气短复发或双踝水肿？血压今天测了多少？心衰患者体重每日变化很重要，如近两天体重增加超过2kg请及时告知。请简要回复。</div>
+          </div>
+
+          <div class="chat-bubble-wrap patient">
+            <div class="chat-sender">患者回复</div>
+            <div class="chat-bubble patient">药都按时吃了，今天体重62.8kg，血压128/80，没有气短，脚也不肿，感觉比上周好多了，走路轻松了不少。</div>
+            <div class="chat-parsed">AI 解析 → 依从性：<span>good</span> · 病情：<span>improved</span> · 优先级：<span>normal</span> · 摘要：体重62.8kg稳定，血压128/80，无气短水肿，心衰症状持续改善</div>
+          </div>
+
+          <div style="border-top:1px solid var(--border);margin:8px 0;"></div>
+          <div class="chat-meta">P012 马超 · 高血压/心房颤动/CKD 3期 · Day 7 随访 · 2026-03-21</div>
+
+          <div class="chat-bubble-wrap system">
+            <div class="chat-sender">系统（李晓峰主任诊室随访助理）</div>
+            <div class="chat-bubble system">马超您好！我是李晓峰主任诊室的随访助理。您就诊已满一周，请问地尔硫卓和利伐沙班是否每日按时服用？心悸感觉如何？有无异常出血迹象？利伐沙班需随餐服用，请注意。肾功能不全患者需定期监测，请记得按时复查。请简要回复。</div>
+          </div>
+
+          <div class="chat-bubble-wrap patient">
+            <div class="chat-sender">患者回复</div>
+            <div class="chat-bubble patient">地尔硫卓和利伐沙班都在吃，心跳感觉还好，没有出血，血压136/84，就是最近有点乏力，不知道是不是肾的问题。</div>
+            <div class="chat-parsed">AI 解析 → 依从性：<span>good</span> · 病情：<span>stable</span> · 不良反应：<span class="warn">乏力（可能与CKD相关）</span> · 优先级：<span class="warn">attention</span> · 建议复查肾功</div>
+          </div>
+
+          <div style="border-top:1px solid var(--border);margin:8px 0;"></div>
+          <div class="chat-meta">P029 邓凯 · 缺血性心肌病/重度心衰（EF 30%）· Day 3 随访 · 2026-03-26</div>
+
+          <div class="chat-bubble-wrap system">
+            <div class="chat-sender">系统（李晓峰主任诊室随访助理）</div>
+            <div class="chat-bubble system">邓凯您好！我是李晓峰主任诊室的随访助理。您就诊后已过3天，请问沙库巴曲缬沙坦、卡维地洛、螺内酯、达格列净四种心衰药物是否已规律服用？今日体重是多少？有无气短加重或双下肢水肿？您的心衰较重，请每日晨起监测体重，如两天内增加超过2kg请立即告知。请简要回复。</div>
+          </div>
+
+          <div class="chat-bubble-wrap patient">
+            <div class="chat-sender">患者回复</div>
+            <div class="chat-bubble patient">四种药都在吃，今天体重78.5kg，血压124/80，气短比上次来看病时好一点，腿肿也轻了，感觉在慢慢好转。</div>
+            <div class="chat-parsed">AI 解析 → 依从性：<span>good</span> · 病情：<span>improved</span> · 优先级：<span>normal</span> · 摘要：体重78.5kg，气短减轻，下肢水肿改善，重度心衰初期治疗有效</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 追踪报告 -->
+      <div class="demo-panel" id="tab-track">
+        <div class="tracking-block">
+          <div class="tracking-header">
+            <div class="tracking-title">陈强（P005）病情追踪档案</div>
+            <div class="tracking-sub">心力衰竭（HFrEF）— 改善，NYHA I-II级 · 最近就诊：2026-03-11 · 中期报告</div>
+          </div>
+          <div class="tracking-body">
+            <div class="tracking-section">
+              <div class="tracking-section-title">当前用药方案</div>
+              <div style="font-size:13px;color:#c9d1d9;line-height:1.9;">
+                沙库巴曲缬沙坦钠片 50mg · 每日2次 &nbsp;|&nbsp; 琥珀酸美托洛尔缓释片 23.75mg · 每日1次<br>
+                螺内酯片 20mg · 每日1次 &nbsp;|&nbsp; 达格列净片 10mg · 每日1次（晨起）
+              </div>
+            </div>
+            <div class="tracking-section">
+              <div class="tracking-section-title">随访时间线</div>
+              <div class="tracking-timeline">
+                <div class="timeline-row">
+                  <div class="timeline-day">Day 7</div>
+                  <div class="timeline-status"><span class="badge-sm-good">改善</span></div>
+                  <div class="timeline-text">体重62.8kg稳定，血压128/80，无气短水肿，心衰症状持续改善，用药依从性好。</div>
+                </div>
+                <div class="timeline-row">
+                  <div class="timeline-day">Day 14</div>
+                  <div class="timeline-status"><span class="badge-sm-good">改善</span></div>
+                  <div class="timeline-text">体重62.5kg稳定，血压126/78，可爬三层楼，无气短水肿，四药规律服用，心衰两周随访圆满。</div>
+                </div>
+              </div>
+            </div>
+            <div class="tracking-section">
+              <div class="tracking-section-title">病情趋势分析</div>
+              <div class="tracking-trend">体重稳定在62-63 kg，无明显波动，提示无液体潴留加重。血压从就诊时132/82 mmHg降至126/78 mmHg，控制良好。活动耐力持续改善：Day 7可步行平路无碍，Day 14可爬三层楼不明显气喘。四联GDMT方案（沙库巴曲缬沙坦+美托洛尔+螺内酯+达格列净）效果显著。</div>
+            </div>
+            <div class="tracking-section">
+              <div class="tracking-section-title">用药依从性评估</div>
+              <div style="font-size:13px;color:#c9d1d9;">依从率估算：<strong style="color:#3fb950;">100%</strong>（有回复节点均按时服药）。患者为退休教授，理解力强，依从性极好，每日监测体重。需定期复查血钾和肾功能。</div>
+            </div>
+            <div class="tracking-section" style="margin-bottom:0;">
+              <div class="tracking-section-title">后续随访建议</div>
+              <div style="font-size:13px;color:#c9d1d9;line-height:1.9;">
+                1. Day 21 加密随访（心衰患者）<br>
+                2. 复查 BNP、血钾、肾功能、超声心动图<br>
+                3. 如体重单日增加超过 2kg，立即联系医生<br>
+                4. 继续限水（1500-2000ml/日）、限盐（&lt;3g/日）
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="resources">
     <div class="container">
       <h2 class="section-title">项目资源</h2>
@@ -216,5 +423,13 @@
     </div>
   </footer>
 
+  <script>
+    function switchTab(el, id) {
+      document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
