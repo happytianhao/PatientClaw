@@ -248,38 +248,38 @@
     .problem-card-title { font-weight: 700; color: var(--text); margin-bottom: 4px; font-size: 13px; }
 
     /* ── Case slide layout ── */
-    .case-slide-wrap { display: flex; gap: 16px; width: 100%; max-width: 82vw; align-items: stretch; }
+    .case-slide-wrap { display: flex; gap: 20px; width: 100%; max-width: 82vw; align-items: stretch; }
     .case-slide-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-      color: var(--accent2); text-transform: uppercase; margin-bottom: 6px;
+      font-size: clamp(11px, 1.2vw, 14px); font-weight: 700; letter-spacing: 0.08em;
+      color: var(--accent2); text-transform: uppercase; margin-bottom: 8px;
     }
     .case-slide-title {
-      font-size: clamp(18px, 2.5vw, 32px); font-weight: 800;
-      margin-bottom: 12px; text-align: center;
+      font-size: clamp(20px, 2.8vw, 36px); font-weight: 800;
+      margin-bottom: 14px; text-align: center;
     }
 
     /* ── Chat interface ── */
-    .chat-panel { flex: 1.2; display: flex; flex-direction: column; gap: 0; }
+    .chat-panel { flex: 1.3; display: flex; flex-direction: column; gap: 0; }
     .chat-header {
       background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px 8px 0 0; padding: 8px 14px;
-      display: flex; align-items: center; gap: 10px; font-size: 11px;
+      border-radius: 8px 8px 0 0; padding: 10px 16px;
+      display: flex; align-items: center; gap: 10px; font-size: clamp(12px,1.3vw,15px);
     }
-    .chat-header-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .chat-header-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
     .chat-header-title { font-weight: 600; color: var(--text); }
     .chat-header-sub { color: var(--text2); }
     .chat-body {
       background: var(--bg2); border: 1px solid var(--border); border-top: none;
-      border-radius: 0 0 8px 8px; padding: 12px; flex: 1;
-      display: flex; flex-direction: column; gap: 10px;
+      border-radius: 0 0 8px 8px; padding: 16px; flex: 1;
+      display: flex; flex-direction: column; gap: 14px;
     }
     .chat-msg-wrap { display: flex; flex-direction: column; }
     .chat-msg-wrap.system  { align-items: flex-start; }
     .chat-msg-wrap.patient { align-items: flex-end; }
-    .chat-sender { font-size: 10px; color: var(--text2); margin-bottom: 3px; }
+    .chat-sender { font-size: clamp(11px,1.2vw,14px); color: var(--text2); margin-bottom: 5px; }
     .chat-bubble {
-      padding: 9px 13px; border-radius: 10px;
-      font-size: clamp(10px, 1.1vw, 12px); line-height: 1.65; max-width: 90%;
+      padding: 11px 16px; border-radius: 12px;
+      font-size: clamp(13px, 1.5vw, 17px); line-height: 1.7; max-width: 90%;
     }
     .chat-bubble.system-bubble {
       background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
@@ -291,98 +291,98 @@
     }
 
     /* ── Parse result card ── */
-    .parse-panel { flex: 0.85; display: flex; flex-direction: column; gap: 0; }
+    .parse-panel { flex: 0.9; display: flex; flex-direction: column; gap: 0; }
     .parse-card {
       background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 14px; flex: 1;
+      border-radius: 8px; padding: 16px; flex: 1;
     }
     .parse-title {
-      font-size: 10px; font-weight: 700; color: var(--text2);
+      font-size: clamp(11px,1.2vw,14px); font-weight: 700; color: var(--text2);
       text-transform: uppercase; letter-spacing: 0.08em;
-      margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+      margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
     }
-    .parse-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
-    .parse-key { color: var(--text2); font-size: 11px; }
-    .parse-val { font-weight: 600; font-size: 11px; }
+    .parse-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .parse-key { color: var(--text2); font-size: clamp(13px,1.4vw,16px); }
+    .parse-val { font-weight: 600; font-size: clamp(13px,1.4vw,16px); }
     .parse-val.good     { color: var(--green); }
     .parse-val.partial  { color: var(--yellow); }
     .parse-val.attention{ color: var(--yellow); }
     .parse-val.urgent   { color: var(--red); }
     .parse-val.stable   { color: #79c0ff; }
     .parse-summary {
-      margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border);
-      font-size: 11px; color: #c9d1d9; line-height: 1.5;
+      margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border);
+      font-size: clamp(12px,1.3vw,15px); color: #c9d1d9; line-height: 1.6;
     }
-    .parse-summary-label { font-size: 10px; color: var(--text2); margin-bottom: 4px; }
+    .parse-summary-label { font-size: clamp(11px,1.2vw,14px); color: var(--text2); margin-bottom: 5px; }
 
     /* ── Patient report ── */
     .report-panel {
       flex: 1; background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 14px;
-      display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+      border-radius: 8px; padding: 20px;
+      display: flex; flex-direction: column; gap: 12px; overflow: hidden;
     }
     .report-header {
       display: flex; justify-content: space-between; align-items: flex-start;
-      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+      padding-bottom: 12px; border-bottom: 1px solid var(--border);
     }
-    .report-patient-name { font-size: 15px; font-weight: 700; }
-    .report-patient-meta { font-size: 11px; color: var(--text2); margin-top: 2px; }
-    .report-status-badge { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+    .report-patient-name { font-size: clamp(18px,2vw,26px); font-weight: 700; }
+    .report-patient-meta { font-size: clamp(13px,1.4vw,16px); color: var(--text2); margin-top: 3px; }
+    .report-status-badge { padding: 5px 12px; border-radius: 12px; font-size: clamp(13px,1.4vw,16px); font-weight: 700; }
     .report-status-badge.attention {
       background: rgba(210,165,32,0.15); border: 1px solid rgba(210,165,32,0.4); color: var(--yellow);
     }
     .report-section-label {
-      font-size: 10px; font-weight: 700; color: var(--accent2);
-      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+      font-size: clamp(11px,1.2vw,14px); font-weight: 700; color: var(--accent2);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 7px;
     }
-    .report-info-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .report-info-item { font-size: 11px; color: #c9d1d9; }
+    .report-info-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .report-info-item { font-size: clamp(13px,1.4vw,16px); color: #c9d1d9; }
     .report-info-item span { color: var(--text2); }
     .timeline-entry {
-      display: flex; gap: 10px; align-items: flex-start;
-      padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--border);
-      background: var(--bg3); margin-bottom: 5px; font-size: 11px;
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 11px 14px; border-radius: 6px; border-left: 3px solid var(--border);
+      background: var(--bg3); margin-bottom: 8px; font-size: clamp(13px,1.4vw,16px);
     }
     .timeline-entry.ok   { border-left-color: var(--green); }
     .timeline-entry.warn { border-left-color: var(--yellow); }
-    .timeline-day { font-size: 11px; font-weight: 700; min-width: 38px; color: var(--text2); }
-    .timeline-content { flex: 1; color: #c9d1d9; line-height: 1.5; }
-    .timeline-badge { font-size: 10px; padding: 2px 7px; border-radius: 8px; white-space: nowrap; }
+    .timeline-day { font-size: clamp(13px,1.4vw,16px); font-weight: 700; min-width: 46px; color: var(--text2); }
+    .timeline-content { flex: 1; color: #c9d1d9; line-height: 1.6; }
+    .timeline-badge { font-size: clamp(11px,1.2vw,14px); padding: 3px 9px; border-radius: 8px; white-space: nowrap; }
     .timeline-badge.good      { background: rgba(63,185,80,0.15); color: var(--green); }
     .timeline-badge.attention { background: rgba(210,165,32,0.15); color: var(--yellow); }
     .report-alert-box {
       background: rgba(210,165,32,0.08); border: 1px solid rgba(210,165,32,0.3);
-      border-radius: 6px; padding: 8px 12px;
-      font-size: 11px; color: var(--yellow); margin-top: 2px;
+      border-radius: 6px; padding: 11px 14px;
+      font-size: clamp(13px,1.4vw,16px); color: var(--yellow); margin-top: 2px;
     }
 
     /* ── Doctor daily report ── */
-    .daily-report-wrap { width: 100%; max-width: 80vw; display: flex; flex-direction: column; gap: 8px; }
+    .daily-report-wrap { width: 100%; max-width: 82vw; display: flex; flex-direction: column; gap: 10px; }
     .daily-header {
       background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1));
-      border: 1px solid rgba(124,58,237,0.3); border-radius: 8px; padding: 10px 16px;
+      border: 1px solid rgba(124,58,237,0.3); border-radius: 8px; padding: 12px 20px;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .daily-header-title { font-size: 14px; font-weight: 700; }
-    .daily-header-meta  { font-size: 11px; color: var(--text2); }
-    .daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .daily-section { border-radius: 8px; padding: 10px 14px; font-size: 11px; }
+    .daily-header-title { font-size: clamp(16px,1.8vw,22px); font-weight: 700; }
+    .daily-header-meta  { font-size: clamp(13px,1.4vw,16px); color: var(--text2); margin-top: 3px; }
+    .daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .daily-section { border-radius: 8px; padding: 14px 18px; font-size: clamp(13px,1.4vw,16px); }
     .daily-section.urgent-sec  { background: rgba(248,81,73,0.08);  border: 1px solid rgba(248,81,73,0.25); }
     .daily-section.warn-sec    { background: rgba(210,165,32,0.06); border: 1px solid rgba(210,165,32,0.2); }
     .daily-section.good-sec    { background: rgba(63,185,80,0.06);  border: 1px solid rgba(63,185,80,0.2); }
     .daily-section.neutral-sec { background: var(--bg2);            border: 1px solid var(--border); }
-    .daily-section-title { font-size: 12px; font-weight: 700; margin-bottom: 7px; }
+    .daily-section-title { font-size: clamp(14px,1.6vw,19px); font-weight: 700; margin-bottom: 9px; }
     .daily-section.urgent-sec  .daily-section-title { color: var(--red); }
     .daily-section.warn-sec    .daily-section-title { color: var(--yellow); }
     .daily-section.good-sec    .daily-section-title { color: var(--green); }
     .daily-section.neutral-sec .daily-section-title { color: var(--text2); }
-    .daily-item { color: #c9d1d9; line-height: 1.65; }
+    .daily-item { color: #c9d1d9; line-height: 1.75; }
     .daily-item strong { color: var(--text); }
     .daily-insight {
       background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.2);
-      border-radius: 8px; padding: 10px 14px; font-size: 11px; color: #c9d1d9; line-height: 1.6;
+      border-radius: 8px; padding: 12px 16px; font-size: clamp(13px,1.4vw,16px); color: #c9d1d9; line-height: 1.7;
     }
-    .daily-insight-title { font-size: 12px; font-weight: 700; color: #a78bfa; margin-bottom: 5px; }
+    .daily-insight-title { font-size: clamp(14px,1.6vw,18px); font-weight: 700; color: #a78bfa; margin-bottom: 6px; }
 
     /* ── Prompt slide ── */
     .prompt-cols { display: flex; gap: 16px; max-width: 82vw; width: 100%; align-items: flex-start; margin-top: 4px; }
@@ -431,230 +431,331 @@
 <div id="deck">
 
   <!-- ═══ Slide 1: Cover ═══ -->
-  <div class="slide active" data-script="大家好，我是赵天浩，来自北京中关村学院。今天要介绍的项目叫 PatientClaw——一个用 OpenClaw 龙虾框架搭建的患者诊后病情全自动跟踪统计系统。">
-    <div class="finals-badge">🏆 决赛入围</div>
-    <div class="slide-badge">北纬·龙虾大赛（第一届）· OpenClaw Hackathon · 生产力赛道</div>
-    <div class="slide-title"><span class="grad">PatientClaw</span></div>
-    <div class="slide-subtitle">患者诊后病情全自动跟踪统计系统</div>
-    <div style="font-size:clamp(12px,1.4vw,15px);color:var(--text2);margin-top:8px;">助力医生提升医术</div>
-    <div class="slide-tags">
-      <span class="slide-tag">🦞 OpenClaw 驱动</span>
-      <span class="slide-tag">全自动随访</span>
-      <span class="slide-tag">AI 解析回复</span>
-      <span class="slide-tag">飞书日报推送</span>
-      <span class="slide-tag">30名患者模拟</span>
+  <div class="slide active" data-script="大家好，我是赵天浩，来自北京中关村学院。今天要介绍的项目叫 PatientClaw——一个用 OpenClaw 龙虾框架搭建的患者诊后病情全自动跟踪统计系统。它让每一次就诊都有后续，让每一位患者被持续关注，让医生的医术有数据支撑。">
+    <div class="finals-badge" style="font-size:13px;padding:5px 16px;">🏆 决赛入围</div>
+    <!-- 比赛信息 + 赛道 -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;justify-content:center;">
+      <div class="slide-badge" style="margin-bottom:0;font-size:13px;padding:5px 18px;">北纬·龙虾大赛（第一届）· OpenClaw Hackathon · 2026.03.22</div>
+      <div style="background:linear-gradient(135deg,rgba(240,136,62,0.2),rgba(232,93,4,0.15));border:1px solid rgba(240,136,62,0.5);color:#f0883e;padding:5px 18px;border-radius:20px;font-size:14px;font-weight:700;letter-spacing:0.06em;">⚡ 生产力赛道</div>
     </div>
+    <!-- 主标题 -->
+    <div class="slide-title" style="font-size:clamp(64px,10vw,112px);margin-bottom:16px;"><span class="grad">PatientClaw</span></div>
+    <!-- 副标题 -->
+    <div class="slide-subtitle" style="font-size:clamp(18px,2.6vw,30px);margin-bottom:18px;">患者诊后病情全自动跟踪统计系统</div>
+    <!-- 三句价值描述 -->
+    <div style="display:flex;gap:16px;justify-content:center;margin-bottom:24px;flex-wrap:wrap;">
+      <span style="font-size:clamp(14px,1.6vw,18px);color:var(--text2);">让每一次就诊都有后续</span>
+      <span style="font-size:clamp(14px,1.6vw,18px);color:var(--border);">·</span>
+      <span style="font-size:clamp(14px,1.6vw,18px);color:var(--text2);">让每一位患者被持续关注</span>
+      <span style="font-size:clamp(14px,1.6vw,18px);color:var(--border);">·</span>
+      <span style="font-size:clamp(14px,1.6vw,18px);color:var(--text2);">让医生的医术有数据支撑</span>
+    </div>
+    <!-- 标签 -->
+    <div class="slide-tags" style="gap:10px;">
+      <span class="slide-tag" style="font-size:13px;padding:6px 18px;">🦞 OpenClaw 驱动</span>
+      <span class="slide-tag" style="font-size:13px;padding:6px 18px;">全自动随访</span>
+      <span class="slide-tag" style="font-size:13px;padding:6px 18px;">AI 解析回复</span>
+      <span class="slide-tag" style="font-size:13px;padding:6px 18px;">飞书日报推送</span>
+      <span class="slide-tag" style="font-size:13px;padding:6px 18px;">30名患者模拟</span>
+    </div>
+    <!-- 作者 -->
+    <div style="margin-top:24px;font-size:14px;color:var(--text2);">赵天浩 · 北京中关村学院</div>
   </div>
 
   <!-- ═══ Slide 2: Problem ═══ -->
-  <div class="slide" data-script="在基层医疗中，超过70%的患者就诊取药后就失联了。医生每天接诊几十人，根本没时间主动随访。药有没有吃？有没有效果？病情有没有变化？对医生来说完全是黑盒。这个系统性漏洞，让医生的医术无从提升，让患者的小病拖成了大病。">
-    <div class="problem-big-num">70%</div>
-    <div class="problem-big-label">的患者就诊后，医生再也联系不上他们</div>
-    <div class="problem-row">
-      <div class="problem-card">
-        <div class="problem-card-title">📦 患者侧</div>
-        取药即失联，无人跟进用药效果<br>小病拖成大病，高危患者错过干预
+  <div class="slide" data-script="在基层医疗中，超过70%的患者就诊取药后就失联了。从患者角度：药该吃多久？能不能减量？想问医生却联系不上，去复诊又挂不到同一个医生，每次重新解释病史，非常煎熬。从医生角度：患者回去有没有吃药？药有没有起效？完全不知道，医术无法靠反馈来精进。这个诊后断联，是整个医疗体系最大的系统性漏洞。">
+    <div style="font-size:clamp(22px,3.2vw,42px);font-weight:800;text-align:center;margin-bottom:26px;">就诊之后，发生了什么？</div>
+    <!-- 三大问题卡片 -->
+    <div style="display:flex;gap:16px;max-width:78vw;width:100%;">
+      <!-- 患者 -->
+      <div style="flex:1;background:var(--bg2);border:1px solid rgba(248,81,73,0.25);border-top:3px solid var(--red);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:28px;margin-bottom:10px;">🧑‍💼</div>
+        <div style="font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:12px;color:var(--text);">患者的困境</div>
+        <div style="font-size:clamp(13px,1.5vw,16px);color:#c9d1d9;line-height:1.95;">
+          「这药还要吃多久？」— 无人回答<br>
+          好了停药，没好继续吃，全靠猜<br>
+          想问医生，根本联系不上<br>
+          去复诊，挂不到同一个医生<br>
+          <span style="color:var(--red);">一切又从零开始</span>
+        </div>
       </div>
-      <div class="problem-card">
-        <div class="problem-card-title">👨‍⚕️ 医生侧</div>
-        日接诊 30–50 人，无暇逐一随访<br>疗效是黑盒，依从性无从得知
+      <!-- 医生 -->
+      <div style="flex:1;background:var(--bg2);border:1px solid rgba(210,165,32,0.25);border-top:3px solid var(--yellow);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:28px;margin-bottom:10px;">👨‍⚕️</div>
+        <div style="font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:12px;color:var(--text);">医生的困境</div>
+        <div style="font-size:clamp(13px,1.5vw,16px);color:#c9d1d9;line-height:1.95;">
+          开完药，患者回家就消失了<br>
+          有没有吃？有没有效？完全不知道<br>
+          <span style="color:var(--yellow);">每天接诊 30–50 人，已经精疲力竭</span><br>
+          哪还有时间和心思去随访？<br>
+          用心开出的方案，结果如何，永远是谜
+        </div>
       </div>
-      <div class="problem-card">
-        <div class="problem-card-title">🏥 系统侧</div>
-        无法区分"药不对症"与"依从性差"<br>诊后管理是医疗体系的系统性漏洞
+      <!-- 体系 -->
+      <div style="flex:1;background:var(--bg2);border:1px solid rgba(59,130,246,0.25);border-top:3px solid var(--accent2);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:28px;margin-bottom:10px;">🏥</div>
+        <div style="font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:12px;color:var(--text);">体系的困境</div>
+        <div style="font-size:clamp(13px,1.5vw,16px);color:#c9d1d9;line-height:1.95;">
+          每次就诊，看完就结束了<br>
+          没有随访，没有数据，没有后续<br>
+          每个患者都是「一次性」的<br>
+          临床无法积累，<br>
+          <span style="color:#79c0ff;">医疗体系原地踏步</span>
+        </div>
       </div>
+    </div>
+    <!-- 底部大字 -->
+    <div style="margin-top:26px;font-size:clamp(16px,2vw,22px);font-weight:700;color:var(--red);text-align:center;">
+      超过 <span style="font-size:clamp(22px,3vw,36px);font-weight:900;">70%</span> 的患者就诊后与医生永久失联
+      <span style="font-size:clamp(13px,1.5vw,16px);color:var(--text2);font-weight:400;margin-left:10px;">— 这是医疗体系最大的系统性漏洞</span>
     </div>
   </div>
 
   <!-- ═══ Slide 3: Solution ═══ -->
-  <div class="slide" data-script="我用 OpenClaw 龙虾，给医生配了一个不知疲倦的数字助理。龙虾每10分钟自动扫描，判断哪些患者需要随访，结合诊断和用药生成个性化消息，模拟患者回复，AI解析后写入数据，最后汇总成日报推送给医生。医生只需打开飞书看一眼，其余全部自动完成。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,40px);margin-bottom:8px;">OpenClaw 龙虾做医生的随访助理</div>
-    <div class="slide-subtitle" style="margin-bottom:22px;">全流程自动化，医生只需查看飞书日报</div>
-    <div class="flow-chain">
-      <div class="flow-node purple">患者数据<small>诊断 + 用药</small></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">智能调度<small>每 10 分钟</small></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">个性化随访<small>结合病种定制</small></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">模拟回复<small>AI 解析</small></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">数据入库</div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node blue">飞书日报 📱<small>医生查看</small></div>
+  <div class="slide" data-script="PatientClaw 分六步。患者就诊后建立档案，小龙虾读取病历和用药智能规划随访节奏——病情重的密集随访，控制好的稀疏随访。到达节点，AI编写个性化消息通过飞书发给患者，询问用药情况和病情变化。患者真实回复，还可以反向提问。小龙虾据此为每位患者整理专属病情追踪报告，每天自动推送日报给医生，医生据此主动介入，形成诊后完整闭环。">
+    <div style="font-size:clamp(22px,3.2vw,42px);font-weight:800;text-align:center;margin-bottom:4px;">🦞 OpenClaw 龙虾做医生的随访助理</div>
+    <div style="font-size:clamp(14px,1.6vw,19px);color:var(--text2);text-align:center;margin-bottom:16px;">全流程自动化 · 医生只需查看飞书，掌握所有患者情况</div>
+
+    <!-- 蛇形流程图：3列×2行，右侧竖向连接 -->
+    <div style="display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;grid-template-rows:auto 40px auto;max-width:84vw;width:100%;gap:0;">
+
+      <!-- ─── 第一行 ─── -->
+      <!-- 01 -->
+      <div style="position:relative;background:var(--bg2);border:1px solid var(--border);border-top:3px solid #a78bfa;border-radius:10px;padding:14px 16px;">
+        <div style="font-size:clamp(11px,1.1vw,13px);font-weight:700;color:#a78bfa;margin-bottom:5px;">STEP 01</div>
+        <div style="font-size:clamp(15px,1.8vw,22px);font-weight:700;margin-bottom:7px;">🏥 患者就诊</div>
+        <div style="font-size:clamp(12px,1.35vw,15px);color:#c9d1d9;line-height:1.8;">患者门诊就诊<br>医生写<b style="color:var(--text);">病历</b>、开<b style="color:var(--text);">药方</b>、记<b style="color:var(--text);">医嘱</b><br>形成患者就诊档案</div>
+      </div>
+      <!-- → -->
+      <div style="display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:22px;">→</div>
+      <!-- 02 -->
+      <div style="position:relative;background:var(--bg2);border:1px solid var(--border);border-top:3px solid #3b82f6;border-radius:10px;padding:14px 16px;">
+        <div style="position:absolute;top:8px;right:8px;font-size:11px;padding:2px 9px;border-radius:8px;background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-weight:600;">🦞 自动</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);font-weight:700;color:#3b82f6;margin-bottom:5px;">STEP 02</div>
+        <div style="font-size:clamp(15px,1.8vw,22px);font-weight:700;margin-bottom:7px;">🧠 智能规划随访</div>
+        <div style="font-size:clamp(12px,1.35vw,15px);color:#c9d1d9;line-height:1.8;">结合病情轻重<br><span style="color:var(--red);">病情重 → 密集随访</span><br><span style="color:var(--green);">控制好 → 稀疏随访</span></div>
+      </div>
+      <!-- → -->
+      <div style="display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:22px;">→</div>
+      <!-- 03 -->
+      <div style="position:relative;background:var(--bg2);border:1px solid var(--border);border-top:3px solid #2dd4bf;border-radius:10px;padding:14px 16px;">
+        <div style="position:absolute;top:8px;right:8px;font-size:11px;padding:2px 9px;border-radius:8px;background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-weight:600;">🦞 自动</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);font-weight:700;color:#2dd4bf;margin-bottom:5px;">STEP 03</div>
+        <div style="font-size:clamp(15px,1.8vw,22px);font-weight:700;margin-bottom:7px;">💬 个性化问询 · 飞书发送</div>
+        <div style="font-size:clamp(12px,1.35vw,15px);color:#c9d1d9;line-height:1.8;">结合 <b style="color:var(--text);">诊断</b> + <b style="color:var(--text);">用药</b> + <b style="color:var(--text);">医生自定义模板</b><br>三者灵活组合，生成专属问询<br>通过飞书发送给患者</div>
+      </div>
+
+      <!-- ─── 中间行：右侧竖向连接箭头 ─── -->
+      <div style="grid-column:5/6;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:22px;">↓</div>
+
+      <!-- ─── 第二行（右→左） ─── -->
+      <!-- 06 -->
+      <div style="position:relative;background:var(--bg2);border:1px solid rgba(124,58,237,0.4);border-top:3px solid #7c3aed;border-radius:10px;padding:14px 16px;">
+        <div style="position:absolute;top:8px;right:8px;font-size:11px;padding:2px 9px;border-radius:8px;background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-weight:600;">🦞 自动</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);font-weight:700;color:#a78bfa;margin-bottom:5px;">STEP 06</div>
+        <div style="font-size:clamp(15px,1.8vw,22px);font-weight:700;margin-bottom:7px;">📊 医生日报 · 闭环</div>
+        <div style="font-size:clamp(12px,1.35vw,15px);color:#c9d1d9;line-height:1.8;">每天自动推送日报<br>医生查看 → 主动介入<br><b style="color:#a78bfa;">形成诊后完整闭环</b></div>
+      </div>
+      <!-- ← -->
+      <div style="display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:22px;">←</div>
+      <!-- 05 -->
+      <div style="position:relative;background:var(--bg2);border:1px solid var(--border);border-top:3px solid #3fb950;border-radius:10px;padding:14px 16px;">
+        <div style="position:absolute;top:8px;right:8px;font-size:11px;padding:2px 9px;border-radius:8px;background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-weight:600;">🦞 自动</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);font-weight:700;color:#3fb950;margin-bottom:5px;">STEP 05</div>
+        <div style="font-size:clamp(15px,1.8vw,22px);font-weight:700;margin-bottom:7px;">📂 专属病情报告</div>
+        <div style="font-size:clamp(12px,1.35vw,15px);color:#c9d1d9;line-height:1.8;">结合问询+回复+提问<br>为每位患者自动整理<br><b style="color:var(--green);">专属病情追踪档案</b></div>
+      </div>
+      <!-- ← -->
+      <div style="display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:22px;">←</div>
+      <!-- 04 -->
+      <div style="position:relative;background:var(--bg2);border:1px solid var(--border);border-top:3px solid #f0883e;border-radius:10px;padding:14px 16px;">
+        <div style="font-size:clamp(11px,1.1vw,13px);font-weight:700;color:#f0883e;margin-bottom:5px;">STEP 04</div>
+        <div style="font-size:clamp(15px,1.8vw,22px);font-weight:700;margin-bottom:7px;">✉️ 患者真实回复</div>
+        <div style="font-size:clamp(12px,1.35vw,15px);color:#c9d1d9;line-height:1.8;">患者<b style="color:var(--text);">真实回复</b><br>吃药了吗 · 病情如何<br>也可反向向医生提问</div>
+      </div>
+
     </div>
-    <div class="highlight-box">医生零操作 · 全程自动化 · 每天一眼掌握所有患者状态</div>
+    <!-- 核心亮点 -->
+    <div style="margin-top:14px;background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:8px;padding:11px 28px;font-size:clamp(14px,1.6vw,19px);font-weight:600;color:#3fb950;text-align:center;">
+      医生什么都不用做 &nbsp;·&nbsp; 只需打开飞书看一眼日报 &nbsp;·&nbsp; 其余全部自动完成
+    </div>
   </div>
 
   <!-- ═══ Slide 4: Application Value & Social Benefits ═══ -->
-  <div class="slide" data-script="PatientClaw 的价值不只是一个技术工具。对医生，随访数据回流让临床决策有据可依，医术持续精进。对患者，每个人都感受到被持续关注，依从性自然提升，小病不拖成大病。对整个医疗系统，自动化随访可以扩展到任何科室和地区，填补诊后管理的系统性空白。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,40px);margin-bottom:6px;">应用价值 · 社会效益</div>
-    <div class="slide-subtitle" style="margin-bottom:18px;">不只解决技术问题，更填补医疗体系的系统性空白</div>
-    <div class="value-cards">
-      <div class="value-card">
-        <div class="value-icon">👨‍⚕️</div>
-        <div class="value-title">对医生</div>
-        <div class="value-desc">随访数据回流，让每次诊疗有后续反馈，临床决策有据可依，医术得以持续精进</div>
-        <div class="value-metric">依从率 92% ↑</div>
+  <div class="slide" data-script="PatientClaw 的价值体现在三个维度。对患者：最重要的是情绪价值——被医生记挂着，不是一次性的号，而是有人一直在关注你。有问题随时回复，不用再跑一趟，不用挂号排队，药吃还是不吃有人告诉你。对医生：开完药有了后续，看着患者一点点好起来，是最大的成就感。病情没好，系统立刻提醒，医生可以二次干预，精准指导，医术在真实反馈中持续精进。对医疗体系：临床跟踪数据得以积累，助力科研。随访做好了，医院口碑自然提升。">
+    <div style="font-size:clamp(26px,3.6vw,48px);font-weight:900;text-align:center;margin-bottom:4px;">PatientClaw 的价值</div>
+    <div style="font-size:clamp(14px,1.6vw,19px);color:var(--text2);text-align:center;margin-bottom:22px;">让看病从<span style="color:var(--text);font-weight:600;">一次性事件</span>，变成<span style="color:var(--text);font-weight:600;">一段持续的关系</span></div>
+
+    <div style="display:flex;gap:14px;max-width:82vw;width:100%;">
+
+      <!-- 对患者 -->
+      <div style="flex:1;background:var(--bg2);border:1px solid rgba(63,185,80,0.3);border-top:4px solid #3fb950;border-radius:12px;padding:20px 22px;">
+        <div style="font-size:30px;margin-bottom:6px;">🧑‍💼</div>
+        <div style="font-size:clamp(17px,2.1vw,24px);font-weight:800;margin-bottom:12px;color:var(--text);">对患者</div>
+        <div style="font-size:clamp(12px,1.4vw,16px);color:#c9d1d9;line-height:2.1;">
+          <span style="background:rgba(63,185,80,0.18);color:#3fb950;padding:1px 8px;border-radius:4px;font-weight:700;">被医生记挂着</span>，不是一次性的号<br>
+          有人告诉你 <span style="background:rgba(63,185,80,0.18);color:#3fb950;padding:1px 8px;border-radius:4px;font-weight:700;">药吃还是不吃</span><br>
+          有问题直接回复，<span style="background:rgba(63,185,80,0.18);color:#3fb950;padding:1px 8px;border-radius:4px;font-weight:700;">不用再跑一趟</span><br>
+          换了医生也不用 <span style="background:rgba(63,185,80,0.18);color:#3fb950;padding:1px 8px;border-radius:4px;font-weight:700;">重新解释病史</span>
+        </div>
+        <div style="margin-top:12px;font-size:clamp(12px,1.3vw,14px);color:var(--text2);font-style:italic;">「终于感觉有人在关注我的病」</div>
+        <div style="margin-top:10px;background:rgba(63,185,80,0.12);border:1px solid rgba(63,185,80,0.4);border-radius:8px;padding:6px 14px;font-size:clamp(12px,1.3vw,14px);font-weight:700;color:var(--green);display:inline-block;">✓ 30 人零失联</div>
       </div>
-      <div class="value-card">
-        <div class="value-icon">🫀</div>
-        <div class="value-title">对患者</div>
-        <div class="value-desc">每位患者感受到被持续关注，有问题能及时发现并干预，小病不拖成大病</div>
-        <div class="value-metric">30 人零失联</div>
+
+      <!-- 对医生 -->
+      <div style="flex:1;background:var(--bg2);border:1px solid rgba(59,130,246,0.3);border-top:4px solid #3b82f6;border-radius:12px;padding:20px 22px;">
+        <div style="font-size:30px;margin-bottom:6px;">👨‍⚕️</div>
+        <div style="font-size:clamp(17px,2.1vw,24px);font-weight:800;margin-bottom:12px;color:var(--text);">对医生</div>
+        <div style="font-size:clamp(12px,1.4vw,16px);color:#c9d1d9;line-height:2.1;">
+          开完药 <span style="background:rgba(59,130,246,0.18);color:#79c0ff;padding:1px 8px;border-radius:4px;font-weight:700;">不再是终点</span>，有了后续<br>
+          看着患者好起来，<span style="background:rgba(59,130,246,0.18);color:#79c0ff;padding:1px 8px;border-radius:4px;font-weight:700;">成就感</span> 看得见<br>
+          病情没好 → <span style="background:rgba(59,130,246,0.18);color:#79c0ff;padding:1px 8px;border-radius:4px;font-weight:700;">立即二次干预</span><br>
+          医术在真实反馈中 <span style="background:rgba(59,130,246,0.18);color:#79c0ff;padding:1px 8px;border-radius:4px;font-weight:700;">持续精进</span>
+        </div>
+        <div style="margin-top:12px;font-size:clamp(12px,1.3vw,14px);color:var(--text2);font-style:italic;">「心心念念的患者，现在都有了反馈」</div>
+        <div style="margin-top:10px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.4);border-radius:8px;padding:6px 14px;font-size:clamp(12px,1.3vw,14px);font-weight:700;color:#79c0ff;display:inline-block;">✓ 依从率 92% ↑</div>
       </div>
-      <div class="value-card">
-        <div class="value-icon">🏥</div>
-        <div class="value-title">对医疗系统</div>
-        <div class="value-desc">降低随访人力成本，urgent 预警挽救生命，减少依从性差导致的二次入院和急诊</div>
-        <div class="value-metric">自动预警 4 例</div>
+
+      <!-- 对医疗体系 -->
+      <div style="flex:1;background:var(--bg2);border:1px solid rgba(124,58,237,0.3);border-top:4px solid #7c3aed;border-radius:12px;padding:20px 22px;">
+        <div style="font-size:30px;margin-bottom:6px;">🏥</div>
+        <div style="font-size:clamp(17px,2.1vw,24px);font-weight:800;margin-bottom:12px;color:var(--text);">对医疗体系</div>
+        <div style="font-size:clamp(12px,1.4vw,16px);color:#c9d1d9;line-height:2.1;">
+          临床跟踪数据积累，<span style="background:rgba(124,58,237,0.18);color:#a78bfa;padding:1px 8px;border-radius:4px;font-weight:700;">助力科研</span><br>
+          减少依从性差导致的 <span style="background:rgba(124,58,237,0.18);color:#a78bfa;padding:1px 8px;border-radius:4px;font-weight:700;">反复入院</span><br>
+          随访做好了，<span style="background:rgba(124,58,237,0.18);color:#a78bfa;padding:1px 8px;border-radius:4px;font-weight:700;">医院口碑</span> 自然提升<br>
+          形成真正的 <span style="background:rgba(124,58,237,0.18);color:#a78bfa;padding:1px 8px;border-radius:4px;font-weight:700;">诊疗闭环</span>
+        </div>
+        <div style="margin-top:12px;font-size:clamp(12px,1.3vw,14px);color:var(--text2);font-style:italic;">「看病变成了一段持续的医患关系」</div>
+        <div style="margin-top:10px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.4);border-radius:8px;padding:6px 14px;font-size:clamp(12px,1.3vw,14px);font-weight:700;color:#a78bfa;display:inline-block;">✓ 自动预警 4 例</div>
       </div>
+
     </div>
-    <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;">
-      <span class="slide-tag">可扩展至任意科室</span>
-      <span class="slide-tag">可下沉至县级医院</span>
-      <span class="slide-tag">可对接多种 IM 渠道</span>
+
+    <div style="margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 24px;font-size:clamp(14px,1.5vw,17px);font-weight:600;color:var(--text);">🏥 可扩展至任意科室</div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 24px;font-size:clamp(14px,1.5vw,17px);font-weight:600;color:var(--text);">🌍 可下沉至县级 / 基层医院</div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 24px;font-size:clamp(14px,1.5vw,17px);font-weight:600;color:var(--text);">💬 可对接多种 IM 渠道</div>
     </div>
   </div>
 
-  <!-- ═══ Slide 5: Core Functions & Flow ═══ -->
-  <div class="slide" data-script="系统核心是三个定时任务。第一，患者随访：智能调度触发，LLM生成个性化消息，模拟回复后AI解析，写入数据。第二，医生日报：汇总所有患者状态，飞书Bot推送。第三，病情档案：为每位患者维护追踪报告，Day 14生成完整终期报告。随访频率也会根据病情动态调整。">
-    <div class="slide-title" style="font-size:clamp(20px,2.8vw,36px);margin-bottom:14px;">核心功能 · 系统流程</div>
-    <div class="task-cards">
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-body">
-          <div class="task-title">📅 患者随访询问（每 10 分钟）</div>
-          <div class="task-desc">智能调度 → 个性化随访消息（结合诊断 + 用药）→ 模拟患者回复 → AI 解析 → 写入 CSV</div>
-          <div class="task-steps">
-            <span class="task-step">智能调度</span>
-            <span class="task-step">LLM 生成消息</span>
-            <span class="task-step">模拟患者回复</span>
-            <span class="task-step">NLP 解析</span>
-            <span class="task-step">数据写入</span>
+  <!-- ═══ Slide 5: Data Overview ═══ -->
+  <div class="slide" data-script="接下来结合实际案例演示。我们模拟了北京协和医院心血管内科李晓峰主任医师的门诊场景。李主任从医28年，每年接诊3000余名患者。我们为他构建了30名真实病历患者，覆盖高血压、冠心病、心律失常、心力衰竭四类病种，共91条就诊记录、95条药方，跑了完整10天随访。">
+    <div style="font-size:clamp(14px,1.6vw,19px);font-weight:600;color:var(--text2);text-align:center;margin-bottom:2px;">演示场景</div>
+    <div style="font-size:clamp(22px,3vw,40px);font-weight:900;text-align:center;margin-bottom:16px;">北京协和医院 · 心血管内科</div>
+
+    <!-- 上：医生 + 患者 -->
+    <div style="display:flex;gap:14px;max-width:82vw;width:100%;margin-bottom:14px;">
+
+      <!-- 医生档案 -->
+      <div style="flex:1;background:var(--bg2);border:1px solid rgba(124,58,237,0.35);border-left:4px solid #a78bfa;border-radius:10px;padding:22px 26px;">
+        <div style="font-size:clamp(13px,1.5vw,17px);font-weight:700;color:#a78bfa;margin-bottom:12px;">👨‍⚕️ 模拟医生</div>
+        <div style="font-size:clamp(24px,3vw,38px);font-weight:900;margin-bottom:4px;">李晓峰</div>
+        <div style="font-size:clamp(14px,1.6vw,19px);color:#a78bfa;font-weight:600;margin-bottom:14px;">主任医师 · 心血管内科</div>
+        <div style="font-size:clamp(13px,1.4vw,16px);color:var(--text2);line-height:2.2;">
+          🏥 北京协和医院<br>
+          🩺 冠心病介入 · 高血压 · 心律失常 · 心衰<br>
+          📅 从医 28 年 · 年接诊 3000+<br>
+          📚 发表论文 42 篇 · PCI 手术 800+
+        </div>
+      </div>
+
+      <!-- 患者构成 -->
+      <div style="flex:1.5;background:var(--bg2);border:1px solid rgba(59,130,246,0.35);border-left:4px solid #3b82f6;border-radius:10px;padding:22px 26px;display:flex;flex-direction:column;">
+        <div style="font-size:clamp(13px,1.5vw,17px);font-weight:700;color:#79c0ff;margin-bottom:12px;">🧑‍🤝‍🧑 30 名患者 · 4 类病种 · 含完整病历、药方、医嘱</div>
+        <div style="display:flex;gap:12px;flex:1;">
+          <!-- 左：2×2 病种格 -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1.1;">
+            <div style="background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.25);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+              <span style="font-size:clamp(26px,3.2vw,42px);font-weight:900;color:var(--red);line-height:1;">13</span>
+              <div><div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);">高血压</div><div style="font-size:11px;color:var(--text2);">P001–P013</div></div>
+            </div>
+            <div style="background:rgba(240,136,62,0.08);border:1px solid rgba(240,136,62,0.25);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+              <span style="font-size:clamp(26px,3.2vw,42px);font-weight:900;color:var(--orange);line-height:1;">8</span>
+              <div><div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);">冠心病</div><div style="font-size:11px;color:var(--text2);">P014–P021</div></div>
+            </div>
+            <div style="background:rgba(210,165,32,0.08);border:1px solid rgba(210,165,32,0.25);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+              <span style="font-size:clamp(26px,3.2vw,42px);font-weight:900;color:var(--yellow);line-height:1;">4</span>
+              <div><div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);">心律失常</div><div style="font-size:11px;color:var(--text2);">P022–P025</div></div>
+            </div>
+            <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+              <span style="font-size:clamp(26px,3.2vw,42px);font-weight:900;color:var(--green);line-height:1;">5</span>
+              <div><div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);">心力衰竭</div><div style="font-size:11px;color:var(--text2);">P026–P030</div></div>
+            </div>
+          </div>
+          <!-- 右：患者示例卡 -->
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+            <!-- 示例1 -->
+            <div style="background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:10px 14px;flex:1;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span style="font-size:11px;font-weight:700;color:var(--text2);">P008</span>
+                <span style="font-size:clamp(13px,1.5vw,17px);font-weight:700;color:var(--text);">黄丽</span>
+                <span style="font-size:11px;color:var(--text2);">49岁 · 女</span>
+              </div>
+              <div style="font-size:clamp(12px,1.3vw,14px);color:#79c0ff;font-weight:600;margin-bottom:5px;">高血压 2 级</div>
+              <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);line-height:1.7;">
+                💊 苯磺酸氨氯地平 5mg QD<br>
+                📋 就诊 2 次 · 随访 Day 3 / 7 / 14
+              </div>
+            </div>
+            <!-- 示例2 -->
+            <div style="background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:8px;padding:10px 14px;flex:1;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span style="font-size:11px;font-weight:700;color:var(--text2);">P029</span>
+                <span style="font-size:clamp(13px,1.5vw,17px);font-weight:700;color:var(--text);">邓凯</span>
+                <span style="font-size:11px;color:var(--text2);">75岁 · 男</span>
+              </div>
+              <div style="font-size:clamp(12px,1.3vw,14px);color:var(--red);font-weight:600;margin-bottom:5px;">缺血性心肌病 · 心力衰竭 EF 30%</div>
+              <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);line-height:1.7;">
+                💊 沙库巴曲缬沙坦 · 卡维地洛 · 螺内酯 · 达格列净 · 呋塞米<br>
+                📋 就诊 4 次 · 加密随访 Day 3/5/7/14/21 · 每日体重监测
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-body">
-          <div class="task-title">📊 医生日报生成（每 10 分钟）</div>
-          <div class="task-desc">汇总所有患者状态 → 用药效果分析 → 生成结构化日报 → 飞书 Bot 自动推送给医生</div>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">3</div>
-        <div class="task-body">
-          <div class="task-title">📋 病情档案更新（每 10 分钟）</div>
-          <div class="task-desc">为每位患者维护独立追踪报告，每轮随访后追加摘要，Day 14 生成完整终期报告</div>
-        </div>
-      </div>
     </div>
-    <div style="margin-top:12px;display:flex;gap:8px;justify-content:center;align-items:center;font-size:11px;color:var(--text2);">
-      <span>随访频率动态调整：</span>
-      <span style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);padding:3px 10px;border-radius:12px;">控制好 → 标准频率</span>
-      <span style="background:rgba(210,165,32,0.1);border:1px solid rgba(210,165,32,0.3);color:var(--yellow);padding:3px 10px;border-radius:12px;">病情加重 → 加密随访</span>
-      <span style="background:rgba(248,81,73,0.1);border:1px solid rgba(248,81,73,0.3);color:var(--red);padding:3px 10px;border-radius:12px;">紧急 → 立即提醒医生</span>
-    </div>
-  </div>
 
-  <!-- ═══ Slide 6: Prompt Design ═══ -->
-  <div class="slide" data-script="系统真正的核心竞争力在于 Prompt 设计。随访消息生成 Prompt 覆盖十大问题域，并针对不同病种——高血压、冠心病、心衰、心房颤动——定制专属问题，确保每条随访都是个性化的医学问询，而不是通用模板。患者回复解析 Prompt 则将自然语言回复转化为结构化 JSON，自动判断依从性、病情状态和优先级，真正做到自然语言进、结构化数据出。">
-    <div class="slide-title" style="font-size:clamp(20px,2.8vw,36px);margin-bottom:12px;">Prompt 工程：系统的真正核心</div>
-    <div class="prompt-cols">
-      <!-- 左：随访消息生成 -->
-      <div class="prompt-col">
-        <div class="prompt-col-title">
-          随访消息生成 Prompt
-          <span class="badge">个性化生成</span>
-        </div>
-        <ul class="prompt-domain-list">
-          <li><div class="prompt-domain-num">1</div>【用药情况】药有没有按时吃？有没有漏服或自行停药？</li>
-          <li><div class="prompt-domain-num">2</div>【不良反应】头晕、咳嗽、脚肿、皮疹等？</li>
-          <li><div class="prompt-domain-num">3</div>【自测指标】血压 / 心率 / 体重今天测了多少？</li>
-          <li><div class="prompt-domain-num">4</div>【核心症状】胸闷 / 头晕 / 气短 / 水肿有无改善？</li>
-          <li><div class="prompt-domain-num">5</div>【生活方式】饮食控盐、运动、烟酒情况？</li>
-        </ul>
-        <div class="prompt-highlight">
-          <span class="prompt-tag">高血压：血压值 + 服药 + 头晕头痛</span>
-          <span class="prompt-tag">心衰：每日体重 + 水肿 + 气短</span>
-          <span class="prompt-tag">心绞痛：胸痛频率 + 活动耐力</span>
-          <span class="prompt-tag">房颤：抗凝药 + 心悸 + 出血迹象</span>
-        </div>
+    <!-- 下：大数字统计行 -->
+    <div style="display:flex;gap:10px;max-width:82vw;width:100%;">
+      <div style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">91</div>
+        <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">条就诊记录</div>
       </div>
-      <!-- 右：回复解析 Prompt -->
-      <div class="prompt-col">
-        <div class="prompt-col-title">
-          患者回复解析 Prompt
-          <span class="badge">结构化输出</span>
-        </div>
-        <div class="prompt-json">
-<span class="cmmt">// 自然语言 → 结构化 JSON</span>
-{
-  <span class="key">"medication_adherence"</span>: <span class="enum">"good/partial/none"</span>,
-  <span class="key">"condition_status"</span>:    <span class="enum">"improved/stable/worsened"</span>,
-  <span class="key">"key_values"</span>: {
-    <span class="key">"blood_pressure"</span>: <span class="str">"138/85 mmHg"</span>,
-    <span class="key">"weight"</span>:         <span class="str">"69.5 kg"</span>,
-    <span class="key">"heart_rate"</span>:     <span class="str">"72 bpm"</span>
-  },
-  <span class="key">"needs_immediate_attention"</span>: <span class="enum">false</span>,
-  <span class="key">"priority_level"</span>:  <span class="enum">"normal/attention/urgent"</span>,
-  <span class="key">"followup_frequency_suggestion"</span>: <span class="enum">"standard/enhanced"</span>,
-  <span class="key">"summary"</span>: <span class="str">"50字以内中文摘要"</span>
-}</div>
-        <div class="prompt-highlight" style="margin-top:12px;">
-          <span class="prompt-tag">urgent → 立即通知医生</span>
-          <span class="prompt-tag">attention → 加密随访</span>
-          <span class="prompt-tag">normal → 标准随访</span>
-        </div>
+      <div style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a78bfa,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">95</div>
+        <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">条药方记录</div>
+      </div>
+      <div style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#3b82f6,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100</div>
+        <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">条随访记录</div>
+      </div>
+      <div style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2dd4bf,#3fb950);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">10份</div>
+        <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">医生日报</div>
+      </div>
+      <div style="flex:1;background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;color:var(--green);">92%</div>
+        <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">整体依从率</div>
+      </div>
+      <div style="flex:1;background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;color:var(--red);">4例</div>
+        <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">自动预警</div>
+      </div>
+      <div style="flex:1;background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;color:var(--green);">0例</div>
+        <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">患者失联</div>
       </div>
     </div>
-  </div>
 
-  <!-- ═══ Slide 7: Data Overview ═══ -->
-  <div class="slide" data-script="我用30名心血管科患者跑了10天完整演示。系统生成了50条随访记录，整体依从率92%，四类病种全覆盖。系统不只记录好消息——这位重度心衰患者体重超过了预警线，系统立刻升级为urgent，日报中置顶提醒；这位高血压患者自行停药，系统即时标记需关注。30人零失联，4例预警全部被识别。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,38px);margin-bottom:14px;">10 天演示数据总览</div>
-    <div class="stats-row">
-      <div class="stat-card"><div class="stat-num">30</div><div class="stat-label">名患者</div></div>
-      <div class="stat-card"><div class="stat-num">50</div><div class="stat-label">条随访记录</div></div>
-      <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">天日报</div></div>
-      <div class="stat-card"><div class="stat-num">92%</div><div class="stat-label">整体依从率</div></div>
-      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">例自动预警</div></div>
-      <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">例失联</div></div>
-    </div>
-    <div class="cases-row">
-      <div class="case-card ok">
-        <div class="case-top"><span>✅</span><span class="case-id">P005</span><span class="case-name">陈强</span></div>
-        <div class="case-diag">心力衰竭 · Day 14</div>
-        <div class="case-desc">体重 62.5 kg 稳定，血压 126/78，症状持续改善，已转减频随访</div>
-      </div>
-      <div class="case-card warn">
-        <div class="case-top"><span>⚠️</span><span class="case-id">P010</span><span class="case-name">吴霞</span></div>
-        <div class="case-diag">高血压 · 自行停药 3 天</div>
-        <div class="case-desc">血压反弹至 148/92，系统标记 attention，日报置顶提醒</div>
-      </div>
-      <div class="case-card alert">
-        <div class="case-top"><span>🔴</span><span class="case-id">P029</span><span class="case-name">邓凯</span></div>
-        <div class="case-diag">重度心衰 EF 30%</div>
-        <div class="case-desc">体重 7 日增加 2.3 kg，超预警线，urgent 级别，日报第一位</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;font-size:11px;color:var(--text2);">
-      <span>病种覆盖：</span>
-      <span style="color:#c9d1d9;">高血压（13人）</span><span>·</span>
-      <span style="color:#c9d1d9;">冠心病/心绞痛（8人）</span><span>·</span>
-      <span style="color:#c9d1d9;">心律失常（4人）</span><span>·</span>
-      <span style="color:#c9d1d9;">心力衰竭（5人）</span>
-    </div>
   </div>
 
   <!-- ═══ Slide 8: Case 1 - Patient Chat ═══ -->
-  <div class="slide" data-script="来看第一个案例。高血压患者陈芳，就诊满7天。系统结合她的诊断和氨氯地平加缬沙坦的用药方案，自动发出了针对性随访消息。患者回复说血压138/85，昨天漏服一次。AI立刻解析：依从性partial，状态stable，优先级attention，建议加密随访。整个过程无需医生参与，结果自动写入追踪档案。">
+  <div class="slide" data-script="来看第一个案例。高血压患者黄丽，就诊满7天。系统结合她的诊断和苯磺酸氨氯地平用药方案，自动发出针对性随访消息。患者回复说这周加班没测血压，今天一测148/96，还有头晕。AI立刻解析：依从性partial（监测中断），病情worsened，血压148/96显著升高，优先级attention，建议加密随访。患者还顺带提问能不能来看医生——系统也自动收录进提问汇总。整个过程无需医生参与。">
     <div class="case-slide-title">案例① &nbsp;患者随访对话</div>
     <div class="case-slide-wrap">
       <div class="chat-panel">
-        <div class="case-slide-label">飞书随访对话 · P003 陈芳 · 高血压 2 级 · Day 7</div>
+        <div class="case-slide-label">飞书随访对话 · P008 黄丽 · 高血压 2 级 · Day 7</div>
         <div class="chat-header">
           <div class="chat-header-dot"></div>
           <div class="chat-header-title">PatientClaw 随访助理</div>
@@ -664,18 +765,18 @@
           <div class="chat-msg-wrap system">
             <div class="chat-sender">🦞 随访助理 小龙虾 · 第 7 天随访</div>
             <div class="chat-bubble system-bubble">
-              陈芳女士，您好！就诊满一周了，请花一分钟告诉我以下几项：<br>
-              ① 本周血压最近测了多少？目标是 130/80 以下<br>
-              ② 氨氯地平和缬沙坦有没有按时服药，有无漏服？<br>
-              ③ 有没有头晕、头痛感？<br>
-              ④ 饮食盐分控制得怎么样？<br>
-              请简单回复这几项，谢谢您！
+              黄丽女士，您好！就诊满一周了，请花一分钟回答：<br>
+              ① 苯磺酸氨氯地平有没有按时服用？<br>
+              ② 血压最近测了多少？目标是 130/80 以下<br>
+              ③ 有无头晕、头痛症状？<br>
+              ④ 近期有没有高盐饮食或明显情绪波动？<br>
+              请简要回复，谢谢！
             </div>
           </div>
           <div class="chat-msg-wrap patient">
-            <div class="chat-sender">陈芳 · 62 岁</div>
+            <div class="chat-sender">黄丽 · 49 岁</div>
             <div class="chat-bubble patient-bubble">
-              大夫好，我血压最近测了一下是 138/85，昨天早上忘记吃药了，其他都按时吃的。没有头晕头痛。做饭尽量少盐了，但有时家里饭有点咸。
+              氨氯地平都在吃，但这周加班太多没测血压，今天测了 148/96，头有点晕，感觉比上周差了。请问李主任，这种情况需要马上来看医生吗？
             </div>
           </div>
         </div>
@@ -686,23 +787,23 @@
           <div class="parse-title">🤖 NLP 结构化解析</div>
           <div class="parse-row">
             <span class="parse-key">用药依从性</span>
-            <span class="parse-val partial">⚠️ Partial（漏服 1 次）</span>
+            <span class="parse-val partial">⚠️ Partial（监测中断）</span>
           </div>
           <div class="parse-row">
             <span class="parse-key">病情状态</span>
-            <span class="parse-val stable">🟡 Stable</span>
+            <span class="parse-val urgent">↓ Worsened</span>
           </div>
           <div class="parse-row">
             <span class="parse-key">血压值</span>
-            <span class="parse-val attention">138 / 85 mmHg</span>
+            <span class="parse-val urgent">148 / 96 mmHg ⚠️</span>
           </div>
           <div class="parse-row">
             <span class="parse-key">头晕 / 头痛</span>
-            <span class="parse-val good">无</span>
+            <span class="parse-val urgent">有（头晕）</span>
           </div>
           <div class="parse-row">
-            <span class="parse-key">饮食依从</span>
-            <span class="parse-val partial">⚠️ 偶有高盐</span>
+            <span class="parse-key">自测监测</span>
+            <span class="parse-val urgent">❌ 本周未测</span>
           </div>
           <div class="parse-row">
             <span class="parse-key">优先级</span>
@@ -714,7 +815,7 @@
           </div>
           <div class="parse-summary">
             <div class="parse-summary-label">摘要</div>
-            血压控制欠佳（138/85），有 1 次漏服，建议下次随访重点强调服药规律性与低盐饮食
+            血压 148/96 显著升高，头晕再现，高血压亚急症风险——建议加密随访并提醒患者近期复诊
           </div>
         </div>
       </div>
@@ -722,97 +823,188 @@
   </div>
 
   <!-- ═══ Slide 9: Case 2 - Patient Report ═══ -->
-  <div class="slide" data-script="这是心衰患者刘明的病情追踪档案。系统记录了第3天和第7天的随访情况。第3天体重68.2公斤，症状稳定，依从性好。到第7天，体重增加到69.5公斤，7天内涨了1.3公斤，出现轻微踝部水肿。系统自动标注警告：接近2公斤预警阈值，并在日报中提醒医生关注。">
+  <div class="slide" data-script="这是心衰患者邓凯的病情追踪档案。Day3到Day7系统记录到他连续改善：体重从78.5降到78.0公斤，可步行距离从100米增加到200米。但第14天出现了逆转——体重猛增1.4公斤，腿肿再现，走路更喘。系统自动检测趋势，标注心衰急性加重风险，立刻推送进医生日报的红色区块，提醒医生今日关注。">
     <div class="case-slide-title">案例② &nbsp;患者病情追踪档案</div>
     <div class="case-slide-wrap">
       <div class="report-panel">
-        <div class="case-slide-label">data/reports/P027_report.md · 自动生成 · 每轮随访后更新</div>
+        <div class="case-slide-label">data/reports/P029_report.md · 自动生成 · 每轮随访后更新</div>
         <div class="report-header">
           <div>
-            <div class="report-patient-name">刘明</div>
-            <div class="report-patient-meta">P027 · 58 岁 · 男 · 工程师</div>
+            <div class="report-patient-name">邓凯</div>
+            <div class="report-patient-meta">P029 · 75 岁 · 男 · 退休干部</div>
           </div>
           <div class="report-status-badge attention">🟡 需关注</div>
         </div>
         <div>
           <div class="report-section-label">诊断与就诊</div>
           <div class="report-info-row">
-            <div class="report-info-item"><span>诊断：</span>慢性心力衰竭（HFrEF）EF 35%</div>
-            <div class="report-info-item"><span>就诊：</span>2026-03-01（第 3 次复诊）</div>
+            <div class="report-info-item"><span>诊断：</span>缺血性心肌病 / 慢性心力衰竭（HFrEF）EF 30%</div>
+            <div class="report-info-item"><span>就诊：</span>2026-03-23（第 4 次复诊）</div>
           </div>
         </div>
         <div>
-          <div class="report-section-label">当前用药方案</div>
+          <div class="report-section-label">当前用药方案（GDMT 五联方案）</div>
           <div class="report-info-row" style="gap:6px;flex-wrap:wrap;">
-            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">呋塞米 20mg QD</span>
-            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">螺内酯 20mg QD</span>
-            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">卡维地洛 6.25mg BID</span>
-            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">依那普利 5mg BID</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:5px;font-size:clamp(12px,1.3vw,15px);color:#c9d1d9;">沙库巴曲缬沙坦 50mg BID</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:5px;font-size:clamp(12px,1.3vw,15px);color:#c9d1d9;">卡维地洛 6.25mg BID</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:5px;font-size:clamp(12px,1.3vw,15px);color:#c9d1d9;">螺内酯 25mg QD</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:5px;font-size:clamp(12px,1.3vw,15px);color:#c9d1d9;">达格列净 10mg QD</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:5px;font-size:clamp(12px,1.3vw,15px);color:#c9d1d9;">呋塞米 40-80mg 按需</span>
           </div>
         </div>
         <div>
-          <div class="report-section-label">随访时间线</div>
+          <div class="report-section-label">随访时间线（加密随访 · 第3/5/7/14天）</div>
           <div class="timeline-entry ok">
             <div class="timeline-day">Day 3</div>
-            <div class="timeline-content">体重 68.2 kg · 气短较就诊时减轻 · 无下肢水肿 · 血压 118/76</div>
+            <div class="timeline-content">体重 78.5 kg · 气短改善 · 腿肿减轻 · 血压 124/80</div>
             <span class="timeline-badge good">依从性好</span>
           </div>
-          <div class="timeline-entry warn">
+          <div class="timeline-entry ok">
+            <div class="timeline-day">Day 5</div>
+            <div class="timeline-content">体重 78.3 kg↓ · 可走 100m · 腿肿续减 · 血压 122/78</div>
+            <span class="timeline-badge good">改善</span>
+          </div>
+          <div class="timeline-entry ok">
             <div class="timeline-day">Day 7</div>
-            <div class="timeline-content">体重 69.5 kg（+1.3 kg）· 夜间偶有气短 · 双踝轻度水肿 · 血压 122/80</div>
-            <span class="timeline-badge attention">需关注</span>
+            <div class="timeline-content">体重 78.0 kg↓ · 可走 200m · 气短明显好转 · 血压 122/78</div>
+            <span class="timeline-badge good">改善</span>
+          </div>
+          <div class="timeline-entry warn">
+            <div class="timeline-day">Day 14</div>
+            <div class="timeline-content">体重 79.2 kg（+1.4 kg↑）· 腿肿再现 · 走路更喘 · 血压 128/88</div>
+            <span class="timeline-badge attention">⚠️ 需关注</span>
           </div>
         </div>
         <div class="report-alert-box">
-          ⚠️ 趋势提示：7 天内体重增加 1.3 kg，接近心衰预警阈值（2 kg / 2 天）。建议医生评估是否需要调整利尿剂方案。
+          ⚠️ Day 14 趋势预警：7 天内体重增加 1.4 kg，腿肿再现，活动耐力下降——心衰急性加重风险，已自动推送至医生日报
         </div>
       </div>
     </div>
   </div>
 
   <!-- ═══ Slide 10: Case 3 - Doctor Daily Report ═══ -->
-  <div class="slide" data-script="最后看系统第7天的医生日报。格式清晰，优先级分明：1例紧急——P029邓凯体重超预警线，建议立即致电；3例需持续关注；5例今日好转。用药依从性28人按时服药，2人有问题。底部是系统洞察与闭环建议，帮助医生快速决策。整份日报通过飞书Bot自动推送，医生一眼全览30位患者状态。">
+  <div class="slide" data-script="最后看系统第7天的医生日报。今日随访6人。病情恶化1例：P017方远，漏服地高辛和利伐沙班，心悸加重，血压142/94。需持续关注1例：P019段勇，冠心病支架术后，阿司匹林服用不规律，胃部不适。今日好转3人，张伟、邵杰、刘静病情均有改善。患者提问汇总：30条来自25人，系统按三级分类，2条紧急需今日致电。最下方是全新用药方案效果统计，系统横向对比30位患者的各类药物改善率、依从率、不良反应，帮助医生积累循证依据，真正助力医术提升。">
     <div class="case-slide-title">案例③ &nbsp;医生日报（系统第 7 天）</div>
     <div class="daily-report-wrap">
       <div class="daily-header">
         <div>
           <div class="daily-header-title">📋 PatientClaw 日报 | 系统第 7 天</div>
-          <div class="daily-header-meta">李晓峰主任 · 今日随访更新：8 人 · 在管患者总计：30 人</div>
+          <div class="daily-header-meta">李晓峰主任 · 今日随访更新：6 人 · 在管患者总计：30 人</div>
         </div>
-        <div style="font-size:11px;color:var(--text2);text-align:right;">
+        <div style="font-size:clamp(13px,1.4vw,16px);color:var(--text2);text-align:right;">
           <div>自动生成 · 飞书推送</div>
-          <div style="color:#a78bfa;margin-top:2px;">2026-03-07</div>
+          <div style="color:#a78bfa;margin-top:3px;">2026-03-24</div>
         </div>
       </div>
-      <div class="daily-grid">
+      <!-- Row 1: 三栏状态 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
         <div class="daily-section urgent-sec">
-          <div class="daily-section-title">🔴 需立即处理（1 人）</div>
+          <div class="daily-section-title">🔴 立即处理（0）· 📉 恶化（1）</div>
           <div class="daily-item">
-            <strong>P029 邓凯</strong> · 重度心衰 EF 30%<br>
-            体重较昨日增 1.6 kg，累计 7 日增 2.3 kg，已超预警线<br>
-            → <strong>建议立即致电，评估是否急诊</strong>
+            <span style="color:var(--text2);font-size:clamp(11px,1.2vw,14px);">今日无紧急患者</span><br>
+            <strong>P017 方远</strong> · 高血压 / 心房颤动<br>
+            地高辛+利伐沙班漏服，心悸加重，BP 142/94↑<br>
+            → <strong>建议今日评估</strong>
           </div>
         </div>
         <div class="daily-section warn-sec">
-          <div class="daily-section-title">🟡 需持续关注（3 人）</div>
+          <div class="daily-section-title">🟡 需持续关注（1人）</div>
           <div class="daily-item">
-            <strong>P010 吴霞</strong> · 高血压 · 自行停药 3 天，血压 148/92↑<br>
-            <strong>P027 刘明</strong> · 心衰 · 体重增 1.3 kg，接近预警线<br>
-            <strong>P003 陈芳</strong> · 高血压 · 漏服 1 次，血压 138/85
+            <strong>P019 段勇</strong> · 冠心病支架术后<br>
+            阿司匹林漏服饭后服用，胃部反酸<br>
+            → 下次随访强化用药宣教
           </div>
         </div>
         <div class="daily-section good-sec">
-          <div class="daily-section-title">📈 今日好转（5 人）· 依从性</div>
+          <div class="daily-section-title">📈 今日好转（3人）</div>
           <div class="daily-item">
-            P005 陈强·心衰 / P012 周磊·高血压 / P016 王辉·冠心病<br>
-            P022 赵敏·心律失常 / P026 林丽·心衰<br>
-            按时服药：<strong>28 / 30（93%）</strong>｜漏服：P003｜停药：P010
+            <strong>张伟</strong> · 高血压合并冠心病 · 血压 126/80 ✅<br>
+            <strong>邵杰</strong> · 稳定型心绞痛 · 无胸痛 ✅<br>
+            <strong>刘静</strong> · 高血压 · 换药后肌痛消失 ✅<br>
+            <span style="color:var(--green);font-size:clamp(11px,1.2vw,13px);">按时服药 4 人 · 漏服 2 人</span>
           </div>
         </div>
-        <div class="daily-section neutral-sec">
-          <div class="daily-section-title">💡 洞察与闭环建议</div>
-          <div class="daily-item">
-            P029 体重超警戒线，心衰急性加重风险高，建议今日致电确认症状，必要时要求急诊。P010 自行停药血压明显回升，下次随访重点强化用药依从性干预。
+      </div>
+      <!-- Row 2: 患者提问汇总 -->
+      <div style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.25);border-radius:8px;padding:12px 16px;">
+        <div style="font-size:clamp(14px,1.6vw,19px);font-weight:700;color:#79c0ff;margin-bottom:8px;">💬 患者提问汇总（共 30 条 · 来自 25 人）<span style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);font-weight:400;margin-left:10px;">系统自动分级 · 医生按优先级处理</span></div>
+        <div style="display:flex;gap:10px;">
+          <div style="flex:0.5;background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:6px;padding:8px 12px;">
+            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--red);margin-bottom:5px;">🔴 立即回复（2条）</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.7;">
+              <strong>马超</strong>：心悸又有了，需要加药吗？<br>
+              <strong>方远</strong>：这是不是严重了？需立即来看吗？
+            </div>
+          </div>
+          <div style="flex:0.8;background:rgba(210,165,32,0.06);border:1px solid rgba(210,165,32,0.25);border-radius:6px;padding:8px 12px;">
+            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--yellow);margin-bottom:5px;">🟡 建议回复（6条）</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.7;">
+              杨梅：需要恢复全量吗 · 胡杰：CPAP不坚持会影响效果吗<br>
+              吴霞：焦虑又犯了怎么办 · 段勇：胃不舒服怎么办<br>
+              徐涛：匹伐他汀要吃多久 · 王建国：问题不大吧
+            </div>
+          </div>
+          <div style="flex:0.7;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 12px;">
+            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--text2);margin-bottom:5px;">⚪ 常规问答（22条）</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);line-height:1.7;">
+              可以坐飞机 · 可以旅游 · 可以喝酒<br>
+              下次复诊时间 · 心率56偏慢吗<br>
+              下次复诊一并解答
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row 3: 用药统计 + 洞察建议 -->
+      <div style="display:flex;gap:10px;">
+        <!-- 用药方案效果统计 NEW -->
+        <div style="flex:1.6;background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.25);border-radius:8px;padding:11px 14px;">
+          <div style="font-size:clamp(13px,1.4vw,16px);font-weight:700;color:#a78bfa;margin-bottom:7px;">📊 用药方案效果统计（累计）<span style="font-size:clamp(10px,1.1vw,13px);color:var(--text2);font-weight:400;margin-left:8px;">助力医生积累循证依据</span></div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;font-size:clamp(11px,1.2vw,13px);">
+            <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);border-radius:5px;padding:6px 8px;">
+              <div style="font-weight:700;color:var(--text);">比索洛尔</div>
+              <div style="color:var(--text2);">7 人</div>
+              <div style="color:var(--green);font-weight:700;">改善 100%</div>
+              <div style="color:var(--green);">✅ 强推荐</div>
+            </div>
+            <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);border-radius:5px;padding:6px 8px;">
+              <div style="font-weight:700;color:var(--text);">他汀类</div>
+              <div style="color:var(--text2);">8 人</div>
+              <div style="color:var(--green);font-weight:700;">改善 88%</div>
+              <div style="color:var(--green);">✅ 推荐</div>
+            </div>
+            <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);border-radius:5px;padding:6px 8px;">
+              <div style="font-weight:700;color:var(--text);">缬沙坦</div>
+              <div style="color:var(--text2);">13 人</div>
+              <div style="color:var(--green);font-weight:700;">改善 77%</div>
+              <div style="color:var(--green);">✅ 推荐</div>
+            </div>
+            <div style="background:rgba(210,165,32,0.06);border:1px solid rgba(210,165,32,0.25);border-radius:5px;padding:6px 8px;">
+              <div style="font-weight:700;color:var(--text);">阿司匹林</div>
+              <div style="color:var(--text2);">3 人</div>
+              <div style="color:var(--yellow);font-weight:700;">改善 67%</div>
+              <div style="color:var(--yellow);">⚠️ 关注副反应</div>
+            </div>
+            <div style="background:rgba(210,165,32,0.06);border:1px solid rgba(210,165,32,0.25);border-radius:5px;padding:6px 8px;">
+              <div style="font-weight:700;color:var(--text);">地高辛</div>
+              <div style="color:var(--text2);">2 人</div>
+              <div style="color:var(--yellow);font-weight:700;">改善 50%</div>
+              <div style="color:var(--yellow);">⚠️ 关注副反应</div>
+            </div>
+          </div>
+        </div>
+        <!-- 洞察 + 未回复 -->
+        <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+          <div style="background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.2);border-radius:8px;padding:10px 14px;flex:1;">
+            <div style="font-size:clamp(13px,1.4vw,16px);font-weight:700;color:#a78bfa;margin-bottom:6px;">💡 今日洞察</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.7;">
+              方远漏服双抗凝药，心律失常风险高，<strong>建议今日致电</strong><br>
+              阿司匹林胃肠不良反应率33%，<strong>建议评估换药</strong><br>
+              比索洛尔/他汀类效果优异，建议继续规范使用
+            </div>
+          </div>
+          <div style="background:rgba(63,185,80,0.06);border:1px solid rgba(63,185,80,0.2);border-radius:8px;padding:8px 14px;">
+            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--green);">📭 未回复患者（0人）</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);">今日所有随访患者均已回复 ✅</div>
           </div>
         </div>
       </div>
@@ -820,49 +1012,66 @@
   </div>
 
   <!-- ═══ Slide 11: Summary ═══ -->
-  <div class="slide" data-script="PatientClaw 让每一次就诊都有后续。从30名患者零失联，到92%依从率，到4例自动预警，系统在模拟环境中完整验证了它的价值。这个模式可以扩展到任何科室、任何地区，为整个医疗体系的诊后管理创造更大价值。谢谢大家。">
-    <div class="slide-title" style="margin-bottom:6px;"><span class="grad">PatientClaw</span></div>
-    <div class="slide-subtitle" style="margin-bottom:16px;">让每一次就诊都有后续</div>
-    <div class="two-col">
-      <div>
-        <div class="col-title red">❌ 就诊前困境</div>
-        <ul class="pain-list">
-          <li><span class="icon">📉</span>70% 患者离诊后失联</li>
-          <li><span class="icon">⏱️</span>医生无暇主动随访</li>
-          <li><span class="icon">⚠️</span>高危患者错过干预时机</li>
-          <li><span class="icon">❌</span>医术成长缺少数据反馈</li>
-        </ul>
+  <div class="slide" data-script="PatientClaw 的价值已在模拟环境中完整验证。30名患者零失联，100条随访全程自动，6例病情恶化实时捕获，25名患者主动提问并被系统智能分级——医生每天只需看一份飞书日报，就掌握全部患者状态。这个模式可以扩展到任何科室、任何地区、任何渠道。让每一次就诊都有后续，PatientClaw，谢谢大家。">
+
+    <!-- 验证徽标 -->
+    <div style="background:rgba(63,185,80,0.12);border:1px solid rgba(63,185,80,0.4);color:#3fb950;padding:5px 20px;border-radius:20px;font-size:clamp(11px,1.2vw,14px);font-weight:700;letter-spacing:0.06em;margin-bottom:10px;">✅ 模拟运行 10 天 · 系统验证完成</div>
+
+    <!-- 主标题 -->
+    <div class="slide-title" style="margin-bottom:2px;"><span class="grad">PatientClaw</span></div>
+    <div style="font-size:clamp(14px,1.8vw,22px);color:var(--text2);text-align:center;margin-bottom:18px;">让每一次就诊都有后续</div>
+
+    <!-- 核心成果数字（4列） -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:82vw;width:100%;margin-bottom:14px;">
+      <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
+        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:var(--green);line-height:1.05;">30人</div>
+        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">零失联</div>
+        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">vs. 现实中 70% 失联</div>
       </div>
-      <div>
-        <div class="col-title green">✅ PatientClaw</div>
-        <ul class="gain-list">
-          <li><span class="icon">✓</span>AI 全自动随访，30 人零失联</li>
-          <li><span class="icon">✓</span>医生零负担，只需看飞书日报</li>
-          <li><span class="icon">✓</span>urgent 预警，及时干预挽救生命</li>
-          <li><span class="icon">✓</span>数据回流，驱动医术持续精进</li>
-        </ul>
+      <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
+        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:#79c0ff;line-height:1.05;">100条</div>
+        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">随访全自动</div>
+        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">医生零负担介入</div>
       </div>
-    </div>
-    <div class="expand-grid" style="margin-top:12px;max-width:52vw;">
-      <div class="expand-card">
-        <div class="expand-card-top">
-          <span class="expand-icon">🏥</span>
-          <span class="expand-from">心血管科 → <strong>全科室扩展</strong></span>
-        </div>
-        <div class="expand-to">内分泌（糖尿病）、肿瘤科、精神科等慢性病管理</div>
+      <div style="background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
+        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:var(--red);line-height:1.05;">6例</div>
+        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">病情恶化预警</div>
+        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">系统自动识别干预</div>
       </div>
-      <div class="expand-card">
-        <div class="expand-card-top">
-          <span class="expand-icon">🌍</span>
-          <span class="expand-from">单诊所 → <strong>县级 / 基层</strong></span>
-        </div>
-        <div class="expand-to">县级医院、社区卫生中心、家庭医生签约服务</div>
+      <div style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
+        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:#a78bfa;line-height:1.05;">25人</div>
+        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">主动提问</div>
+        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">AI 自动三级分类</div>
       </div>
     </div>
-    <div class="author-line">
-      赵天浩 · 北京中关村学院 · zthwhucs@gmail.com &nbsp;·&nbsp;
-      <a href="https://github.com/happytianhao/PatientClaw" target="_blank">github.com/happytianhao/PatientClaw</a>
+
+    <!-- 扩展路径（3列） -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:82vw;width:100%;margin-bottom:16px;">
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #a78bfa;border-radius:8px;padding:14px 18px;">
+        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:6px;">🏥 科室扩展</div>
+        <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);line-height:1.75;">心血管科 → 内分泌科<br>肿瘤科 · 精神科 · 骨科</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #3b82f6;border-radius:8px;padding:14px 18px;">
+        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:6px;">🌍 地域扩展</div>
+        <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);line-height:1.75;">三甲医院 → 县级医院<br>社区卫生中心 · 家庭医生</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #2dd4bf;border-radius:8px;padding:14px 18px;">
+        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:6px;">📡 渠道扩展</div>
+        <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);line-height:1.75;">飞书 → 微信 · 短信<br>院内 HIS · 国家健康平台</div>
+      </div>
     </div>
+
+    <!-- 作者信息行 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;max-width:82vw;width:100%;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+      <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);">
+        赵天浩 · 北京中关村学院 · <span style="color:var(--text);">zthwhucs@gmail.com</span>
+      </div>
+      <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);">
+        北纬 · 龙虾大赛（第一届）· <span style="color:#f0883e;font-weight:700;">生产力赛道</span>
+      </div>
+      <a href="https://github.com/happytianhao/PatientClaw" target="_blank" style="font-size:clamp(12px,1.3vw,15px);color:#79c0ff;text-decoration:none;font-weight:600;">github.com/happytianhao/PatientClaw ↗</a>
+    </div>
+
   </div>
 
   <!-- 后续幻灯片待添加 -->
@@ -873,7 +1082,7 @@
 <div id="progress-bar"></div>
 
 <!-- Page counter -->
-<div id="page-counter">1 / 11</div>
+<div id="page-counter">1 / 9</div>
 
 <!-- Script panel -->
 <div id="script-panel" class="collapsed">
@@ -904,7 +1113,7 @@
     current = Math.max(0, Math.min(total - 1, n));
     slides[current].classList.add('active');
     progressBar.style.width = ((current + 1) / total * 100) + '%';
-    pageCounter.textContent = (current + 1) + ' / 11';
+    pageCounter.textContent = (current + 1) + ' / 9';
     scriptContent.textContent = slides[current].dataset.script || '';
   }
 
