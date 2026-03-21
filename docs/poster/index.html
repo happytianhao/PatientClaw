@@ -17,240 +17,340 @@
       --green: #3fb950;
       --red: #f85149;
       --yellow: #d2a520;
+      --orange: #f0883e;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Physical poster: 0.8m × 2m @ 150 DPI = 4725 × 11811 px */
+    /* Use CSS at 1/10 scale for display: 472.5 × 1181 px */
     body {
-      background: #1a1a2e;
+      background: #111;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
-      padding: 32px 16px;
+      padding: 20px 12px;
       font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
     }
 
     .poster {
-      width: 794px;
-      min-height: 1123px;
+      /* 0.8:2 = 1:2.5 ratio */
+      width: 472px;
+      height: 1180px;
       background: var(--bg);
-      border-radius: 16px;
+      border-radius: 0;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.8);
     }
 
     /* Top glow */
     .poster::before {
       content: '';
       position: absolute;
-      top: -120px; left: 50%;
+      top: -80px; left: 50%;
       transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(124,58,237,0.25) 0%, transparent 70%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.3) 0%, transparent 70%);
       pointer-events: none;
+      z-index: 0;
     }
 
-    /* ── Header ── */
-    .header {
-      padding: 36px 48px 28px;
+    /* ── Hero ── */
+    .hero {
+      padding: 36px 36px 24px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       position: relative;
+      z-index: 1;
     }
     .contest-badge {
       display: inline-block;
       background: rgba(124,58,237,0.15);
       border: 1px solid rgba(124,58,237,0.4);
       color: #a78bfa;
-      padding: 5px 18px;
+      padding: 4px 14px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 10px;
       letter-spacing: 0.04em;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .project-name {
-      font-size: 72px;
+      font-size: 64px;
       font-weight: 900;
-      letter-spacing: -3px;
+      letter-spacing: -2px;
       line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #3b82f6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .project-subtitle {
-      font-size: 18px;
+      font-size: 14px;
       color: var(--text2);
       letter-spacing: 0.02em;
     }
+    .value-tagline {
+      display: inline-block;
+      margin-top: 14px;
+      background: rgba(63,185,80,0.1);
+      border: 1px solid rgba(63,185,80,0.35);
+      color: #3fb950;
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
 
-    /* ── Stats ── */
-    .stats-section {
-      padding: 28px 48px;
+    /* ── Social impact ── */
+    .impact-section {
+      padding: 18px 36px;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
-    .stats-grid {
+    .section-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+    }
+    .impact-cards {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
     }
-    .stat-card {
+    .impact-card {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px 14px;
+      border-radius: 8px;
+      padding: 10px 8px;
       text-align: center;
     }
-    .stat-emoji { font-size: 22px; margin-bottom: 8px; }
-    .stat-num {
-      font-size: 30px;
+    .impact-icon { font-size: 18px; margin-bottom: 5px; }
+    .impact-num {
+      font-size: 22px;
       font-weight: 800;
       background: linear-gradient(135deg, #7c3aed, #3b82f6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      line-height: 1.1;
+      line-height: 1;
     }
-    .stat-label { font-size: 11px; color: var(--text2); margin-top: 5px; line-height: 1.4; }
+    .impact-label { font-size: 9px; color: var(--text2); margin-top: 4px; line-height: 1.3; }
+
+    /* ── Problem / Solution ── */
+    .ps-section {
+      padding: 18px 36px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .ps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .ps-box {
+      border-radius: 10px;
+      padding: 14px 14px;
+    }
+    .ps-box.problem {
+      background: rgba(248,81,73,0.08);
+      border: 1px solid rgba(248,81,73,0.25);
+    }
+    .ps-box.solution {
+      background: rgba(63,185,80,0.08);
+      border: 1px solid rgba(63,185,80,0.25);
+    }
+    .ps-box-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .ps-box.problem .ps-box-title { color: #f85149; }
+    .ps-box.solution .ps-box-title { color: #3fb950; }
+    .ps-items { list-style: none; }
+    .ps-items li {
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.5;
+      margin-bottom: 5px;
+      padding-left: 14px;
+      position: relative;
+    }
+    .ps-items li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+    }
+    .ps-box.problem .ps-items li::before { color: #f85149; }
+    .ps-box.solution .ps-items li::before { color: #3fb950; }
 
     /* ── Flow ── */
     .flow-section {
-      padding: 24px 48px;
+      padding: 18px 36px;
       border-bottom: 1px solid var(--border);
-    }
-    .section-heading {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text2);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
     }
     .flow-row {
       display: flex;
       align-items: center;
       gap: 0;
-      margin-bottom: 10px;
       flex-wrap: nowrap;
-      overflow-x: auto;
+      overflow-x: hidden;
     }
     .flow-node {
       background: var(--bg3);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 12px;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 10px;
       text-align: center;
       white-space: nowrap;
       flex-shrink: 0;
     }
     .flow-node.start { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.1); color: #a78bfa; }
+    .flow-node.mid { color: var(--text2); }
     .flow-node.end { border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.1); color: #79c0ff; font-weight: 600; }
-    .flow-node small { display: block; color: var(--text2); font-size: 10px; margin-top: 2px; }
-    .flow-arrow { color: var(--text2); font-size: 14px; padding: 0 6px; flex-shrink: 0; }
-    .flow-sub {
+    .flow-node small { display: block; color: var(--text2); font-size: 8px; margin-top: 1px; }
+    .flow-arrow { color: var(--text2); font-size: 11px; padding: 0 4px; flex-shrink: 0; }
+    .highlight-row {
       display: flex;
       align-items: center;
       gap: 0;
-      padding-left: 20px;
+      margin-top: 8px;
+      flex-wrap: nowrap;
     }
-    .flow-sub .flow-node { background: rgba(63,185,80,0.08); border-color: rgba(63,185,80,0.3); color: #3fb950; font-size: 11px; padding: 7px 12px; }
+    .highlight-row .flow-node {
+      background: rgba(63,185,80,0.08);
+      border-color: rgba(63,185,80,0.3);
+      color: #3fb950;
+      font-size: 10px;
+      padding: 7px 10px;
+    }
+    .highlight-row .flow-arrow { color: var(--text2); }
 
     /* ── Features ── */
     .features-section {
-      padding: 24px 48px;
+      padding: 18px 36px;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 8px;
     }
     .feature-item {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
+      border-radius: 8px;
+      padding: 10px 10px;
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
     }
-    .feature-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-    .feature-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-    .feature-desc { font-size: 11px; color: var(--text2); line-height: 1.5; }
-
-    /* ── Disease tags ── */
-    .disease-section {
-      padding: 20px 48px;
-      border-bottom: 1px solid var(--border);
-    }
-    .disease-tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .disease-tag {
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.3);
-      color: #79c0ff;
-      padding: 6px 18px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    .disease-tag span { color: var(--text2); font-size: 11px; margin-left: 4px; }
+    .feature-emoji { font-size: 16px; flex-shrink: 0; }
+    .feature-title { font-size: 11px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .feature-desc { font-size: 9px; color: var(--text2); line-height: 1.4; }
 
     /* ── Cases ── */
     .cases-section {
-      padding: 20px 48px;
+      padding: 18px 36px;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
     .cases-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
     .case-card {
       background: var(--bg2);
-      border-radius: 10px;
-      padding: 12px 14px;
+      border-radius: 8px;
+      padding: 10px 10px;
       border-left: 3px solid var(--border);
     }
     .case-card.ok { border-left-color: var(--green); }
     .case-card.warn { border-left-color: var(--yellow); }
     .case-card.alert { border-left-color: var(--red); }
-    .case-top { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
-    .case-icon { font-size: 14px; }
-    .case-id { font-size: 10px; color: var(--text2); font-weight: 700; }
-    .case-name { font-size: 13px; font-weight: 600; }
-    .case-diag { font-size: 10px; color: var(--text2); margin-bottom: 5px; }
-    .case-desc { font-size: 11px; color: #c9d1d9; line-height: 1.5; }
+    .case-top { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+    .case-icon { font-size: 11px; }
+    .case-id { font-size: 9px; color: var(--text2); font-weight: 700; }
+    .case-name { font-size: 11px; font-weight: 600; }
+    .case-diag { font-size: 9px; color: var(--text2); margin-bottom: 3px; }
+    .case-desc { font-size: 9px; color: #c9d1d9; line-height: 1.4; }
+
+    /* ── Expandability ── */
+    .expand-section {
+      padding: 18px 36px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .expand-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .expand-tag {
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: #79c0ff;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+    }
 
     /* ── Footer ── */
     .footer {
-      padding: 22px 48px;
+      padding: 20px 36px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: var(--bg2);
+      position: relative;
+      z-index: 1;
     }
     .footer-left { display: flex; flex-direction: column; }
-    .footer-name { font-size: 15px; font-weight: 700; color: var(--text); }
-    .footer-school { font-size: 12px; color: var(--text2); margin-top: 2px; }
-    .footer-right { text-align: right; }
-    .footer-github { font-size: 12px; color: #79c0ff; margin-bottom: 3px; }
-    .footer-email { font-size: 12px; color: var(--text2); }
-    .footer-logo {
-      font-size: 22px;
+    .footer-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .footer-school { font-size: 10px; color: var(--text2); margin-top: 2px; }
+    .footer-mid {
+      font-size: 16px;
       font-weight: 900;
       letter-spacing: -1px;
       background: linear-gradient(135deg, #7c3aed, #3b82f6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-align: center;
+    }
+    .footer-right { text-align: right; }
+    .footer-github { font-size: 10px; color: #79c0ff; margin-bottom: 2px; }
+    .footer-email { font-size: 10px; color: var(--text2); }
+
+    /* ── Finals badge ── */
+    .finals-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: linear-gradient(135deg, #f0883e, #e85d04);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 700;
+      z-index: 2;
+      letter-spacing: 0.05em;
     }
   </style>
 </head>
@@ -258,125 +358,137 @@
 
 <div class="poster">
 
-  <!-- Header -->
-  <div class="header">
+  <!-- Finals ribbon -->
+  <div class="finals-badge">🏆 决赛入围</div>
+
+  <!-- Hero -->
+  <div class="hero">
     <div class="contest-badge">北纬·龙虾大赛（第一届）· OpenClaw Hackathon · 生产力赛道</div>
     <div class="project-name">PatientClaw</div>
     <div class="project-subtitle">患者诊后病情全自动跟踪统计系统</div>
+    <div class="value-tagline">🏥 让每一次就诊都有后续 · 助力医生提升医术</div>
   </div>
 
-  <!-- Stats -->
-  <div class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-emoji">🏥</div>
-        <div class="stat-num">30</div>
-        <div class="stat-label">名患者<br>心血管科全覆盖</div>
+  <!-- Social Impact -->
+  <div class="impact-section">
+    <div class="section-label">应用价值与社会效益</div>
+    <div class="impact-cards">
+      <div class="impact-card">
+        <div class="impact-icon">🏥</div>
+        <div class="impact-num">30</div>
+        <div class="impact-label">名患者<br>14天随访零失联</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-emoji">📋</div>
-        <div class="stat-num">50</div>
-        <div class="stat-label">条随访记录<br>10天完整数据</div>
+      <div class="impact-card">
+        <div class="impact-icon">📊</div>
+        <div class="impact-num">92%</div>
+        <div class="impact-label">整体用药依从率<br>处方真正发挥作用</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-emoji">📊</div>
-        <div class="stat-num">92%</div>
-        <div class="stat-label">整体依从率<br>真实模拟数据</div>
+      <div class="impact-card">
+        <div class="impact-icon">⚡</div>
+        <div class="impact-num">10min</div>
+        <div class="impact-label">= 现实1天<br>时间压缩演示</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-emoji">⚡</div>
-        <div class="stat-num">10min</div>
-        <div class="stat-label">= 现实1天<br>时间压缩演示</div>
+    </div>
+  </div>
+
+  <!-- Problem / Solution -->
+  <div class="ps-section">
+    <div class="section-label">问题与方案</div>
+    <div class="ps-grid">
+      <div class="ps-box problem">
+        <div class="ps-box-title">❌ 当前困境</div>
+        <ul class="ps-items">
+          <li>70% 患者离诊后失联</li>
+          <li>医生每日接诊 30-50 人，无暇随访</li>
+          <li>高危患者错过最佳干预时机</li>
+        </ul>
+      </div>
+      <div class="ps-box solution">
+        <div class="ps-box-title">✅ PatientClaw</div>
+        <ul class="ps-items">
+          <li>AI 自动随访，100% 全覆盖</li>
+          <li>医生零负担，只需看日报</li>
+          <li>urgent 预警，挽救生命</li>
+        </ul>
       </div>
     </div>
   </div>
 
   <!-- Flow -->
   <div class="flow-section">
-    <div class="section-heading">系统流程</div>
+    <div class="section-label">系统流程</div>
     <div class="flow-row">
-      <div class="flow-node start">就诊 Day 0</div>
+      <div class="flow-node start">就诊<br><small>Day 0</small></div>
       <div class="flow-arrow">→</div>
-      <div class="flow-node">Day 3 随访<small>+30分钟触发</small></div>
+      <div class="flow-node mid">Day 3 随访<small>+30分钟</small></div>
       <div class="flow-arrow">→</div>
-      <div class="flow-node">Day 7 随访<small>+70分钟触发</small></div>
+      <div class="flow-node mid">Day 7 随访<small>+70分钟</small></div>
       <div class="flow-arrow">→</div>
-      <div class="flow-node">Day 14 随访<small>+140分钟触发</small></div>
+      <div class="flow-node mid">Day 14 随访<small>+140分钟</small></div>
       <div class="flow-arrow">→</div>
-      <div class="flow-node end">病情报告<small>完整版生成</small></div>
+      <div class="flow-node end">病情报告</div>
     </div>
-    <div class="flow-sub">
-      <div class="flow-node" style="background:var(--bg3);color:var(--text2);font-size:11px;padding:7px 12px;">每 10 分钟</div>
+    <div class="highlight-row">
+      <div class="flow-node">每 10 分钟</div>
       <div class="flow-arrow">→</div>
-      <div class="flow-node" style="background:rgba(63,185,80,0.08);border-color:rgba(63,185,80,0.3);color:#3fb950;font-size:11px;padding:7px 12px;">医生日报生成</div>
+      <div class="flow-node">医生日报生成</div>
       <div class="flow-arrow">→</div>
-      <div class="flow-node" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);color:#79c0ff;font-size:11px;padding:7px 12px;">飞书推送给医生 📱</div>
+      <div class="flow-node">飞书推送 📱</div>
     </div>
   </div>
 
   <!-- Features -->
   <div class="features-section">
-    <div class="section-heading">核心功能</div>
+    <div class="section-label">核心功能</div>
     <div class="features-grid">
       <div class="feature-item">
         <div class="feature-emoji">📅</div>
         <div>
           <div class="feature-title">全自动定时随访</div>
-          <div class="feature-desc">调度引擎精确触发，无需人工干预</div>
+          <div class="feature-desc">调度引擎精确触发，无需人工</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-emoji">💬</div>
         <div>
-          <div class="feature-title">个性化问询生成</div>
-          <div class="feature-desc">结合诊断用药动态生成，非通用模板</div>
+          <div class="feature-title">个性化问询</div>
+          <div class="feature-desc">结合诊断用药动态生成</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-emoji">🤖</div>
         <div>
           <div class="feature-title">患者回复模拟</div>
-          <div class="feature-desc">含延迟/不回复等真实行为建模</div>
+          <div class="feature-desc">含延迟/不回复真实建模</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-emoji">🔍</div>
         <div>
           <div class="feature-title">AI 回复解析</div>
-          <div class="feature-desc">自然语言→结构化 JSON 输出</div>
+          <div class="feature-desc">自然语言→结构化 JSON</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-emoji">📋</div>
         <div>
           <div class="feature-title">病情追踪报告</div>
-          <div class="feature-desc">每位患者独立档案，持续更新</div>
+          <div class="feature-desc">每位患者独立档案</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-emoji">📱</div>
         <div>
           <div class="feature-title">飞书日报推送</div>
-          <div class="feature-desc">重点优先结构，手机友好排版</div>
+          <div class="feature-desc">重点优先，手机友好</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Disease tags -->
-  <div class="disease-section">
-    <div class="section-heading">病种覆盖</div>
-    <div class="disease-tags">
-      <div class="disease-tag">高血压<span>13人</span></div>
-      <div class="disease-tag">冠心病 / 心绞痛<span>8人</span></div>
-      <div class="disease-tag">心律失常<span>4人</span></div>
-      <div class="disease-tag">心力衰竭<span>5人</span></div>
-    </div>
-  </div>
-
   <!-- Cases -->
   <div class="cases-section">
-    <div class="section-heading">真实问题案例（系统自动识别）</div>
+    <div class="section-label">真实问题案例（系统自动识别）</div>
     <div class="cases-grid">
       <div class="case-card ok">
         <div class="case-top">
@@ -384,8 +496,8 @@
           <span class="case-id">P005</span>
           <span class="case-name">陈强</span>
         </div>
-        <div class="case-diag">心力衰竭 · Day 7</div>
-        <div class="case-desc">体重 62.8 kg 稳定，血压 128/80，气短消失，症状持续改善</div>
+        <div class="case-diag">心衰 · Day 14</div>
+        <div class="case-desc">体重 62.5 kg 稳定，血压 126/78，症状持续改善</div>
       </div>
       <div class="case-card warn">
         <div class="case-top">
@@ -394,7 +506,7 @@
           <span class="case-name">吴霞</span>
         </div>
         <div class="case-diag">高血压 · 自行减药</div>
-        <div class="case-desc">比索洛尔改隔日服，血压反弹至 134/86，系统标记需关注</div>
+        <div class="case-desc">比索洛尔改隔日服，血压反弹 134/86</div>
       </div>
       <div class="case-card alert">
         <div class="case-top">
@@ -403,8 +515,19 @@
           <span class="case-name">邓凯</span>
         </div>
         <div class="case-diag">重度心衰 EF 30%</div>
-        <div class="case-desc">体重增加 1.6 kg，气短无改善，系统自动升级 urgent 预警</div>
+        <div class="case-desc">体重增加 1.6 kg，系统自动升级预警</div>
       </div>
+    </div>
+  </div>
+
+  <!-- Expandability -->
+  <div class="expand-section">
+    <div class="section-label">可扩展方向</div>
+    <div class="expand-tags">
+      <div class="expand-tag">内分泌科 ↗</div>
+      <div class="expand-tag">社区卫生中心 ↗</div>
+      <div class="expand-tag">微信/短信渠道 ↗</div>
+      <div class="expand-tag">EMR 医保系统 ↗</div>
     </div>
   </div>
 
@@ -414,9 +537,9 @@
       <div class="footer-name">赵天浩</div>
       <div class="footer-school">北京中关村学院 · 生产力赛道</div>
     </div>
-    <div class="footer-logo">PatientClaw</div>
+    <div class="footer-mid">PatientClaw</div>
     <div class="footer-right">
-      <div class="footer-github">github.com/happytianhao/PatientClaw</div>
+      <div class="footer-github">github.com/happytianhao</div>
       <div class="footer-email">zthwhucs@gmail.com</div>
     </div>
   </div>
