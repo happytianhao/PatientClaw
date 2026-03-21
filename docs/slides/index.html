@@ -318,12 +318,12 @@
     /* ── Patient report ── */
     .report-panel {
       flex: 1; background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px;
-      display: flex; flex-direction: column; gap: 12px; overflow: hidden;
+      border-radius: 8px; padding: 14px;
+      display: flex; flex-direction: column; gap: 8px; overflow: hidden;
     }
     .report-header {
       display: flex; justify-content: space-between; align-items: flex-start;
-      padding-bottom: 12px; border-bottom: 1px solid var(--border);
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
     }
     .report-patient-name { font-size: clamp(18px,2vw,26px); font-weight: 700; }
     .report-patient-meta { font-size: clamp(13px,1.4vw,16px); color: var(--text2); margin-top: 3px; }
@@ -333,15 +333,15 @@
     }
     .report-section-label {
       font-size: clamp(11px,1.2vw,14px); font-weight: 700; color: var(--accent2);
-      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 7px;
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;
     }
     .report-info-row { display: flex; gap: 16px; flex-wrap: wrap; }
     .report-info-item { font-size: clamp(13px,1.4vw,16px); color: #c9d1d9; }
     .report-info-item span { color: var(--text2); }
     .timeline-entry {
       display: flex; gap: 12px; align-items: flex-start;
-      padding: 11px 14px; border-radius: 6px; border-left: 3px solid var(--border);
-      background: var(--bg3); margin-bottom: 8px; font-size: clamp(13px,1.4vw,16px);
+      padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--border);
+      background: var(--bg3); margin-bottom: 5px; font-size: clamp(13px,1.4vw,16px);
     }
     .timeline-entry.ok   { border-left-color: var(--green); }
     .timeline-entry.warn { border-left-color: var(--yellow); }
@@ -352,7 +352,7 @@
     .timeline-badge.attention { background: rgba(210,165,32,0.15); color: var(--yellow); }
     .report-alert-box {
       background: rgba(210,165,32,0.08); border: 1px solid rgba(210,165,32,0.3);
-      border-radius: 6px; padding: 11px 14px;
+      border-radius: 6px; padding: 8px 12px;
       font-size: clamp(13px,1.4vw,16px); color: var(--yellow); margin-top: 2px;
     }
 
@@ -431,7 +431,7 @@
 <div id="deck">
 
   <!-- ═══ Slide 1: Cover ═══ -->
-  <div class="slide active" data-script="大家好，我是赵天浩，来自北京中关村学院。今天要介绍的项目叫 PatientClaw——一个用 OpenClaw 龙虾框架搭建的患者诊后病情全自动跟踪统计系统。它让每一次就诊都有后续，让每一位患者被持续关注，让医生的医术有数据支撑。">
+  <div class="slide active" data-script="大家好，我是赵天浩，来自北京中关村学院。今天要介绍的项目叫 PatientClaw——一个用 OpenClaw 龙虾框架搭建的患者诊后病情全自动跟踪统计系统。它让每一次就诊都有后续，让每一位患者被持续关注，让医生的医术有数据支撑。" data-script-standup="大家好！先抛一个灵魂拷问——在座各位，上次去看病是什么感觉？排了两小时队，见了医生五分钟，拿了一堆药，医生说「回去按时吃」，然后……就没有然后了。就像外卖小哥把单送到门口，说了句「到了」，然后人消失了。今天我要介绍的，就是解决这个「然后」的系统——PatientClaw。">
     <div class="finals-badge" style="font-size:13px;padding:5px 16px;">🏆 决赛入围</div>
     <!-- 比赛信息 + 赛道 -->
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;justify-content:center;">
@@ -463,7 +463,7 @@
   </div>
 
   <!-- ═══ Slide 2: Problem ═══ -->
-  <div class="slide" data-script="在基层医疗中，超过70%的患者就诊取药后就失联了。从患者角度：药该吃多久？能不能减量？想问医生却联系不上，去复诊又挂不到同一个医生，每次重新解释病史，非常煎熬。从医生角度：患者回去有没有吃药？药有没有起效？完全不知道，医术无法靠反馈来精进。这个诊后断联，是整个医疗体系最大的系统性漏洞。">
+  <div class="slide" data-script="在基层医疗中，超过70%的患者就诊取药后就失联了。从患者角度：药该吃多久？能不能减量？想问医生却联系不上，去复诊又挂不到同一个医生，每次重新解释病史，非常煎熬。从医生角度：患者回去有没有吃药？药有没有起效？完全不知道，医术无法靠反馈来精进。这个诊后断联，是整个医疗体系最大的系统性漏洞。" data-script-standup="先看一个数字——70%。中国超过70%的慢病患者，看完病之后就再也找不到了。医生辛苦给你制定方案，患者回去没吃、吃了没效、效果不好，医生完全不知道。医生的医术怎么进步？靠悟。这不夸张，这是现实。整个医疗体系最大的漏洞，大家都知道，但没人解决，因为——好像是个很难解决的问题。直到今天。">
     <div style="font-size:clamp(22px,3.2vw,42px);font-weight:800;text-align:center;margin-bottom:26px;">就诊之后，发生了什么？</div>
     <!-- 三大问题卡片 -->
     <div style="display:flex;gap:16px;max-width:78vw;width:100%;">
@@ -512,7 +512,7 @@
   </div>
 
   <!-- ═══ Slide 3: Solution ═══ -->
-  <div class="slide" data-script="PatientClaw 分六步。患者就诊后建立档案，小龙虾读取病历和用药智能规划随访节奏——病情重的密集随访，控制好的稀疏随访。到达节点，AI编写个性化消息通过飞书发给患者，询问用药情况和病情变化。患者真实回复，还可以反向提问。小龙虾据此为每位患者整理专属病情追踪报告，每天自动推送日报给医生，医生据此主动介入，形成诊后完整闭环。">
+  <div class="slide" data-script="PatientClaw 分六步。患者就诊后建立档案，小龙虾读取病历和用药智能规划随访节奏——病情重的密集随访，控制好的稀疏随访。到达节点，AI编写个性化消息通过飞书发给患者，询问用药情况和病情变化。患者真实回复，还可以反向提问。小龙虾据此为每位患者整理专属病情追踪报告，每天自动推送日报给医生，医生据此主动介入，形成诊后完整闭环。" data-script-standup="于是我们让一只 AI 龙虾来管这件事。对，就是龙虾。OpenClaw 龙虾框架，帮李晓峰主任做随访助理。流程很简单：患者出院，小龙虾建档；时间到了，小龙虾发消息；患者回复，小龙虾解析分析；有问题，第一时间推报告给医生。医生每天打开飞书，看一张日报，30个患者状态全知道。全程，医生零操作。就这么简单。">
     <div style="font-size:clamp(22px,3.2vw,42px);font-weight:800;text-align:center;margin-bottom:4px;">🦞 OpenClaw 龙虾做医生的随访助理</div>
     <div style="font-size:clamp(14px,1.6vw,19px);color:var(--text2);text-align:center;margin-bottom:16px;">全流程自动化 · 医生只需查看飞书，掌握所有患者情况</div>
 
@@ -582,7 +582,7 @@
   </div>
 
   <!-- ═══ Slide 4: Application Value & Social Benefits ═══ -->
-  <div class="slide" data-script="PatientClaw 的价值体现在三个维度。对患者：最重要的是情绪价值——被医生记挂着，不是一次性的号，而是有人一直在关注你。有问题随时回复，不用再跑一趟，不用挂号排队，药吃还是不吃有人告诉你。对医生：开完药有了后续，看着患者一点点好起来，是最大的成就感。病情没好，系统立刻提醒，医生可以二次干预，精准指导，医术在真实反馈中持续精进。对医疗体系：临床跟踪数据得以积累，助力科研。随访做好了，医院口碑自然提升。">
+  <div class="slide" data-script="PatientClaw 的价值体现在三个维度。对患者：最重要的是情绪价值——被医生记挂着，不是一次性的号，而是有人一直在关注你。有问题随时回复，不用再跑一趟，不用挂号排队，药吃还是不吃有人告诉你。对医生：开完药有了后续，看着患者一点点好起来，是最大的成就感。病情没好，系统立刻提醒，医生可以二次干预，精准指导，医术在真实反馈中持续精进。对医疗体系：临床跟踪数据得以积累，助力科研。随访做好了，医院口碑自然提升。" data-script-standup="这套系统的价值，说白了就三个字：有后续。对患者——第一次感觉「医生还记得我」，不是挂完号就散的关系，是有人一直跟着你。对医生——以前开完药是薛定谔的治疗，有没有效全靠猜。现在有真实反馈，每一种药在每个患者身上的效果都看得见。对医疗体系——数据积累，循证依据，反复入院率下降，医院口碑自然提升。三方都赢，没有人亏。">
     <div style="font-size:clamp(26px,3.6vw,48px);font-weight:900;text-align:center;margin-bottom:4px;">PatientClaw 的价值</div>
     <div style="font-size:clamp(14px,1.6vw,19px);color:var(--text2);text-align:center;margin-bottom:22px;">让看病从<span style="color:var(--text);font-weight:600;">一次性事件</span>，变成<span style="color:var(--text);font-weight:600;">一段持续的关系</span></div>
 
@@ -640,7 +640,7 @@
   </div>
 
   <!-- ═══ Slide 5: Data Overview ═══ -->
-  <div class="slide" data-script="接下来结合实际案例演示。我们模拟了北京协和医院心血管内科李晓峰主任医师的门诊场景。李主任从医28年，每年接诊3000余名患者。我们为他构建了30名真实病历患者，覆盖高血压、冠心病、心律失常、心力衰竭四类病种，共91条就诊记录、95条药方，跑了完整10天随访。">
+  <div class="slide" data-script="接下来结合实际案例演示。我们模拟了北京协和医院心血管内科李晓峰主任医师的门诊场景。李主任从医28年，每年接诊3000余名患者。我们为他构建了30名真实病历患者，覆盖高血压、冠心病、心律失常、心力衰竭四类病种，共91条就诊记录、95条药方，跑了完整10天随访。" data-script-standup="演示场景：北京协和医院心血管内科，李晓峰主任，从医28年，做了2000多台手术，每年接诊3000人——就是那种你刷新挂号系统永远没号的那种医生。我们给他配了30名患者，四大心血管病种全覆盖，跑完整10天随访，产生100条记录。结果：零人失联。30个人，一个都没跑。">
     <div style="font-size:clamp(14px,1.6vw,19px);font-weight:600;color:var(--text2);text-align:center;margin-bottom:2px;">演示场景</div>
     <div style="font-size:clamp(22px,3vw,40px);font-weight:900;text-align:center;margin-bottom:16px;">北京协和医院 · 心血管内科</div>
 
@@ -751,7 +751,7 @@
   </div>
 
   <!-- ═══ Slide 8: Case 1 - Patient Chat ═══ -->
-  <div class="slide" data-script="来看第一个案例。高血压患者黄丽，就诊满7天。系统结合她的诊断和苯磺酸氨氯地平用药方案，自动发出针对性随访消息。患者回复说这周加班没测血压，今天一测148/96，还有头晕。AI立刻解析：依从性partial（监测中断），病情worsened，血压148/96显著升高，优先级attention，建议加密随访。患者还顺带提问能不能来看医生——系统也自动收录进提问汇总。整个过程无需医生参与。">
+  <div class="slide" data-script="来看第一个案例。高血压患者黄丽，就诊满7天。系统结合她的诊断和苯磺酸氨氯地平用药方案，自动发出针对性随访消息。患者回复说这周加班没测血压，今天一测148/96，还有头晕。AI立刻解析：依从性partial（监测中断），病情worsened，血压148/96显著升高，优先级attention，建议加密随访。患者还顺带提问能不能来看医生——系统也自动收录进提问汇总。整个过程无需医生参与。" data-script-standup="来看黄丽。高血压，这周加班太猛，血压计落灰了。系统发消息：「黄丽您好，血压这周测了吗？」她回复：「今天才测，148/96，头有点晕，需要来看医生吗？」AI一秒解析：血压显著升高，监测中断，病情恶化，建议加密随访——还顺手把她的提问收录进汇总，按优先级排好等医生处理。整个过程，医生在干嘛？什么都没干。但医生知道了一切。这就是 PatientClaw 的核心。">
     <div class="case-slide-title">案例① &nbsp;患者随访对话</div>
     <div class="case-slide-wrap">
       <div class="chat-panel">
@@ -823,7 +823,7 @@
   </div>
 
   <!-- ═══ Slide 9: Case 2 - Patient Report ═══ -->
-  <div class="slide" data-script="这是心衰患者邓凯的病情追踪档案。Day3到Day7系统记录到他连续改善：体重从78.5降到78.0公斤，可步行距离从100米增加到200米。但第14天出现了逆转——体重猛增1.4公斤，腿肿再现，走路更喘。系统自动检测趋势，标注心衰急性加重风险，立刻推送进医生日报的红色区块，提醒医生今日关注。">
+  <div class="slide" data-script="这是心衰患者邓凯的病情追踪档案。Day3到Day7系统记录到他连续改善：体重从78.5降到78.0公斤，可步行距离从100米增加到200米。但第14天出现了逆转——体重猛增1.4公斤，腿肿再现，走路更喘。系统自动检测趋势，标注心衰急性加重风险，立刻推送进医生日报的红色区块，提醒医生今日关注。" data-script-standup="邓凯，75岁，心衰，心脏泵血功能只有正常人的一半不到。Day3到Day7，系统记录他每次都在改善，体重降、能走的路越来越长，感觉要好了！然后第14天——体重猛涨1.4公斤，腿又肿了。对心衰患者来说，短期体重骤增是红色警报，意味着液体潴留、急性加重前兆。系统自动识别，标红，推进日报。这就是 AI 盯梢的价值——你以为在好转，它早就看出苗头了。">
     <div class="case-slide-title">案例② &nbsp;患者病情追踪档案</div>
     <div class="case-slide-wrap">
       <div class="report-panel">
@@ -883,7 +883,7 @@
   </div>
 
   <!-- ═══ Slide 10: Case 3 - Doctor Daily Report ═══ -->
-  <div class="slide" data-script="最后看系统第7天的医生日报。今日随访6人。病情恶化1例：P017方远，漏服地高辛和利伐沙班，心悸加重，血压142/94。需持续关注1例：P019段勇，冠心病支架术后，阿司匹林服用不规律，胃部不适。今日好转3人，张伟、邵杰、刘静病情均有改善。患者提问汇总：30条来自25人，系统按三级分类，2条紧急需今日致电。最下方是全新用药方案效果统计，系统横向对比30位患者的各类药物改善率、依从率、不良反应，帮助医生积累循证依据，真正助力医术提升。">
+  <div class="slide" data-script="最后看系统第7天的医生日报。今日随访6人。病情恶化1例：P017方远，漏服地高辛和利伐沙班，心悸加重，血压142/94。需持续关注1例：P019段勇，冠心病支架术后，阿司匹林服用不规律，胃部不适。今日好转3人，张伟、邵杰、刘静病情均有改善。患者提问汇总：30条来自25人，系统按三级分类，2条紧急需今日致电。最下方是全新用药方案效果统计，系统横向对比30位患者的各类药物改善率、依从率、不良反应，帮助医生积累循证依据，真正助力医术提升。" data-script-standup="这是医生每天打开飞书看到的东西。今天6人随访，一眼扫完：谁要立刻打电话，谁需要关注，谁在好转。30条患者提问，系统已经帮你分好了：2条红的今天必须处理，6条黄的有空回，22条白的下次复诊说。最底下是用药统计——比索洛尔改善率100%强推荐，地高辛50%还带不良反应要小心。这已经不只是随访工具了，这是在给医生积累真实世界的用药证据，帮医生越来越好。每天一张图，30个人尽在掌握。">
     <div class="case-slide-title">案例③ &nbsp;医生日报（系统第 7 天）</div>
     <div class="daily-report-wrap">
       <div class="daily-header">
@@ -1011,7 +1011,7 @@
   </div>
 
   <!-- ═══ Slide 11: Summary ═══ -->
-  <div class="slide" data-script="PatientClaw 的价值，远不止于技术。中国每年门诊量超过百亿次，但70%的慢病患者在离开诊室后就完全失联——病情管理靠患者自觉，医生无从知晓。这是一个结构性的医疗空白。PatientClaw 用 AI 自动随访填补了这个空白：30人零失联，6例病情恶化被实时捕获，25人主动提问被系统分级处理。更重要的是，这套模式可以赋能到每一家基层医院、每一位家庭医生，让优质的随访能力不再是三甲医院的专属特权。让医生的关怀，从诊室延伸到患者生活的每一天。PatientClaw，谢谢。">
+  <div class="slide" data-script="PatientClaw 的价值，远不止于技术。中国每年门诊量超过百亿次，但70%的慢病患者在离开诊室后就完全失联——病情管理靠患者自觉，医生无从知晓。这是一个结构性的医疗空白。PatientClaw 用 AI 自动随访填补了这个空白：30人零失联，6例病情恶化被实时捕获，25人主动提问被系统分级处理。更重要的是，这套模式可以赋能到每一家基层医院、每一位家庭医生，让优质的随访能力不再是三甲医院的专属特权。让医生的关怀，从诊室延伸到患者生活的每一天。PatientClaw，谢谢。" data-script-standup="最后说一个数字：百亿。中国每年门诊超百亿次，但70%的慢病患者诊后失联。这个空白存在几十年了，没人解决，因为好像很难。今天，一只龙虾填上了它。30人零失联，6次恶化实时预警，100条随访全自动。更重要的是，这套能力可以给每一家基层医院、每一个社区诊所，让县城的医生，也能做协和主任级别的随访管理。让医生的关怀，从诊室延伸到每一个患者的生活里。PatientClaw，谢谢大家。">
 
     <!-- 验证徽标 -->
     <div style="background:rgba(63,185,80,0.12);border:1px solid rgba(63,185,80,0.4);color:#3fb950;padding:5px 20px;border-radius:20px;font-size:clamp(11px,1.2vw,14px);font-weight:700;letter-spacing:0.06em;margin-bottom:10px;">✅ 模拟运行 10 天 · 系统验证完成</div>
@@ -1084,7 +1084,12 @@
 <div id="script-panel" class="collapsed">
   <div id="script-toggle">
     <span>📖 朗读文案</span>
-    <span class="arrow">▲</span>
+    <div style="display:flex;gap:14px;align-items:center;">
+      <span id="btn-normal" style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#e6edf3;cursor:pointer;text-transform:uppercase;">正常版</span>
+      <span style="font-size:11px;color:#30363d;">|</span>
+      <span id="btn-standup" style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#8b949e;cursor:pointer;text-transform:uppercase;">🎤 脱口秀版</span>
+      <span class="arrow">▲</span>
+    </div>
   </div>
   <div id="script-content"></div>
 </div>
@@ -1103,6 +1108,23 @@
   const scriptContent = document.getElementById('script-content');
   const scriptPanel  = document.getElementById('script-panel');
   const scriptToggle = document.getElementById('script-toggle');
+  const btnNormal    = document.getElementById('btn-normal');
+  const btnStandup   = document.getElementById('btn-standup');
+
+  let scriptMode = 'normal';
+
+  function getScript(slide) {
+    return scriptMode === 'standup'
+      ? (slide.dataset.scriptStandup || slide.dataset.script || '')
+      : (slide.dataset.script || '');
+  }
+
+  function setMode(mode) {
+    scriptMode = mode;
+    btnNormal.style.color  = mode === 'normal'  ? '#e6edf3' : '#8b949e';
+    btnStandup.style.color = mode === 'standup' ? '#f0883e' : '#8b949e';
+    scriptContent.textContent = getScript(slides[current]);
+  }
 
   function goTo(n) {
     slides[current].classList.remove('active');
@@ -1110,7 +1132,7 @@
     slides[current].classList.add('active');
     progressBar.style.width = ((current + 1) / total * 100) + '%';
     pageCounter.textContent = (current + 1) + ' / 9';
-    scriptContent.textContent = slides[current].dataset.script || '';
+    scriptContent.textContent = getScript(slides[current]);
   }
 
   document.addEventListener('keydown', e => {
@@ -1125,6 +1147,9 @@
     e.stopPropagation();
     scriptPanel.classList.toggle('collapsed');
   });
+
+  btnNormal.addEventListener('click', e => { e.stopPropagation(); setMode('normal'); });
+  btnStandup.addEventListener('click', e => { e.stopPropagation(); setMode('standup'); });
 
   goTo(0);
 </script>
