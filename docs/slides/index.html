@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatientClaw · 演示视频稿</title>
+  <title>PatientClaw · 路演 PPT</title>
   <style>
     :root {
-      --bg: #0d1117;
-      --bg2: #161b22;
-      --bg3: #21262d;
-      --accent: #7c3aed;
+      --bg:      #0d1117;
+      --bg2:     #161b22;
+      --bg3:     #21262d;
+      --accent:  #7c3aed;
       --accent2: #3b82f6;
-      --text: #e6edf3;
-      --text2: #8b949e;
-      --border: #30363d;
-      --green: #3fb950;
-      --red: #f85149;
-      --yellow: #d2a520;
-      --orange: #f0883e;
+      --text:    #e6edf3;
+      --text2:   #8b949e;
+      --border:  #30363d;
+      --green:   #3fb950;
+      --red:     #f85149;
+      --yellow:  #d2a520;
+      --orange:  #f0883e;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* 16:10 aspect ratio, fixed viewport */
+    /* ── 16:10 比例 ── */
     html, body {
       width: 100vw;
-      height: 56.25vw; /* = 9/16 * 100 */
+      height: 62.5vw;       /* 10/16 × 100 */
       max-height: 100vh;
-      max-width: 177.78vh; /* = 16/9 * 100 */
+      max-width: 160vh;     /* 16/10 × 100 */
       margin: auto;
       overflow: hidden;
       background: var(--bg);
@@ -38,14 +38,15 @@
     #deck { width: 100%; height: 100%; position: relative; }
     .slide {
       position: absolute; inset: 0;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      padding: 5% 8%;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 4% 7%;
       opacity: 0; pointer-events: none;
       transition: opacity 0.4s ease;
     }
     .slide.active { opacity: 1; pointer-events: all; }
 
-    /* Click zone for advancing */
+    /* ── Click zones ── */
     #click-next { position: fixed; right: 0; top: 0; width: 50%; height: 100%; z-index: 10; cursor: pointer; }
     #click-prev { position: fixed; left: 0; top: 0; width: 50%; height: 100%; z-index: 10; cursor: pointer; }
 
@@ -79,61 +80,55 @@
     #script-panel.collapsed #script-toggle .arrow { transform: rotate(180deg); }
     #script-content { padding: 10px 20px 14px; font-size: 13px; color: #c9d1d9; line-height: 1.7; max-height: 100px; overflow-y: auto; }
 
-    /* ── Common slide elements ── */
+    /* ── Common elements ── */
     .slide-badge {
       display: inline-block;
       background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.4);
-      color: #a78bfa; padding: 4px 14px; border-radius: 20px;
-      font-size: 11px; letter-spacing: 0.04em; margin-bottom: 16px;
+      color: #a78bfa; padding: 4px 16px; border-radius: 20px;
+      font-size: 11px; letter-spacing: 0.04em; margin-bottom: 18px;
     }
     .slide-title {
-      font-size: clamp(28px, 4.5vw, 52px); font-weight: 900;
+      font-size: clamp(28px, 4.5vw, 56px); font-weight: 900;
       letter-spacing: -1px; text-align: center; line-height: 1.1; margin-bottom: 12px;
     }
     .slide-title .grad {
       background: linear-gradient(135deg, #a78bfa, #7c3aed, #3b82f6);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .slide-subtitle { font-size: clamp(14px, 2vw, 20px); color: var(--text2); text-align: center; margin-bottom: 10px; }
-    .slide-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
-    .slide-tag { background: var(--bg3); border: 1px solid var(--border); padding: 5px 14px; border-radius: 20px; font-size: 12px; color: var(--text2); }
-
-    /* Finals badge */
+    .slide-subtitle {
+      font-size: clamp(14px, 2vw, 22px); color: var(--text2);
+      text-align: center; margin-bottom: 10px;
+    }
+    .slide-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px; }
+    .slide-tag {
+      background: var(--bg3); border: 1px solid var(--border);
+      padding: 5px 16px; border-radius: 20px; font-size: 12px; color: var(--text2);
+    }
     .finals-badge {
       position: absolute; top: 3%; right: 3%;
       background: linear-gradient(135deg, #f0883e, #e85d04);
-      color: white; padding: 4px 12px; border-radius: 12px;
-      font-size: 11px; font-weight: 700; z-index: 50;
-      letter-spacing: 0.04em;
+      color: white; padding: 4px 14px; border-radius: 12px;
+      font-size: 11px; font-weight: 700; z-index: 50; letter-spacing: 0.04em;
     }
 
-    /* ── Bullet list ── */
-    .bullet-list { list-style: none; max-width: 55vw; width: 100%; margin-top: 6px; }
-    .bullet-list li {
-      display: flex; align-items: flex-start; gap: 12px;
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
-      padding: 12px 16px; margin-bottom: 10px; font-size: clamp(13px, 1.6vw, 16px); color: #c9d1d9;
-    }
-    .bullet-list li .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-
-    /* ── Flow ── */
+    /* ── Flow chain ── */
     .flow-chain {
-      display: flex; align-items: center; flex-wrap: wrap; gap: 0;
-      justify-content: center; max-width: 75vw; margin-top: 14px;
+      display: flex; align-items: center; flex-wrap: wrap;
+      justify-content: center; max-width: 75vw; margin-top: 14px; gap: 0;
     }
     .flow-node {
       background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
       padding: 10px 14px; font-size: clamp(11px, 1.2vw, 14px); text-align: center; white-space: nowrap;
     }
     .flow-node.purple { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.1); color: #a78bfa; }
-    .flow-node.blue { border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.1); color: #79c0ff; font-weight: 600; }
-    .flow-node.green { border-color: rgba(63,185,80,0.5); background: rgba(63,185,80,0.1); color: #3fb950; font-weight: 600; }
-    .flow-node small { display: block; color: var(--text2); font-size: 0.85em; margin-top: 2px; }
+    .flow-node.blue   { border-color: rgba(59,130,246,0.5);  background: rgba(59,130,246,0.1);  color: #79c0ff; font-weight: 600; }
+    .flow-node.green  { border-color: rgba(63,185,80,0.5);   background: rgba(63,185,80,0.1);   color: #3fb950; font-weight: 600; }
+    .flow-node small  { display: block; color: var(--text2); font-size: 0.85em; margin-top: 2px; }
     .flow-arrow { color: var(--text2); font-size: 14px; padding: 0 6px; }
     .highlight-box {
       background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.3);
-      border-radius: 8px; padding: 12px 20px; color: #3fb950;
-      font-size: clamp(13px, 1.4vw, 16px); font-weight: 600; text-align: center; margin-top: 16px;
+      border-radius: 8px; padding: 12px 24px; color: #3fb950;
+      font-size: clamp(13px, 1.4vw, 16px); font-weight: 600; text-align: center; margin-top: 18px;
     }
 
     /* ── Value cards ── */
@@ -142,9 +137,9 @@
       background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
       padding: 18px 20px; flex: 1; min-width: 200px; max-width: 240px;
     }
-    .value-icon { font-size: 26px; margin-bottom: 10px; }
+    .value-icon  { font-size: 26px; margin-bottom: 10px; }
     .value-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-    .value-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+    .value-desc  { font-size: 12px; color: var(--text2); line-height: 1.6; }
     .value-metric {
       display: inline-block;
       background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3);
@@ -156,76 +151,53 @@
     .stats-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
     .stat-card {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
-      padding: 14px 18px; text-align: center; min-width: 110px;
+      padding: 14px 20px; text-align: center; min-width: 110px;
     }
-    .stat-num { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #7c3aed, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-num {
+      font-size: 28px; font-weight: 800;
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
     .stat-label { font-size: 11px; color: var(--text2); margin-top: 4px; }
 
-    /* ── Cases ── */
+    /* ── Case cards ── */
     .cases-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 70vw; }
     .case-card {
       background: var(--bg2); border-radius: 8px; padding: 12px 14px;
       border-left: 3px solid var(--border); flex: 1; min-width: 190px; max-width: 230px;
     }
-    .case-card.ok { border-left-color: var(--green); }
-    .case-card.warn { border-left-color: var(--yellow); }
+    .case-card.ok    { border-left-color: var(--green); }
+    .case-card.warn  { border-left-color: var(--yellow); }
     .case-card.alert { border-left-color: var(--red); }
-    .case-top { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
-    .case-id { font-size: 10px; color: var(--text2); font-weight: 700; }
+    .case-top  { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+    .case-id   { font-size: 10px; color: var(--text2); font-weight: 700; }
     .case-name { font-size: 13px; font-weight: 600; }
     .case-diag { font-size: 10px; color: var(--text2); margin-bottom: 4px; }
     .case-desc { font-size: 11px; color: #c9d1d9; line-height: 1.4; }
 
     /* ── Task cards ── */
-    .task-cards { display: flex; flex-direction: column; gap: 10px; max-width: 62vw; width: 100%; margin-top: 6px; }
+    .task-cards { display: flex; flex-direction: column; gap: 10px; max-width: 68vw; width: 100%; margin-top: 6px; }
     .task-card {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
-      padding: 12px 16px; display: flex; align-items: flex-start; gap: 12px;
+      padding: 11px 16px; display: flex; align-items: flex-start; gap: 12px;
     }
     .task-num {
       background: linear-gradient(135deg, #7c3aed, #3b82f6);
-      color: white; width: 28px; height: 28px; border-radius: 50%;
+      color: white; width: 26px; height: 26px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; flex-shrink: 0;
+      font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
     }
-    .task-body { flex: 1; }
-    .task-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-    .task-desc { font-size: 11px; color: var(--text2); line-height: 1.5; }
+    .task-body  { flex: 1; }
+    .task-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .task-desc  { font-size: 11px; color: var(--text2); line-height: 1.5; }
     .task-steps { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
-    .task-step { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); padding: 3px 9px; border-radius: 5px; font-size: 10px; }
-
-    /* ── Capability grid ── */
-    .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 65vw; width: 100%; margin-top: 6px; }
-    .cap-card {
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
-      padding: 14px 12px; text-align: center;
-    }
-    .cap-icon { font-size: 24px; margin-bottom: 8px; }
-    .cap-title { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
-    .cap-desc { font-size: 10px; color: var(--text2); line-height: 1.4; }
-
-    /* ── Expand grid ── */
-    .expand-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 58vw; margin-top: 8px; }
-    .expand-card {
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
-      padding: 14px 16px;
-    }
-    .expand-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-    .expand-icon { font-size: 20px; }
-    .expand-from { font-size: 11px; color: var(--text2); }
-    .expand-from strong { color: var(--text); }
-    .expand-arrow { font-size: 16px; color: var(--green); font-weight: 700; }
-    .expand-to { font-size: 12px; color: #c9d1d9; line-height: 1.4; }
-
-    /* ── Author line ── */
-    .author-line { margin-top: 28px; font-size: 13px; color: var(--text2); text-align: center; }
-    .author-line a { color: #79c0ff; }
+    .task-step  { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); padding: 3px 9px; border-radius: 5px; font-size: 10px; }
 
     /* ── Two-col layout ── */
     .two-col { display: flex; gap: 20px; max-width: 72vw; width: 100%; align-items: flex-start; margin-top: 6px; }
     .two-col > * { flex: 1; }
     .col-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; text-align: center; }
-    .col-title.red { color: #f85149; }
+    .col-title.red   { color: #f85149; }
     .col-title.green { color: #3fb950; }
     .pain-list { list-style: none; }
     .pain-list li {
@@ -234,7 +206,6 @@
       font-size: clamp(12px, 1.4vw, 15px); color: #c9d1d9;
       display: flex; align-items: flex-start; gap: 10px;
     }
-    .pain-list li .icon { font-size: 16px; flex-shrink: 0; }
     .gain-list { list-style: none; }
     .gain-list li {
       background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.2);
@@ -242,101 +213,325 @@
       font-size: clamp(12px, 1.4vw, 15px); color: #c9d1d9;
       display: flex; align-items: flex-start; gap: 10px;
     }
+    .pain-list li .icon,
     .gain-list li .icon { font-size: 16px; flex-shrink: 0; }
+
+    /* ── Expand grid ── */
+    .expand-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 58vw; margin-top: 8px; }
+    .expand-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+    .expand-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .expand-icon { font-size: 20px; }
+    .expand-from { font-size: 11px; color: var(--text2); }
+    .expand-from strong { color: var(--text); }
+    .expand-to { font-size: 12px; color: #c9d1d9; line-height: 1.4; }
+
+    /* ── Author line ── */
+    .author-line { margin-top: 24px; font-size: 13px; color: var(--text2); text-align: center; }
+    .author-line a { color: #79c0ff; }
+
+    /* ── Problem big number ── */
+    .problem-big-num {
+      font-size: clamp(72px, 13vw, 130px); font-weight: 900; line-height: 1;
+      background: linear-gradient(135deg, #f85149, #f0883e);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 4px;
+    }
+    .problem-big-label {
+      font-size: clamp(14px, 2vw, 22px); color: var(--text2); text-align: center; margin-bottom: 26px;
+    }
+    .problem-row { display: flex; gap: 12px; justify-content: center; max-width: 68vw; width: 100%; }
+    .problem-card {
+      background: var(--bg2); border: 1px solid rgba(248,81,73,0.2);
+      border-radius: 8px; padding: 12px 16px; flex: 1;
+      font-size: 12px; color: #c9d1d9; line-height: 1.6;
+    }
+    .problem-card-title { font-weight: 700; color: var(--text); margin-bottom: 4px; font-size: 13px; }
+
+    /* ── Case slide layout ── */
+    .case-slide-wrap { display: flex; gap: 16px; width: 100%; max-width: 82vw; align-items: stretch; }
+    .case-slide-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--accent2); text-transform: uppercase; margin-bottom: 6px;
+    }
+    .case-slide-title {
+      font-size: clamp(18px, 2.5vw, 32px); font-weight: 800;
+      margin-bottom: 12px; text-align: center;
+    }
+
+    /* ── Chat interface ── */
+    .chat-panel { flex: 1.2; display: flex; flex-direction: column; gap: 0; }
+    .chat-header {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px 8px 0 0; padding: 8px 14px;
+      display: flex; align-items: center; gap: 10px; font-size: 11px;
+    }
+    .chat-header-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .chat-header-title { font-weight: 600; color: var(--text); }
+    .chat-header-sub { color: var(--text2); }
+    .chat-body {
+      background: var(--bg2); border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 8px 8px; padding: 12px; flex: 1;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .chat-msg-wrap { display: flex; flex-direction: column; }
+    .chat-msg-wrap.system  { align-items: flex-start; }
+    .chat-msg-wrap.patient { align-items: flex-end; }
+    .chat-sender { font-size: 10px; color: var(--text2); margin-bottom: 3px; }
+    .chat-bubble {
+      padding: 9px 13px; border-radius: 10px;
+      font-size: clamp(10px, 1.1vw, 12px); line-height: 1.65; max-width: 90%;
+    }
+    .chat-bubble.system-bubble {
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+      color: #c9d1d9; border-top-left-radius: 2px;
+    }
+    .chat-bubble.patient-bubble {
+      background: var(--bg3); border: 1px solid var(--border);
+      color: var(--text); border-top-right-radius: 2px;
+    }
+
+    /* ── Parse result card ── */
+    .parse-panel { flex: 0.85; display: flex; flex-direction: column; gap: 0; }
+    .parse-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px; flex: 1;
+    }
+    .parse-title {
+      font-size: 10px; font-weight: 700; color: var(--text2);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+    .parse-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+    .parse-key { color: var(--text2); font-size: 11px; }
+    .parse-val { font-weight: 600; font-size: 11px; }
+    .parse-val.good     { color: var(--green); }
+    .parse-val.partial  { color: var(--yellow); }
+    .parse-val.attention{ color: var(--yellow); }
+    .parse-val.urgent   { color: var(--red); }
+    .parse-val.stable   { color: #79c0ff; }
+    .parse-summary {
+      margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border);
+      font-size: 11px; color: #c9d1d9; line-height: 1.5;
+    }
+    .parse-summary-label { font-size: 10px; color: var(--text2); margin-bottom: 4px; }
+
+    /* ── Patient report ── */
+    .report-panel {
+      flex: 1; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px;
+      display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+    }
+    .report-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+    .report-patient-name { font-size: 15px; font-weight: 700; }
+    .report-patient-meta { font-size: 11px; color: var(--text2); margin-top: 2px; }
+    .report-status-badge { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+    .report-status-badge.attention {
+      background: rgba(210,165,32,0.15); border: 1px solid rgba(210,165,32,0.4); color: var(--yellow);
+    }
+    .report-section-label {
+      font-size: 10px; font-weight: 700; color: var(--accent2);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+    }
+    .report-info-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .report-info-item { font-size: 11px; color: #c9d1d9; }
+    .report-info-item span { color: var(--text2); }
+    .timeline-entry {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--border);
+      background: var(--bg3); margin-bottom: 5px; font-size: 11px;
+    }
+    .timeline-entry.ok   { border-left-color: var(--green); }
+    .timeline-entry.warn { border-left-color: var(--yellow); }
+    .timeline-day { font-size: 11px; font-weight: 700; min-width: 38px; color: var(--text2); }
+    .timeline-content { flex: 1; color: #c9d1d9; line-height: 1.5; }
+    .timeline-badge { font-size: 10px; padding: 2px 7px; border-radius: 8px; white-space: nowrap; }
+    .timeline-badge.good      { background: rgba(63,185,80,0.15); color: var(--green); }
+    .timeline-badge.attention { background: rgba(210,165,32,0.15); color: var(--yellow); }
+    .report-alert-box {
+      background: rgba(210,165,32,0.08); border: 1px solid rgba(210,165,32,0.3);
+      border-radius: 6px; padding: 8px 12px;
+      font-size: 11px; color: var(--yellow); margin-top: 2px;
+    }
+
+    /* ── Doctor daily report ── */
+    .daily-report-wrap { width: 100%; max-width: 80vw; display: flex; flex-direction: column; gap: 8px; }
+    .daily-header {
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1));
+      border: 1px solid rgba(124,58,237,0.3); border-radius: 8px; padding: 10px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .daily-header-title { font-size: 14px; font-weight: 700; }
+    .daily-header-meta  { font-size: 11px; color: var(--text2); }
+    .daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .daily-section { border-radius: 8px; padding: 10px 14px; font-size: 11px; }
+    .daily-section.urgent-sec  { background: rgba(248,81,73,0.08);  border: 1px solid rgba(248,81,73,0.25); }
+    .daily-section.warn-sec    { background: rgba(210,165,32,0.06); border: 1px solid rgba(210,165,32,0.2); }
+    .daily-section.good-sec    { background: rgba(63,185,80,0.06);  border: 1px solid rgba(63,185,80,0.2); }
+    .daily-section.neutral-sec { background: var(--bg2);            border: 1px solid var(--border); }
+    .daily-section-title { font-size: 12px; font-weight: 700; margin-bottom: 7px; }
+    .daily-section.urgent-sec  .daily-section-title { color: var(--red); }
+    .daily-section.warn-sec    .daily-section-title { color: var(--yellow); }
+    .daily-section.good-sec    .daily-section-title { color: var(--green); }
+    .daily-section.neutral-sec .daily-section-title { color: var(--text2); }
+    .daily-item { color: #c9d1d9; line-height: 1.65; }
+    .daily-item strong { color: var(--text); }
+    .daily-insight {
+      background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 8px; padding: 10px 14px; font-size: 11px; color: #c9d1d9; line-height: 1.6;
+    }
+    .daily-insight-title { font-size: 12px; font-weight: 700; color: #a78bfa; margin-bottom: 5px; }
+
+    /* ── Prompt slide ── */
+    .prompt-cols { display: flex; gap: 16px; max-width: 82vw; width: 100%; align-items: flex-start; margin-top: 4px; }
+    .prompt-col  { flex: 1; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .prompt-col-title {
+      font-size: 12px; font-weight: 700; margin-bottom: 12px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .prompt-col-title .badge {
+      font-size: 10px; padding: 2px 8px; border-radius: 10px;
+      background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3);
+    }
+    .prompt-domain-list { list-style: none; }
+    .prompt-domain-list li {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; color: #c9d1d9; padding: 5px 0;
+      border-bottom: 1px solid rgba(48,54,61,0.6);
+      line-height: 1.4;
+    }
+    .prompt-domain-list li:last-child { border-bottom: none; }
+    .prompt-domain-num {
+      font-size: 10px; font-weight: 700; color: #a78bfa;
+      background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.2);
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .prompt-json { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 10.5px; line-height: 1.7; color: #c9d1d9; }
+    .prompt-json .key   { color: #79c0ff; }
+    .prompt-json .val   { color: #a5d6ff; }
+    .prompt-json .str   { color: #a5d6ff; }
+    .prompt-json .enum  { color: #3fb950; }
+    .prompt-json .cmmt  { color: var(--text2); }
+    .prompt-highlight {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;
+    }
+    .prompt-tag {
+      font-size: 10px; padding: 3px 9px; border-radius: 10px;
+      background: rgba(63,185,80,0.1); color: var(--green);
+      border: 1px solid rgba(63,185,80,0.25);
+    }
   </style>
 </head>
 <body>
 
 <div id="deck">
 
-  <!-- Slide 1: Cover -->
-  <div class="slide active" data-script="大家好，我是赵天浩，来自北京中关村学院。今天我要介绍的项目叫 PatientClaw，一个用 OpenClaw 龙虾框架搭建的患者诊后病情全自动跟踪统计系统。">
+  <!-- ═══ Slide 1: Cover ═══ -->
+  <div class="slide active" data-script="大家好，我是赵天浩，来自北京中关村学院。今天要介绍的项目叫 PatientClaw——一个用 OpenClaw 龙虾框架搭建的患者诊后病情全自动跟踪统计系统。">
     <div class="finals-badge">🏆 决赛入围</div>
     <div class="slide-badge">北纬·龙虾大赛（第一届）· OpenClaw Hackathon · 生产力赛道</div>
     <div class="slide-title"><span class="grad">PatientClaw</span></div>
     <div class="slide-subtitle">患者诊后病情全自动跟踪统计系统</div>
+    <div style="font-size:clamp(12px,1.4vw,15px);color:var(--text2);margin-top:8px;">助力医生提升医术</div>
     <div class="slide-tags">
+      <span class="slide-tag">🦞 OpenClaw 驱动</span>
       <span class="slide-tag">全自动随访</span>
-      <span class="slide-tag">AI 回复解析</span>
+      <span class="slide-tag">AI 解析回复</span>
       <span class="slide-tag">飞书日报推送</span>
       <span class="slide-tag">30名患者模拟</span>
     </div>
   </div>
 
-  <!-- Slide 2: Problem -->
-  <div class="slide" data-script="在基层医疗中，患者就诊后的诊后断联是个严重问题。超过70%的患者取药后就消失了，医生完全不知道药方是否有效。每天接诊几十人的医生，根本没有时间和精力主动随访每一位患者。">
-    <div class="slide-title" style="font-size:clamp(24px,3.5vw,44px);margin-bottom:24px;">医生面临的困境</div>
-    <ul class="bullet-list">
-      <li><span class="icon">📉</span>基层门诊自然复诊率不足 30%，超过 70% 患者离诊后失联</li>
-      <li><span class="icon">⏱️</span>医生每日接诊 30-50 人，无暇主动随访每一位患者</li>
-      <li><span class="icon">🔲</span>70% 患者就诊结果对医生是黑盒，无法评估疗效</li>
-      <li><span class="icon">❓</span>无法区分"药不对症"还是"患者没遵医嘱"，医术难以提升</li>
-    </ul>
-  </div>
-
-  <!-- Slide 3: Solution -->
-  <div class="slide" data-script="我用 OpenClaw 龙虾框架，给医生配了一个不知疲倦的数字助理。龙虾每隔10分钟扫描一次，自动判断哪些患者需要随访，生成个性化的随访消息，模拟患者回复，解析数据，最后把所有信息汇总成日报推送给医生。医生什么都不用做，只需要早上打开飞书看一眼。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,40px);margin-bottom:6px;">我用龙虾解决了这个问题</div>
-    <div class="slide-subtitle" style="margin-bottom:20px;">OpenClaw 全自动承担随访工作，医生只需查看飞书日报</div>
-    <div class="flow-chain">
-      <div class="flow-node purple">就诊<small>Day 0</small></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">龙虾定时触发<small>每10分钟</small></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">生成随访消息</div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">模拟患者回复</div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">AI 解析</div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">写入数据</div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node blue">飞书日报 📱</div>
+  <!-- ═══ Slide 2: Problem ═══ -->
+  <div class="slide" data-script="在基层医疗中，超过70%的患者就诊取药后就失联了。医生每天接诊几十人，根本没时间主动随访。药有没有吃？有没有效果？病情有没有变化？对医生来说完全是黑盒。这个系统性漏洞，让医生的医术无从提升，让患者的小病拖成了大病。">
+    <div class="problem-big-num">70%</div>
+    <div class="problem-big-label">的患者就诊后，医生再也联系不上他们</div>
+    <div class="problem-row">
+      <div class="problem-card">
+        <div class="problem-card-title">📦 患者侧</div>
+        取药即失联，无人跟进用药效果<br>小病拖成大病，高危患者错过干预
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-title">👨‍⚕️ 医生侧</div>
+        日接诊 30–50 人，无暇逐一随访<br>疗效是黑盒，依从性无从得知
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-title">🏥 系统侧</div>
+        无法区分"药不对症"与"依从性差"<br>诊后管理是医疗体系的系统性漏洞
+      </div>
     </div>
-    <div class="highlight-box">医生只需打开飞书，其余全部自动完成</div>
   </div>
 
-  <!-- Slide 4: Social Value -->
-  <div class="slide" data-script="决赛的评审标准是应用价值与社会效益。PatientClaw 不只是一个技术项目，它解决的是一个真实的社会问题。超过70%的患者离诊后失联，这是我们医疗体系的系统性漏洞。我们用AI填补了这个空白，对医生、对患者、对整个医疗系统，都产生了可量化的正向影响。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,40px);margin-bottom:6px;">应用价值与社会效益</div>
-    <div class="slide-subtitle" style="margin-bottom:20px;">PatientClaw 不只解决技术问题，更解决社会问题</div>
+  <!-- ═══ Slide 3: Solution ═══ -->
+  <div class="slide" data-script="我用 OpenClaw 龙虾，给医生配了一个不知疲倦的数字助理。龙虾每10分钟自动扫描，判断哪些患者需要随访，结合诊断和用药生成个性化消息，模拟患者回复，AI解析后写入数据，最后汇总成日报推送给医生。医生只需打开飞书看一眼，其余全部自动完成。">
+    <div class="slide-title" style="font-size:clamp(22px,3vw,40px);margin-bottom:8px;">OpenClaw 龙虾做医生的随访助理</div>
+    <div class="slide-subtitle" style="margin-bottom:22px;">全流程自动化，医生只需查看飞书日报</div>
+    <div class="flow-chain">
+      <div class="flow-node purple">患者数据<small>诊断 + 用药</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">智能调度<small>每 10 分钟</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">个性化随访<small>结合病种定制</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">模拟回复<small>AI 解析</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">数据入库</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node blue">飞书日报 📱<small>医生查看</small></div>
+    </div>
+    <div class="highlight-box">医生零操作 · 全程自动化 · 每天一眼掌握所有患者状态</div>
+  </div>
+
+  <!-- ═══ Slide 4: Application Value & Social Benefits ═══ -->
+  <div class="slide" data-script="PatientClaw 的价值不只是一个技术工具。对医生，随访数据回流让临床决策有据可依，医术持续精进。对患者，每个人都感受到被持续关注，依从性自然提升，小病不拖成大病。对整个医疗系统，自动化随访可以扩展到任何科室和地区，填补诊后管理的系统性空白。">
+    <div class="slide-title" style="font-size:clamp(22px,3vw,40px);margin-bottom:6px;">应用价值 · 社会效益</div>
+    <div class="slide-subtitle" style="margin-bottom:18px;">不只解决技术问题，更填补医疗体系的系统性空白</div>
     <div class="value-cards">
       <div class="value-card">
         <div class="value-icon">👨‍⚕️</div>
         <div class="value-title">对医生</div>
-        <div class="value-desc">数据驱动的临床反思，低成本获得过去几乎不可能的随访数据，让医术持续精进</div>
+        <div class="value-desc">随访数据回流，让每次诊疗有后续反馈，临床决策有据可依，医术得以持续精进</div>
         <div class="value-metric">依从率 92% ↑</div>
       </div>
       <div class="value-card">
-        <div class="value-icon">🧑‍🤝‍🧑</div>
+        <div class="value-icon">🫀</div>
         <div class="value-title">对患者</div>
-        <div class="value-desc">每位患者感受到被持续关注，有问题能及时发现，小病不会拖成大病</div>
-        <div class="value-metric">30人零失联</div>
+        <div class="value-desc">每位患者感受到被持续关注，有问题能及时发现并干预，小病不拖成大病</div>
+        <div class="value-metric">30 人零失联</div>
       </div>
       <div class="value-card">
         <div class="value-icon">🏥</div>
         <div class="value-title">对医疗系统</div>
-        <div class="value-desc">自动化随访降低医疗资源压力，urgent预警挽救生命，减少不必要的急诊住院</div>
+        <div class="value-desc">降低随访人力成本，urgent 预警挽救生命，减少依从性差导致的二次入院和急诊</div>
         <div class="value-metric">自动预警 4 例</div>
       </div>
     </div>
+    <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;">
+      <span class="slide-tag">可扩展至任意科室</span>
+      <span class="slide-tag">可下沉至县级医院</span>
+      <span class="slide-tag">可对接多种 IM 渠道</span>
+    </div>
   </div>
 
-  <!-- Slide 5: Three tasks -->
-  <div class="slide" data-script="龙虾在后台运行着三个定时任务。第一个，每10分钟检查需要随访的患者，生成结合具体诊断和用药的个性化消息，然后模拟患者回复，用AI解析后写入数据库。第二个，每天生成一份医生综合日报，重点标注需要关注的患者，推送到飞书。第三个，持续更新每位患者的病情追踪档案。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,38px);margin-bottom:20px;">龙虾在后台做了什么</div>
+  <!-- ═══ Slide 5: Core Functions & Flow ═══ -->
+  <div class="slide" data-script="系统核心是三个定时任务。第一，患者随访：智能调度触发，LLM生成个性化消息，模拟回复后AI解析，写入数据。第二，医生日报：汇总所有患者状态，飞书Bot推送。第三，病情档案：为每位患者维护追踪报告，Day 14生成完整终期报告。随访频率也会根据病情动态调整。">
+    <div class="slide-title" style="font-size:clamp(20px,2.8vw,36px);margin-bottom:14px;">核心功能 · 系统流程</div>
     <div class="task-cards">
       <div class="task-card">
         <div class="task-num">1</div>
         <div class="task-body">
           <div class="task-title">📅 患者随访询问（每 10 分钟）</div>
-          <div class="task-desc">扫描所有患者，判断是否到达随访节点，生成个性化消息，模拟患者回复，AI 解析后写入数据。</div>
+          <div class="task-desc">智能调度 → 个性化随访消息（结合诊断 + 用药）→ 模拟患者回复 → AI 解析 → 写入 CSV</div>
           <div class="task-steps">
-            <span class="task-step">扫描随访节点</span>
-            <span class="task-step">生成个性化消息</span>
+            <span class="task-step">智能调度</span>
+            <span class="task-step">LLM 生成消息</span>
             <span class="task-step">模拟患者回复</span>
-            <span class="task-step">AI 解析</span>
-            <span class="task-step">写入 CSV</span>
+            <span class="task-step">NLP 解析</span>
+            <span class="task-step">数据写入</span>
           </div>
         </div>
       </div>
@@ -344,91 +539,293 @@
         <div class="task-num">2</div>
         <div class="task-body">
           <div class="task-title">📊 医生日报生成（每 10 分钟）</div>
-          <div class="task-desc">汇总所有患者状态，分析用药效果，生成结构化日报并通过飞书 Bot 推送给医生。</div>
+          <div class="task-desc">汇总所有患者状态 → 用药效果分析 → 生成结构化日报 → 飞书 Bot 自动推送给医生</div>
         </div>
       </div>
       <div class="task-card">
         <div class="task-num">3</div>
         <div class="task-body">
-          <div class="task-title">📋 病情报告更新（每 10 分钟）</div>
-          <div class="task-desc">为每位患者维护独立的病情追踪档案，每轮随访后追加摘要，Day 14 生成完整版终期报告。</div>
+          <div class="task-title">📋 病情档案更新（每 10 分钟）</div>
+          <div class="task-desc">为每位患者维护独立追踪报告，每轮随访后追加摘要，Day 14 生成完整终期报告</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:center;align-items:center;font-size:11px;color:var(--text2);">
+      <span>随访频率动态调整：</span>
+      <span style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);padding:3px 10px;border-radius:12px;">控制好 → 标准频率</span>
+      <span style="background:rgba(210,165,32,0.1);border:1px solid rgba(210,165,32,0.3);color:var(--yellow);padding:3px 10px;border-radius:12px;">病情加重 → 加密随访</span>
+      <span style="background:rgba(248,81,73,0.1);border:1px solid rgba(248,81,73,0.3);color:var(--red);padding:3px 10px;border-radius:12px;">紧急 → 立即提醒医生</span>
+    </div>
+  </div>
+
+  <!-- ═══ Slide 6: Prompt Design ═══ -->
+  <div class="slide" data-script="系统真正的核心竞争力在于 Prompt 设计。随访消息生成 Prompt 覆盖十大问题域，并针对不同病种——高血压、冠心病、心衰、心房颤动——定制专属问题，确保每条随访都是个性化的医学问询，而不是通用模板。患者回复解析 Prompt 则将自然语言回复转化为结构化 JSON，自动判断依从性、病情状态和优先级，真正做到自然语言进、结构化数据出。">
+    <div class="slide-title" style="font-size:clamp(20px,2.8vw,36px);margin-bottom:12px;">Prompt 工程：系统的真正核心</div>
+    <div class="prompt-cols">
+      <!-- 左：随访消息生成 -->
+      <div class="prompt-col">
+        <div class="prompt-col-title">
+          随访消息生成 Prompt
+          <span class="badge">个性化生成</span>
+        </div>
+        <ul class="prompt-domain-list">
+          <li><div class="prompt-domain-num">1</div>【用药情况】药有没有按时吃？有没有漏服或自行停药？</li>
+          <li><div class="prompt-domain-num">2</div>【不良反应】头晕、咳嗽、脚肿、皮疹等？</li>
+          <li><div class="prompt-domain-num">3</div>【自测指标】血压 / 心率 / 体重今天测了多少？</li>
+          <li><div class="prompt-domain-num">4</div>【核心症状】胸闷 / 头晕 / 气短 / 水肿有无改善？</li>
+          <li><div class="prompt-domain-num">5</div>【生活方式】饮食控盐、运动、烟酒情况？</li>
+        </ul>
+        <div class="prompt-highlight">
+          <span class="prompt-tag">高血压：血压值 + 服药 + 头晕头痛</span>
+          <span class="prompt-tag">心衰：每日体重 + 水肿 + 气短</span>
+          <span class="prompt-tag">心绞痛：胸痛频率 + 活动耐力</span>
+          <span class="prompt-tag">房颤：抗凝药 + 心悸 + 出血迹象</span>
+        </div>
+      </div>
+      <!-- 右：回复解析 Prompt -->
+      <div class="prompt-col">
+        <div class="prompt-col-title">
+          患者回复解析 Prompt
+          <span class="badge">结构化输出</span>
+        </div>
+        <div class="prompt-json">
+<span class="cmmt">// 自然语言 → 结构化 JSON</span>
+{
+  <span class="key">"medication_adherence"</span>: <span class="enum">"good/partial/none"</span>,
+  <span class="key">"condition_status"</span>:    <span class="enum">"improved/stable/worsened"</span>,
+  <span class="key">"key_values"</span>: {
+    <span class="key">"blood_pressure"</span>: <span class="str">"138/85 mmHg"</span>,
+    <span class="key">"weight"</span>:         <span class="str">"69.5 kg"</span>,
+    <span class="key">"heart_rate"</span>:     <span class="str">"72 bpm"</span>
+  },
+  <span class="key">"needs_immediate_attention"</span>: <span class="enum">false</span>,
+  <span class="key">"priority_level"</span>:  <span class="enum">"normal/attention/urgent"</span>,
+  <span class="key">"followup_frequency_suggestion"</span>: <span class="enum">"standard/enhanced"</span>,
+  <span class="key">"summary"</span>: <span class="str">"50字以内中文摘要"</span>
+}</div>
+        <div class="prompt-highlight" style="margin-top:12px;">
+          <span class="prompt-tag">urgent → 立即通知医生</span>
+          <span class="prompt-tag">attention → 加密随访</span>
+          <span class="prompt-tag">normal → 标准随访</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Slide 6: Real data -->
-  <div class="slide" data-script="我用30名心血管科患者的真实模拟数据跑了10天演示。系统产生了50条随访记录，整体依从率92%。龙虾不只记录好消息，也能识别问题：比如这位高血压患者自行减药，血压反弹了，系统立刻标记需要关注；这位重度心衰患者体重增加接近预警线，系统自动升级了关注级别。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,38px);margin-bottom:16px;">10 天演示数据</div>
+  <!-- ═══ Slide 7: Data Overview ═══ -->
+  <div class="slide" data-script="我用30名心血管科患者跑了10天完整演示。系统生成了50条随访记录，整体依从率92%，四类病种全覆盖。系统不只记录好消息——这位重度心衰患者体重超过了预警线，系统立刻升级为urgent，日报中置顶提醒；这位高血压患者自行停药，系统即时标记需关注。30人零失联，4例预警全部被识别。">
+    <div class="slide-title" style="font-size:clamp(22px,3vw,38px);margin-bottom:14px;">10 天演示数据总览</div>
     <div class="stats-row">
       <div class="stat-card"><div class="stat-num">30</div><div class="stat-label">名患者</div></div>
       <div class="stat-card"><div class="stat-num">50</div><div class="stat-label">条随访记录</div></div>
       <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">天日报</div></div>
       <div class="stat-card"><div class="stat-num">92%</div><div class="stat-label">整体依从率</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">例自动预警</div></div>
+      <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">例失联</div></div>
     </div>
     <div class="cases-row">
       <div class="case-card ok">
         <div class="case-top"><span>✅</span><span class="case-id">P005</span><span class="case-name">陈强</span></div>
         <div class="case-diag">心力衰竭 · Day 14</div>
-        <div class="case-desc">体重 62.5 kg 稳定，血压 126/78，症状持续改善</div>
+        <div class="case-desc">体重 62.5 kg 稳定，血压 126/78，症状持续改善，已转减频随访</div>
       </div>
       <div class="case-card warn">
         <div class="case-top"><span>⚠️</span><span class="case-id">P010</span><span class="case-name">吴霞</span></div>
-        <div class="case-diag">高血压 · 自行减药</div>
-        <div class="case-desc">血压反弹至 134/86，系统标记需关注</div>
+        <div class="case-diag">高血压 · 自行停药 3 天</div>
+        <div class="case-desc">血压反弹至 148/92，系统标记 attention，日报置顶提醒</div>
       </div>
       <div class="case-card alert">
-        <div class="case-top"><span>🔔</span><span class="case-id">P029</span><span class="case-name">邓凯</span></div>
+        <div class="case-top"><span>🔴</span><span class="case-id">P029</span><span class="case-name">邓凯</span></div>
         <div class="case-diag">重度心衰 EF 30%</div>
-        <div class="case-desc">体重增加 1.6 kg，系统自动升级 urgent 预警</div>
+        <div class="case-desc">体重 7 日增加 2.3 kg，超预警线，urgent 级别，日报第一位</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;font-size:11px;color:var(--text2);">
+      <span>病种覆盖：</span>
+      <span style="color:#c9d1d9;">高血压（13人）</span><span>·</span>
+      <span style="color:#c9d1d9;">冠心病/心绞痛（8人）</span><span>·</span>
+      <span style="color:#c9d1d9;">心律失常（4人）</span><span>·</span>
+      <span style="color:#c9d1d9;">心力衰竭（5人）</span>
+    </div>
+  </div>
+
+  <!-- ═══ Slide 8: Case 1 - Patient Chat ═══ -->
+  <div class="slide" data-script="来看第一个案例。高血压患者陈芳，就诊满7天。系统结合她的诊断和氨氯地平加缬沙坦的用药方案，自动发出了针对性随访消息。患者回复说血压138/85，昨天漏服一次。AI立刻解析：依从性partial，状态stable，优先级attention，建议加密随访。整个过程无需医生参与，结果自动写入追踪档案。">
+    <div class="case-slide-title">案例① &nbsp;患者随访对话</div>
+    <div class="case-slide-wrap">
+      <div class="chat-panel">
+        <div class="case-slide-label">飞书随访对话 · P003 陈芳 · 高血压 2 级 · Day 7</div>
+        <div class="chat-header">
+          <div class="chat-header-dot"></div>
+          <div class="chat-header-title">PatientClaw 随访助理</div>
+          <div class="chat-header-sub">李晓峰主任团队 · 北京协和医院</div>
+        </div>
+        <div class="chat-body">
+          <div class="chat-msg-wrap system">
+            <div class="chat-sender">🦞 随访助理 小龙虾 · 第 7 天随访</div>
+            <div class="chat-bubble system-bubble">
+              陈芳女士，您好！就诊满一周了，请花一分钟告诉我以下几项：<br>
+              ① 本周血压最近测了多少？目标是 130/80 以下<br>
+              ② 氨氯地平和缬沙坦有没有按时服药，有无漏服？<br>
+              ③ 有没有头晕、头痛感？<br>
+              ④ 饮食盐分控制得怎么样？<br>
+              请简单回复这几项，谢谢您！
+            </div>
+          </div>
+          <div class="chat-msg-wrap patient">
+            <div class="chat-sender">陈芳 · 62 岁</div>
+            <div class="chat-bubble patient-bubble">
+              大夫好，我血压最近测了一下是 138/85，昨天早上忘记吃药了，其他都按时吃的。没有头晕头痛。做饭尽量少盐了，但有时家里饭有点咸。
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="parse-panel">
+        <div class="case-slide-label">AI 解析结果</div>
+        <div class="parse-card">
+          <div class="parse-title">🤖 NLP 结构化解析</div>
+          <div class="parse-row">
+            <span class="parse-key">用药依从性</span>
+            <span class="parse-val partial">⚠️ Partial（漏服 1 次）</span>
+          </div>
+          <div class="parse-row">
+            <span class="parse-key">病情状态</span>
+            <span class="parse-val stable">🟡 Stable</span>
+          </div>
+          <div class="parse-row">
+            <span class="parse-key">血压值</span>
+            <span class="parse-val attention">138 / 85 mmHg</span>
+          </div>
+          <div class="parse-row">
+            <span class="parse-key">头晕 / 头痛</span>
+            <span class="parse-val good">无</span>
+          </div>
+          <div class="parse-row">
+            <span class="parse-key">饮食依从</span>
+            <span class="parse-val partial">⚠️ 偶有高盐</span>
+          </div>
+          <div class="parse-row">
+            <span class="parse-key">优先级</span>
+            <span class="parse-val attention">🟡 Attention</span>
+          </div>
+          <div class="parse-row">
+            <span class="parse-key">下次随访建议</span>
+            <span class="parse-val attention">加密随访</span>
+          </div>
+          <div class="parse-summary">
+            <div class="parse-summary-label">摘要</div>
+            血压控制欠佳（138/85），有 1 次漏服，建议下次随访重点强调服药规律性与低盐饮食
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Slide 7: Tech capabilities -->
-  <div class="slide" data-script="这个项目充分发挥了龙虾的各项能力：调度引擎负责定时触发，LLM推理生成个性化消息，Tool Use对接飞书机器人，NLP解析把患者的自然语言回复转成结构化数据，文件操作实时读写CSV，最后生成标准化的Markdown病情档案。">
-    <div class="slide-title" style="font-size:clamp(22px,3vw,38px);margin-bottom:20px;">OpenClaw 能力全面发挥</div>
-    <div class="cap-grid">
-      <div class="cap-card">
-        <div class="cap-icon">⏰</div>
-        <div class="cap-title">调度引擎</div>
-        <div class="cap-desc">定时任务精确触发，三类任务并行运行</div>
-      </div>
-      <div class="cap-card">
-        <div class="cap-icon">🧠</div>
-        <div class="cap-title">LLM 推理</div>
-        <div class="cap-desc">个性化随访消息生成，结合诊断用药定制</div>
-      </div>
-      <div class="cap-card">
-        <div class="cap-icon">🔧</div>
-        <div class="cap-title">Tool Use</div>
-        <div class="cap-desc">飞书 Bot 消息收发，实时推送日报</div>
-      </div>
-      <div class="cap-card">
-        <div class="cap-icon">🔍</div>
-        <div class="cap-title">NLP 解析</div>
-        <div class="cap-desc">结构化 JSON 输出，自然语言→数据</div>
-      </div>
-      <div class="cap-card">
-        <div class="cap-icon">📁</div>
-        <div class="cap-title">文件操作</div>
-        <div class="cap-desc">CSV 实时读写，数据持久化存储</div>
-      </div>
-      <div class="cap-card">
-        <div class="cap-icon">📋</div>
-        <div class="cap-title">报告生成</div>
-        <div class="cap-desc">Markdown 病情档案，标准化格式输出</div>
+  <!-- ═══ Slide 9: Case 2 - Patient Report ═══ -->
+  <div class="slide" data-script="这是心衰患者刘明的病情追踪档案。系统记录了第3天和第7天的随访情况。第3天体重68.2公斤，症状稳定，依从性好。到第7天，体重增加到69.5公斤，7天内涨了1.3公斤，出现轻微踝部水肿。系统自动标注警告：接近2公斤预警阈值，并在日报中提醒医生关注。">
+    <div class="case-slide-title">案例② &nbsp;患者病情追踪档案</div>
+    <div class="case-slide-wrap">
+      <div class="report-panel">
+        <div class="case-slide-label">data/reports/P027_report.md · 自动生成 · 每轮随访后更新</div>
+        <div class="report-header">
+          <div>
+            <div class="report-patient-name">刘明</div>
+            <div class="report-patient-meta">P027 · 58 岁 · 男 · 工程师</div>
+          </div>
+          <div class="report-status-badge attention">🟡 需关注</div>
+        </div>
+        <div>
+          <div class="report-section-label">诊断与就诊</div>
+          <div class="report-info-row">
+            <div class="report-info-item"><span>诊断：</span>慢性心力衰竭（HFrEF）EF 35%</div>
+            <div class="report-info-item"><span>就诊：</span>2026-03-01（第 3 次复诊）</div>
+          </div>
+        </div>
+        <div>
+          <div class="report-section-label">当前用药方案</div>
+          <div class="report-info-row" style="gap:6px;flex-wrap:wrap;">
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">呋塞米 20mg QD</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">螺内酯 20mg QD</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">卡维地洛 6.25mg BID</span>
+            <span style="background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:5px;font-size:10px;color:#c9d1d9;">依那普利 5mg BID</span>
+          </div>
+        </div>
+        <div>
+          <div class="report-section-label">随访时间线</div>
+          <div class="timeline-entry ok">
+            <div class="timeline-day">Day 3</div>
+            <div class="timeline-content">体重 68.2 kg · 气短较就诊时减轻 · 无下肢水肿 · 血压 118/76</div>
+            <span class="timeline-badge good">依从性好</span>
+          </div>
+          <div class="timeline-entry warn">
+            <div class="timeline-day">Day 7</div>
+            <div class="timeline-content">体重 69.5 kg（+1.3 kg）· 夜间偶有气短 · 双踝轻度水肿 · 血压 122/80</div>
+            <span class="timeline-badge attention">需关注</span>
+          </div>
+        </div>
+        <div class="report-alert-box">
+          ⚠️ 趋势提示：7 天内体重增加 1.3 kg，接近心衰预警阈值（2 kg / 2 天）。建议医生评估是否需要调整利尿剂方案。
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Slide 8: Summary + Expandability -->
-  <div class="slide" data-script="PatientClaw 让每一次就诊都有后续。对医生，它提供了过去几乎不可能获得的随访数据，让临床决策更有依据。对患者，每个人都感受到被关注，依从性自然提升。对医疗系统，它可以扩展到更多科室和地区，为公共卫生创造更大价值。谢谢大家。">
+  <!-- ═══ Slide 10: Case 3 - Doctor Daily Report ═══ -->
+  <div class="slide" data-script="最后看系统第7天的医生日报。格式清晰，优先级分明：1例紧急——P029邓凯体重超预警线，建议立即致电；3例需持续关注；5例今日好转。用药依从性28人按时服药，2人有问题。底部是系统洞察与闭环建议，帮助医生快速决策。整份日报通过飞书Bot自动推送，医生一眼全览30位患者状态。">
+    <div class="case-slide-title">案例③ &nbsp;医生日报（系统第 7 天）</div>
+    <div class="daily-report-wrap">
+      <div class="daily-header">
+        <div>
+          <div class="daily-header-title">📋 PatientClaw 日报 | 系统第 7 天</div>
+          <div class="daily-header-meta">李晓峰主任 · 今日随访更新：8 人 · 在管患者总计：30 人</div>
+        </div>
+        <div style="font-size:11px;color:var(--text2);text-align:right;">
+          <div>自动生成 · 飞书推送</div>
+          <div style="color:#a78bfa;margin-top:2px;">2026-03-07</div>
+        </div>
+      </div>
+      <div class="daily-grid">
+        <div class="daily-section urgent-sec">
+          <div class="daily-section-title">🔴 需立即处理（1 人）</div>
+          <div class="daily-item">
+            <strong>P029 邓凯</strong> · 重度心衰 EF 30%<br>
+            体重较昨日增 1.6 kg，累计 7 日增 2.3 kg，已超预警线<br>
+            → <strong>建议立即致电，评估是否急诊</strong>
+          </div>
+        </div>
+        <div class="daily-section warn-sec">
+          <div class="daily-section-title">🟡 需持续关注（3 人）</div>
+          <div class="daily-item">
+            <strong>P010 吴霞</strong> · 高血压 · 自行停药 3 天，血压 148/92↑<br>
+            <strong>P027 刘明</strong> · 心衰 · 体重增 1.3 kg，接近预警线<br>
+            <strong>P003 陈芳</strong> · 高血压 · 漏服 1 次，血压 138/85
+          </div>
+        </div>
+        <div class="daily-section good-sec">
+          <div class="daily-section-title">📈 今日好转（5 人）· 依从性</div>
+          <div class="daily-item">
+            P005 陈强·心衰 / P012 周磊·高血压 / P016 王辉·冠心病<br>
+            P022 赵敏·心律失常 / P026 林丽·心衰<br>
+            按时服药：<strong>28 / 30（93%）</strong>｜漏服：P003｜停药：P010
+          </div>
+        </div>
+        <div class="daily-section neutral-sec">
+          <div class="daily-section-title">💡 洞察与闭环建议</div>
+          <div class="daily-item">
+            P029 体重超警戒线，心衰急性加重风险高，建议今日致电确认症状，必要时要求急诊。P010 自行停药血压明显回升，下次随访重点强化用药依从性干预。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Slide 11: Summary ═══ -->
+  <div class="slide" data-script="PatientClaw 让每一次就诊都有后续。从30名患者零失联，到92%依从率，到4例自动预警，系统在模拟环境中完整验证了它的价值。这个模式可以扩展到任何科室、任何地区，为整个医疗体系的诊后管理创造更大价值。谢谢大家。">
     <div class="slide-title" style="margin-bottom:6px;"><span class="grad">PatientClaw</span></div>
     <div class="slide-subtitle" style="margin-bottom:16px;">让每一次就诊都有后续</div>
     <div class="two-col">
       <div>
-        <div class="col-title red">❌ 当前困境</div>
+        <div class="col-title red">❌ 就诊前困境</div>
         <ul class="pain-list">
           <li><span class="icon">📉</span>70% 患者离诊后失联</li>
           <li><span class="icon">⏱️</span>医生无暇主动随访</li>
@@ -439,34 +836,36 @@
       <div>
         <div class="col-title green">✅ PatientClaw</div>
         <ul class="gain-list">
-          <li><span class="icon">✓</span>AI 随访，30人零失联</li>
-          <li><span class="icon">✓</span>医生零负担，只需看日报</li>
-          <li><span class="icon">✓</span>urgent 预警，挽救生命</li>
-          <li><span class="icon">✓</span>数据驱动医术持续精进</li>
+          <li><span class="icon">✓</span>AI 全自动随访，30 人零失联</li>
+          <li><span class="icon">✓</span>医生零负担，只需看飞书日报</li>
+          <li><span class="icon">✓</span>urgent 预警，及时干预挽救生命</li>
+          <li><span class="icon">✓</span>数据回流，驱动医术持续精进</li>
         </ul>
       </div>
     </div>
-    <div class="expand-grid" style="margin-top:12px; max-width:52vw;">
+    <div class="expand-grid" style="margin-top:12px;max-width:52vw;">
       <div class="expand-card">
         <div class="expand-card-top">
           <span class="expand-icon">🏥</span>
-          <span class="expand-from">心血管科 30 人 → <strong>全科室扩展</strong></span>
+          <span class="expand-from">心血管科 → <strong>全科室扩展</strong></span>
         </div>
-        <div class="expand-to">内分泌科（糖尿病）、肿瘤科、精神科等慢性病管理</div>
+        <div class="expand-to">内分泌（糖尿病）、肿瘤科、精神科等慢性病管理</div>
       </div>
       <div class="expand-card">
         <div class="expand-card-top">
           <span class="expand-icon">🌍</span>
-          <span class="expand-from">单诊所 → <strong>地域扩展</strong></span>
+          <span class="expand-from">单诊所 → <strong>县级 / 基层</strong></span>
         </div>
         <div class="expand-to">县级医院、社区卫生中心、家庭医生签约服务</div>
       </div>
     </div>
     <div class="author-line">
-      赵天浩 · 北京中关村学院 · zthwhucs@gmail.com
-      &nbsp;·&nbsp; <a href="https://github.com/happytianhao/PatientClaw" target="_blank">github.com/happytianhao/PatientClaw</a>
+      赵天浩 · 北京中关村学院 · zthwhucs@gmail.com &nbsp;·&nbsp;
+      <a href="https://github.com/happytianhao/PatientClaw" target="_blank">github.com/happytianhao/PatientClaw</a>
     </div>
   </div>
+
+  <!-- 后续幻灯片待添加 -->
 
 </div><!-- #deck -->
 
@@ -474,7 +873,7 @@
 <div id="progress-bar"></div>
 
 <!-- Page counter -->
-<div id="page-counter">1 / 8</div>
+<div id="page-counter">1 / 11</div>
 
 <!-- Script panel -->
 <div id="script-panel" class="collapsed">
@@ -494,10 +893,10 @@
   const total = slides.length;
   let current = 0;
 
-  const progressBar = document.getElementById('progress-bar');
-  const pageCounter = document.getElementById('page-counter');
+  const progressBar  = document.getElementById('progress-bar');
+  const pageCounter  = document.getElementById('page-counter');
   const scriptContent = document.getElementById('script-content');
-  const scriptPanel = document.getElementById('script-panel');
+  const scriptPanel  = document.getElementById('script-panel');
   const scriptToggle = document.getElementById('script-toggle');
 
   function goTo(n) {
@@ -505,13 +904,13 @@
     current = Math.max(0, Math.min(total - 1, n));
     slides[current].classList.add('active');
     progressBar.style.width = ((current + 1) / total * 100) + '%';
-    pageCounter.textContent = (current + 1) + ' / ' + total;
+    pageCounter.textContent = (current + 1) + ' / 11';
     scriptContent.textContent = slides[current].dataset.script || '';
   }
 
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1);
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                     goTo(current - 1);
   });
 
   document.getElementById('click-next').addEventListener('click', () => goTo(current + 1));
@@ -522,7 +921,6 @@
     scriptPanel.classList.toggle('collapsed');
   });
 
-  // Init
   goTo(0);
 </script>
 </body>
