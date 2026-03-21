@@ -357,26 +357,26 @@
     }
 
     /* ── Doctor daily report ── */
-    .daily-report-wrap { width: 100%; max-width: 82vw; display: flex; flex-direction: column; gap: 10px; }
+    .daily-report-wrap { width: 100%; max-width: 82vw; display: flex; flex-direction: column; gap: 6px; }
     .daily-header {
       background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1));
-      border: 1px solid rgba(124,58,237,0.3); border-radius: 8px; padding: 12px 20px;
+      border: 1px solid rgba(124,58,237,0.3); border-radius: 8px; padding: 8px 18px;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .daily-header-title { font-size: clamp(16px,1.8vw,22px); font-weight: 700; }
-    .daily-header-meta  { font-size: clamp(13px,1.4vw,16px); color: var(--text2); margin-top: 3px; }
-    .daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .daily-section { border-radius: 8px; padding: 14px 18px; font-size: clamp(13px,1.4vw,16px); }
+    .daily-header-title { font-size: clamp(15px,1.7vw,21px); font-weight: 700; }
+    .daily-header-meta  { font-size: clamp(12px,1.3vw,15px); color: var(--text2); margin-top: 2px; }
+    .daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .daily-section { border-radius: 8px; padding: 9px 14px; font-size: clamp(13px,1.4vw,16px); }
     .daily-section.urgent-sec  { background: rgba(248,81,73,0.08);  border: 1px solid rgba(248,81,73,0.25); }
     .daily-section.warn-sec    { background: rgba(210,165,32,0.06); border: 1px solid rgba(210,165,32,0.2); }
     .daily-section.good-sec    { background: rgba(63,185,80,0.06);  border: 1px solid rgba(63,185,80,0.2); }
     .daily-section.neutral-sec { background: var(--bg2);            border: 1px solid var(--border); }
-    .daily-section-title { font-size: clamp(14px,1.6vw,19px); font-weight: 700; margin-bottom: 9px; }
+    .daily-section-title { font-size: clamp(13px,1.5vw,18px); font-weight: 700; margin-bottom: 5px; }
     .daily-section.urgent-sec  .daily-section-title { color: var(--red); }
     .daily-section.warn-sec    .daily-section-title { color: var(--yellow); }
     .daily-section.good-sec    .daily-section-title { color: var(--green); }
     .daily-section.neutral-sec .daily-section-title { color: var(--text2); }
-    .daily-item { color: #c9d1d9; line-height: 1.75; }
+    .daily-item { color: #c9d1d9; line-height: 1.6; }
     .daily-item strong { color: var(--text); }
     .daily-insight {
       background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.2);
@@ -627,7 +627,7 @@
           形成真正的 <span style="background:rgba(124,58,237,0.18);color:#a78bfa;padding:1px 8px;border-radius:4px;font-weight:700;">诊疗闭环</span>
         </div>
         <div style="margin-top:12px;font-size:clamp(12px,1.3vw,14px);color:var(--text2);font-style:italic;">「看病变成了一段持续的医患关系」</div>
-        <div style="margin-top:10px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.4);border-radius:8px;padding:6px 14px;font-size:clamp(12px,1.3vw,14px);font-weight:700;color:#a78bfa;display:inline-block;">✓ 自动预警 4 例</div>
+        <div style="margin-top:10px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.4);border-radius:8px;padding:6px 14px;font-size:clamp(12px,1.3vw,14px);font-weight:700;color:#a78bfa;display:inline-block;">✓ 自动预警 6 例</div>
       </div>
 
     </div>
@@ -739,7 +739,7 @@
         <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">整体依从率</div>
       </div>
       <div style="flex:1;background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;color:var(--red);">4例</div>
+        <div style="font-size:clamp(22px,2.8vw,36px);font-weight:900;height:44px;display:flex;align-items:center;justify-content:center;color:var(--red);">6例</div>
         <div style="font-size:clamp(11px,1.2vw,13px);color:var(--text2);margin-top:4px;">自动预警</div>
       </div>
       <div style="flex:1;background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:8px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
@@ -897,7 +897,7 @@
         </div>
       </div>
       <!-- Row 1: 三栏状态 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
         <div class="daily-section urgent-sec">
           <div class="daily-section-title">🔴 立即处理（0）· 📉 恶化（1）</div>
           <div class="daily-item">
@@ -926,27 +926,27 @@
         </div>
       </div>
       <!-- Row 2: 患者提问汇总 -->
-      <div style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.25);border-radius:8px;padding:12px 16px;">
-        <div style="font-size:clamp(14px,1.6vw,19px);font-weight:700;color:#79c0ff;margin-bottom:8px;">💬 患者提问汇总（共 30 条 · 来自 25 人）<span style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);font-weight:400;margin-left:10px;">系统自动分级 · 医生按优先级处理</span></div>
-        <div style="display:flex;gap:10px;">
-          <div style="flex:0.5;background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:6px;padding:8px 12px;">
-            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--red);margin-bottom:5px;">🔴 立即回复（2条）</div>
-            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.7;">
+      <div style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.25);border-radius:8px;padding:8px 14px;">
+        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;color:#79c0ff;margin-bottom:5px;">💬 患者提问汇总（共 30 条 · 来自 25 人）<span style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);font-weight:400;margin-left:10px;">系统自动分级 · 医生按优先级处理</span></div>
+        <div style="display:flex;gap:8px;">
+          <div style="flex:0.5;background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:6px;padding:6px 10px;">
+            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--red);margin-bottom:3px;">🔴 立即回复（2条）</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.6;">
               <strong>马超</strong>：心悸又有了，需要加药吗？<br>
               <strong>方远</strong>：这是不是严重了？需立即来看吗？
             </div>
           </div>
-          <div style="flex:0.8;background:rgba(210,165,32,0.06);border:1px solid rgba(210,165,32,0.25);border-radius:6px;padding:8px 12px;">
-            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--yellow);margin-bottom:5px;">🟡 建议回复（6条）</div>
-            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.7;">
+          <div style="flex:0.8;background:rgba(210,165,32,0.06);border:1px solid rgba(210,165,32,0.25);border-radius:6px;padding:6px 10px;">
+            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--yellow);margin-bottom:3px;">🟡 建议回复（6条）</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.6;">
               杨梅：需要恢复全量吗 · 胡杰：CPAP不坚持会影响效果吗<br>
               吴霞：焦虑又犯了怎么办 · 段勇：胃不舒服怎么办<br>
               徐涛：匹伐他汀要吃多久 · 王建国：问题不大吧
             </div>
           </div>
-          <div style="flex:0.7;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 12px;">
-            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--text2);margin-bottom:5px;">⚪ 常规问答（22条）</div>
-            <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);line-height:1.7;">
+          <div style="flex:0.7;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;">
+            <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--text2);margin-bottom:3px;">⚪ 常规问答（22条）</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);line-height:1.6;">
               可以坐飞机 · 可以旅游 · 可以喝酒<br>
               下次复诊时间 · 心率56偏慢吗<br>
               下次复诊一并解答
@@ -955,7 +955,7 @@
         </div>
       </div>
       <!-- Row 3: 用药统计 + 洞察建议 -->
-      <div style="display:flex;gap:10px;">
+      <div style="display:flex;gap:7px;">
         <!-- 用药方案效果统计 NEW -->
         <div style="flex:1.6;background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.25);border-radius:8px;padding:11px 14px;">
           <div style="font-size:clamp(13px,1.4vw,16px);font-weight:700;color:#a78bfa;margin-bottom:7px;">📊 用药方案效果统计（累计）<span style="font-size:clamp(10px,1.1vw,13px);color:var(--text2);font-weight:400;margin-left:8px;">助力医生积累循证依据</span></div>
@@ -993,16 +993,15 @@
           </div>
         </div>
         <!-- 洞察 + 未回复 -->
-        <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
-          <div style="background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.2);border-radius:8px;padding:10px 14px;flex:1;">
-            <div style="font-size:clamp(13px,1.4vw,16px);font-weight:700;color:#a78bfa;margin-bottom:6px;">💡 今日洞察</div>
-            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.7;">
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
+          <div style="background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.2);border-radius:8px;padding:7px 12px;flex:1;">
+            <div style="font-size:clamp(13px,1.4vw,16px);font-weight:700;color:#a78bfa;margin-bottom:3px;">💡 今日洞察</div>
+            <div style="font-size:clamp(11px,1.2vw,14px);color:#c9d1d9;line-height:1.6;">
               方远漏服双抗凝药，心律失常风险高，<strong>建议今日致电</strong><br>
-              阿司匹林胃肠不良反应率33%，<strong>建议评估换药</strong><br>
-              比索洛尔/他汀类效果优异，建议继续规范使用
+              阿司匹林胃肠不良反应率33%，<strong>建议评估换药</strong>
             </div>
           </div>
-          <div style="background:rgba(63,185,80,0.06);border:1px solid rgba(63,185,80,0.2);border-radius:8px;padding:8px 14px;">
+          <div style="background:rgba(63,185,80,0.06);border:1px solid rgba(63,185,80,0.2);border-radius:8px;padding:5px 12px;">
             <div style="font-size:clamp(12px,1.3vw,15px);font-weight:700;color:var(--green);">📭 未回复患者（0人）</div>
             <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);">今日所有随访患者均已回复 ✅</div>
           </div>
@@ -1012,64 +1011,61 @@
   </div>
 
   <!-- ═══ Slide 11: Summary ═══ -->
-  <div class="slide" data-script="PatientClaw 的价值已在模拟环境中完整验证。30名患者零失联，100条随访全程自动，6例病情恶化实时捕获，25名患者主动提问并被系统智能分级——医生每天只需看一份飞书日报，就掌握全部患者状态。这个模式可以扩展到任何科室、任何地区、任何渠道。让每一次就诊都有后续，PatientClaw，谢谢大家。">
+  <div class="slide" data-script="PatientClaw 的价值，远不止于技术。中国每年门诊量超过百亿次，但70%的慢病患者在离开诊室后就完全失联——病情管理靠患者自觉，医生无从知晓。这是一个结构性的医疗空白。PatientClaw 用 AI 自动随访填补了这个空白：30人零失联，6例病情恶化被实时捕获，25人主动提问被系统分级处理。更重要的是，这套模式可以赋能到每一家基层医院、每一位家庭医生，让优质的随访能力不再是三甲医院的专属特权。让医生的关怀，从诊室延伸到患者生活的每一天。PatientClaw，谢谢。">
 
     <!-- 验证徽标 -->
     <div style="background:rgba(63,185,80,0.12);border:1px solid rgba(63,185,80,0.4);color:#3fb950;padding:5px 20px;border-radius:20px;font-size:clamp(11px,1.2vw,14px);font-weight:700;letter-spacing:0.06em;margin-bottom:10px;">✅ 模拟运行 10 天 · 系统验证完成</div>
 
     <!-- 主标题 -->
     <div class="slide-title" style="margin-bottom:2px;"><span class="grad">PatientClaw</span></div>
-    <div style="font-size:clamp(14px,1.8vw,22px);color:var(--text2);text-align:center;margin-bottom:18px;">让每一次就诊都有后续</div>
+    <div style="font-size:clamp(14px,1.8vw,22px);color:var(--text2);text-align:center;margin-bottom:14px;">让每一次就诊都有后续</div>
 
     <!-- 核心成果数字（4列） -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:82vw;width:100%;margin-bottom:14px;">
-      <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
-        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:var(--green);line-height:1.05;">30人</div>
-        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">零失联</div>
-        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">vs. 现实中 70% 失联</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:82vw;width:100%;margin-bottom:12px;">
+      <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:10px;padding:14px 12px;text-align:center;">
+        <div style="font-size:clamp(30px,3.8vw,48px);font-weight:900;color:var(--green);line-height:1.05;">30人</div>
+        <div style="font-size:clamp(12px,1.3vw,16px);font-weight:700;color:var(--text);margin-top:4px;">零失联</div>
+        <div style="font-size:clamp(10px,1.1vw,13px);color:var(--text2);margin-top:2px;">vs. 现实 70% 失联</div>
       </div>
-      <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
-        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:#79c0ff;line-height:1.05;">100条</div>
-        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">随访全自动</div>
-        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">医生零负担介入</div>
+      <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:14px 12px;text-align:center;">
+        <div style="font-size:clamp(30px,3.8vw,48px);font-weight:900;color:#79c0ff;line-height:1.05;">100条</div>
+        <div style="font-size:clamp(12px,1.3vw,16px);font-weight:700;color:var(--text);margin-top:4px;">随访全自动</div>
+        <div style="font-size:clamp(10px,1.1vw,13px);color:var(--text2);margin-top:2px;">医生零负担介入</div>
       </div>
-      <div style="background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
-        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:var(--red);line-height:1.05;">6例</div>
-        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">病情恶化预警</div>
-        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">系统自动识别干预</div>
+      <div style="background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);border-radius:10px;padding:14px 12px;text-align:center;">
+        <div style="font-size:clamp(30px,3.8vw,48px);font-weight:900;color:var(--red);line-height:1.05;">6例</div>
+        <div style="font-size:clamp(12px,1.3vw,16px);font-weight:700;color:var(--text);margin-top:4px;">恶化实时预警</div>
+        <div style="font-size:clamp(10px,1.1vw,13px);color:var(--text2);margin-top:2px;">系统自动识别干预</div>
       </div>
-      <div style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.3);border-radius:10px;padding:16px 12px;text-align:center;">
-        <div style="font-size:clamp(34px,4.2vw,52px);font-weight:900;color:#a78bfa;line-height:1.05;">25人</div>
-        <div style="font-size:clamp(13px,1.4vw,17px);font-weight:700;color:var(--text);margin-top:5px;">主动提问</div>
-        <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);margin-top:3px;">AI 自动三级分类</div>
+      <div style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.3);border-radius:10px;padding:14px 12px;text-align:center;">
+        <div style="font-size:clamp(30px,3.8vw,48px);font-weight:900;color:#a78bfa;line-height:1.05;">25人</div>
+        <div style="font-size:clamp(12px,1.3vw,16px);font-weight:700;color:var(--text);margin-top:4px;">主动提问</div>
+        <div style="font-size:clamp(10px,1.1vw,13px);color:var(--text2);margin-top:2px;">AI 自动三级分类</div>
       </div>
     </div>
 
-    <!-- 扩展路径（3列） -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:82vw;width:100%;margin-bottom:16px;">
-      <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #a78bfa;border-radius:8px;padding:14px 18px;">
-        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:6px;">🏥 科室扩展</div>
-        <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);line-height:1.75;">心血管科 → 内分泌科<br>肿瘤科 · 精神科 · 骨科</div>
+    <!-- 社会价值三柱 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:82vw;width:100%;margin-bottom:12px;">
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #3fb950;border-radius:8px;padding:14px 18px;">
+        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:7px;">🏥 填补诊后空白</div>
+        <div style="font-size:clamp(11px,1.3vw,15px);color:var(--text2);line-height:1.7;">我国每年门诊量超百亿次，慢病患者诊后失联是全国性痛点。PatientClaw 让医生的关怀不止于处方，延伸到院外每一天。</div>
       </div>
       <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #3b82f6;border-radius:8px;padding:14px 18px;">
-        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:6px;">🌍 地域扩展</div>
-        <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);line-height:1.75;">三甲医院 → 县级医院<br>社区卫生中心 · 家庭医生</div>
+        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:7px;">🌱 赋能基层医疗</div>
+        <div style="font-size:clamp(11px,1.3vw,15px);color:var(--text2);line-height:1.7;">将三甲医院级别的随访能力下沉到县级医院与社区诊所，让每一位基层医生都能做到自动化、智能化的慢病全程管理。</div>
       </div>
-      <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #2dd4bf;border-radius:8px;padding:14px 18px;">
-        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:6px;">📡 渠道扩展</div>
-        <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);line-height:1.75;">飞书 → 微信 · 短信<br>院内 HIS · 国家健康平台</div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #a78bfa;border-radius:8px;padding:14px 18px;">
+        <div style="font-size:clamp(13px,1.5vw,18px);font-weight:700;margin-bottom:7px;">📈 积累循证数据</div>
+        <div style="font-size:clamp(11px,1.3vw,15px);color:var(--text2);line-height:1.7;">每一条随访记录都是真实世界证据。系统持续追踪药效、依从性与不良反应，助力医生在实践中积累循证依据、提升医术。</div>
       </div>
     </div>
 
-    <!-- 作者信息行 -->
-    <div style="display:flex;align-items:center;justify-content:space-between;max-width:82vw;width:100%;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
-      <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);">
-        赵天浩 · 北京中关村学院 · <span style="color:var(--text);">zthwhucs@gmail.com</span>
+    <!-- 结语 + 作者信息行 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;max-width:82vw;width:100%;padding:9px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+      <div style="font-size:clamp(12px,1.4vw,16px);color:#a78bfa;font-style:italic;font-weight:600;">「让医生的关怀，从诊室延伸到患者生活的每一天」</div>
+      <div style="font-size:clamp(11px,1.2vw,14px);color:var(--text2);text-align:right;white-space:nowrap;margin-left:16px;">
+        赵天浩 · 北京中关村学院 &nbsp;|&nbsp; 北纬·龙虾大赛 · <span style="color:#f0883e;font-weight:700;">生产力赛道</span> &nbsp;|&nbsp; <a href="https://github.com/happytianhao/PatientClaw" target="_blank" style="color:#79c0ff;text-decoration:none;font-weight:600;">GitHub ↗</a>
       </div>
-      <div style="font-size:clamp(12px,1.3vw,15px);color:var(--text2);">
-        北纬 · 龙虾大赛（第一届）· <span style="color:#f0883e;font-weight:700;">生产力赛道</span>
-      </div>
-      <a href="https://github.com/happytianhao/PatientClaw" target="_blank" style="font-size:clamp(12px,1.3vw,15px);color:#79c0ff;text-decoration:none;font-weight:600;">github.com/happytianhao/PatientClaw ↗</a>
     </div>
 
   </div>
