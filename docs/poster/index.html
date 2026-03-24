@@ -9,742 +9,313 @@
   物理尺寸：0.8m × 2.0m，150 DPI
   像素：4725px × 11811px
   预览尺寸：945px × 2362px（1/5 比例）
-  打印时浏览器自动按物理尺寸输出
+
+  章节高度分配（含6条分割线 × 3px = 18px）：
+  ① HERO              370px
+  ② 痛点·钩子          252px
+  ③ 解决方案           390px
+  ④ 成效数据           292px
+  ⑤ 真实对话           328px
+  ⑥ 系统输出物          348px
+  ⑦ 社会价值 + Footer  364px
+  合计                2362px
 */
+
 @page { size: 842mm 2388mm; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ══════════════════════════════════
+   设计系统 · Design Tokens
+══════════════════════════════════ */
+:root {
+  --bg:       #0d1117;
+  --bg2:      #161b22;
+  --bg3:      #21262d;
+  --border:   #21262d;
+  --border2:  #30363d;
+
+  --purple:   #7c3aed;
+  --purple-l: #a78bfa;
+  --purple-xl:#c4b5fd;
+  --blue:     #3b82f6;
+  --blue-l:   #79c0ff;
+  --green:    #3fb950;
+  --green-l:  #4ade80;
+  --red:      #f85149;
+  --red-l:    #fca5a5;
+  --orange:   #f0883e;
+  --yellow:   #d29922;
+
+  --text:     #e6edf3;
+  --text2:    #8b949e;
+  --text3:    #484f58;
+}
+
 body {
   background: #111;
   display: flex; justify-content: center; align-items: flex-start;
   padding: 16px;
-  font-family: 'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
 }
+
 .poster {
   width: 945px;
   height: 2362px;
-  background: #080c14;
+  background: var(--bg);
   position: relative; overflow: hidden;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.9);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.9);
   border-radius: 3px;
-  color: #dde6f0;
+  color: var(--text);
   font-size: 14px;
   line-height: 1.55;
 }
+
+/* 全局顶部光晕 */
 .poster::before {
   content: '';
-  position: absolute; top: -600px; left: 50%;
+  position: absolute; top: -500px; left: 50%;
   transform: translateX(-50%);
-  width: 4000px; height: 3000px;
-  background: radial-gradient(ellipse, rgba(79,142,247,0.10) 0%, rgba(124,58,237,0.05) 35%, transparent 65%);
+  width: 3200px; height: 2400px;
+  background: radial-gradient(ellipse,
+    rgba(124,58,237,0.09) 0%,
+    rgba(59,130,246,0.04) 35%,
+    transparent 60%);
   pointer-events: none; z-index: 0;
 }
+
 .section { position: relative; z-index: 1; }
+
 .divider {
   height: 3px;
-  background: linear-gradient(90deg, transparent, #1e2d45 20%, #1e2d45 80%, transparent);
+  background: linear-gradient(90deg,
+    transparent 0%, var(--bg3) 18%, var(--bg3) 82%, transparent 100%);
+  position: relative; z-index: 1;
 }
+
 .sec-label {
-  font-size: 11px; font-weight: 700; color: #4a5d73;
-  text-transform: uppercase; letter-spacing: 0.18em;
-  margin-bottom: 16px;
+  font-size: 10px; font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase; letter-spacing: 0.20em;
+  margin-bottom: 20px;
 }
 
-/* ─── ① HERO ─── */
+
+/* ══════════════════════════════════
+   ① HERO  ·  370px
+══════════════════════════════════ */
 .hero {
-  height: 241px; padding: 22px 80px;
-  display: flex; flex-direction: column; justify-content: space-between;
-}
-.hero-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.badge {
-  background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.3);
-  color: #79c0ff; padding: 5px 18px; border-radius: 30px;
-  font-size: 13px; letter-spacing: 0.05em;
-}
-.badge-finals {
-  background: linear-gradient(135deg,#f0883e,#e85d04); color: white;
-  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
-}
-.hero-main { text-align: center; }
-.pname {
-  font-size: 120px; font-weight: 900; letter-spacing: -5px; line-height: 1;
-  background: linear-gradient(135deg,#a78bfa 0%,#7c3aed 40%,#4f8ef7 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; margin-bottom: 8px;
-}
-.psub { font-size: 24px; color: #8b949e; letter-spacing: 0.08em; margin-bottom: 16px; }
-.tags { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.tag {
-  background: rgba(45,212,191,0.10); border: 1px solid rgba(45,212,191,0.25);
-  color: #2dd4bf; padding: 5px 18px; border-radius: 30px; font-size: 14px; font-weight: 600;
-}
-.hero-foot { display: flex; justify-content: space-between; align-items: flex-end; }
-.doc-card {
-  background: #0f1623; border: 1px solid #1e2d45;
-  border-radius: 14px; padding: 12px 20px;
-}
-.doc-name { font-size: 18px; font-weight: 700; }
-.doc-info { font-size: 12px; color: #8b949e; margin-top: 4px; line-height: 1.7; }
-.foot-r { text-align: right; font-size: 12px; color: #8b949e; line-height: 2; }
-.foot-r a { color: #4f8ef7; text-decoration: none; }
-
-/* ─── ② 社会意义 ─── */
-.social {
-  height: 490px; padding: 32px 80px;
-  background: linear-gradient(180deg,#0f1623 0%,#080c14 100%);
-}
-.social-title { font-size: 26px; font-weight: 900; margin-bottom: 8px; }
-.social-title em { font-style: normal; color: #4ade80; }
-.social-desc {
-  font-size: 14px; color: #8b949e; margin-bottom: 24px;
-  line-height: 1.75; max-width: 780px;
-}
-.sv-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 24px; }
-.sv-box {
-  border-radius: 14px; padding: 20px 22px;
-}
-.sv-box.pain { background: rgba(242,95,92,0.05); border: 1.5px solid rgba(242,95,92,0.20); }
-.sv-box.value { background: rgba(74,222,128,0.05); border: 1.5px solid rgba(74,222,128,0.20); }
-.sv-title {
-  font-size: 15px; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.1em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
-}
-.sv-box.pain  .sv-title { color: #f25f5c; }
-.sv-box.value .sv-title { color: #4ade80; }
-.sv-item {
-  display: flex; align-items: flex-start; gap: 10px;
-  margin-bottom: 12px; font-size: 13px; color: #8b949e; line-height: 1.65;
-}
-.sv-bullet { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.sv-box.pain  .sv-bullet { color: #f25f5c; }
-.sv-box.value .sv-bullet { color: #4ade80; }
-.imp-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
-.imp-card {
-  background: #162035; border: 1px solid #1e2d45;
-  border-radius: 12px; padding: 18px 14px; text-align: center;
-}
-.imp-card.g { border-color: rgba(74,222,128,0.30); background: rgba(74,222,128,0.04); }
-.imp-card.b { border-color: rgba(79,142,247,0.30);  background: rgba(79,142,247,0.04); }
-.imp-card.p { border-color: rgba(167,139,250,0.30); background: rgba(167,139,250,0.04); }
-.imp-card.o { border-color: rgba(240,160,75,0.30);  background: rgba(240,160,75,0.04); }
-.imp-n { font-size: 40px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
-.imp-card.g .imp-n { color: #4ade80; }
-.imp-card.b .imp-n { color: #4f8ef7; }
-.imp-card.p .imp-n { color: #a78bfa; }
-.imp-card.o .imp-n { color: #f0a04b; }
-.imp-lbl { font-size: 11px; color: #8b949e; line-height: 1.5; }
-.imp-lbl strong { color: #dde6f0; display: block; }
-
-/* ─── ③ 系统流程 ─── */
-.flow {
-  height: 318px; padding: 32px 80px;
-  background: #0f1623;
-}
-.flow-intro { font-size: 13px; color: #8b949e; margin-bottom: 22px; line-height: 1.7; }
-.flow-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-.flow-col-title {
-  font-size: 12px; font-weight: 700; color: #8b949e;
-  text-transform: uppercase; letter-spacing: 0.12em;
-  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-}
-.flow-col-title::after { content: ''; flex: 1; height: 1px; background: #1e2d45; }
-/* 时间轴 */
-.tl { display: flex; flex-direction: column; gap: 7px; }
-.tl-r { display: flex; align-items: stretch; gap: 8px; }
-.tl-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  flex-shrink: 0; margin-top: 7px;
-}
-.tl-dot.p { background: #a78bfa; box-shadow: 0 0 8px rgba(167,139,250,0.6); }
-.tl-dot.g { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.6); }
-.tl-dot.b { background: #4f8ef7; box-shadow: 0 0 8px rgba(79,142,247,0.6); }
-.tl-dot.c { background: #2dd4bf; box-shadow: 0 0 8px rgba(45,212,191,0.6); }
-.tl-dot.o { background: #f0a04b; box-shadow: 0 0 8px rgba(240,160,75,0.6); }
-.tl-content {
-  background: #162035; border: 1px solid #1e2d45;
-  border-radius: 10px; padding: 9px 13px; flex: 1;
-}
-.tl-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-.tl-desc  { font-size: 11px; color: #8b949e; line-height: 1.5; }
-.tl-badge { font-size: 10px; color: #4a5d73; margin-top: 3px; }
-.tl-arrow { font-size: 15px; color: #4a5d73; text-align: center; padding: 2px 0; flex-shrink: 0; align-self: center; }
-/* 定时任务 */
-.cron-box {
-  background: rgba(45,212,191,0.05); border: 1px solid rgba(45,212,191,0.20);
-  border-radius: 14px; padding: 16px 20px;
-}
-.cron-hdr {
-  font-size: 13px; font-weight: 700; color: #2dd4bf;
-  margin-bottom: 12px; display: flex; align-items: center; gap: 7px;
-}
-.cron-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 11px; }
-.cron-tag {
-  background: rgba(45,212,191,0.10); border: 1px solid rgba(45,212,191,0.20);
-  color: #2dd4bf; padding: 2px 9px; border-radius: 14px; font-size: 10px; flex-shrink: 0; margin-top: 2px;
-}
-.cron-text { font-size: 12px; color: #8b949e; line-height: 1.55; }
-.cron-text strong { color: #dde6f0; }
-
-/* ─── ④ 数据总览 ─── */
-.data { height: 208px; padding: 28px 80px; }
-.data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.dp {
-  background: #0f1623; border: 1px solid #1e2d45;
-  border-radius: 14px; padding: 16px 18px;
-}
-.dp-title { font-size: 13px; font-weight: 700; color: #8b949e; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
-.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.bar-lbl { font-size: 12px; color: #8b949e; width: 100px; flex-shrink: 0; }
-.bar-track { flex: 1; height: 16px; background: #162035; border-radius: 8px; overflow: hidden; }
-.br-fill { height: 100%; border-radius: 8px; }
-.br-fill.g { background: linear-gradient(90deg,#4ade80,#6ee7a0); }
-.br-fill.o { background: linear-gradient(90deg,#f0a04b,#f5c87a); }
-.br-fill.y { background: linear-gradient(90deg,#fbbf24,#fde68a); }
-.br-fill.r { background: linear-gradient(90deg,#f25f5c,#f98a88); }
-.br-fill.b { background: linear-gradient(90deg,#4f8ef7,#79c0ff); }
-.br-pct { font-size: 12px; font-weight: 700; width: 46px; text-align: right; flex-shrink: 0; }
-/* 圆环 */
-.donut-row { display: flex; align-items: center; gap: 18px; }
-.donut-wrap { position: relative; width: 120px; height: 120px; flex-shrink: 0; }
-.donut-wrap svg { transform: rotate(-90deg); }
-.donut-ctr { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
-.donut-total { font-size: 26px; font-weight: 900; color: #dde6f0; }
-.donut-sub   { font-size: 10px; color: #4a5d73; }
-.leg { display: flex; flex-direction: column; gap: 9px; flex: 1; }
-.leg-i { display: flex; align-items: center; gap: 8px; font-size: 12px; }
-.leg-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
-.leg-nm { color: #8b949e; flex: 1; }
-.leg-n  { font-weight: 700; color: #dde6f0; }
-.leg-p  { color: #4a5d73; font-size: 10px; }
-.rstat { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-.rbig { font-size: 36px; font-weight: 900; }
-.rbig.g { color: #4ade80; }
-.rbig.o { color: #f0a04b; }
-.rlbl { font-size: 12px; color: #8b949e; line-height: 1.55; }
-.rlbl strong { color: #dde6f0; display: block; }
-.q-note { margin-top: 10px; font-size: 11px; color: #4a5d73; line-height: 1.6; }
-
-/* ─── ⑤ 典型案例 ─── */
-.cases { height: 258px; padding: 28px 80px; background: #0f1623; }
-.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.cc {
-  background: #162035; border: 1px solid #1e2d45;
-  border-radius: 14px; padding: 16px 18px;
-  border-left: 5px solid #1e2d45;
-}
-.cc.ok    { border-left-color: #4ade80; }
-.cc.warn  { border-left-color: #f0a04b; }
-.cc.alert { border-left-color: #f25f5c; }
-.cc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.cc-badge {
-  font-size: 11px; padding: 2px 9px;
-  border-radius: 12px; font-weight: 700;
-}
-.cc-badge.ok    { background: rgba(74,222,128,0.15); color: #4ade80; }
-.cc-badge.warn  { background: rgba(240,160,75,0.15); color: #f0a04b; }
-.cc-badge.alert { background: rgba(242,95,92,0.15); color: #f25f5c; }
-.cc-pid { font-size: 11px; color: #4a5d73; margin-left: auto; font-weight: 700; }
-.msg-label { font-size: 10px; color: #4a5d73; margin-bottom: 5px; font-weight: 700; }
-.msg-box {
-  background: rgba(255,255,255,0.025); border-radius: 8px;
-  padding: 8px 11px;
-  font-size: 11px; color: #8b949e; line-height: 1.65;
-  margin-bottom: 7px; border-left: 3px solid #1e2d45;
-}
-.reply-label { font-size: 10px; color: #4a5d73; margin-bottom: 5px; font-weight: 700; }
-.reply-box {
-  background: rgba(167,139,250,0.05); border-radius: 8px;
-  padding: 8px 11px;
-  font-size: 11px; color: #c4b5fd; line-height: 1.65;
-  border-left: 3px solid rgba(167,139,250,0.30);
-}
-.tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 9px; }
-.tag-s {
-  font-size: 10px; padding: 2px 8px;
-  border-radius: 8px; background: #1c2a45;
-  color: #8b949e; border: 1px solid #1e2d45;
-}
-.tag-s.alert { background: rgba(242,95,92,0.12); color: #f25f5c; border-color: rgba(242,95,92,0.30); }
-
-/* ─── ⑥ 医生日报 ─── */
-.rpt { height: 234px; padding: 28px 80px; }
-.rpt-panel { background: #0f1623; border: 1px solid #1e2d45; border-radius: 14px; overflow: hidden; height: 100%; }
-.rpt-hdr {
-  background: #162035; border-bottom: 1px solid #1e2d45;
-  padding: 10px 18px; display: flex; justify-content: space-between; align-items: center;
-}
-.rpt-title { font-size: 14px; font-weight: 700; color: #dde6f0; }
-.rpt-meta  { font-size: 11px; color: #4a5d73; }
-.rpt-body { padding: 14px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; height: calc(100% - 52px); align-content: start; }
-.rpt-col-title { font-size: 11px; font-weight: 700; color: #8b949e; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-.ri { font-size: 11px; color: #8b949e; line-height: 1.6; margin-bottom: 6px; padding-left: 12px; position: relative; }
-.ri::before { content: '•'; position: absolute; left: 0; }
-.ri.r::before { color: #f25f5c; }
-.ri.o::before { color: #f0a04b; }
-.ri.g::before { color: #4ade80; }
-.ri.b::before { color: #4f8ef7; }
-.ri.y::before { color: #fbbf24; }
-.rpt-divider { grid-column: 1 / -1; height: 1px; background: #1e2d45; }
-.rpt-insight-title { grid-column: 1 / -1; font-size: 11px; font-weight: 700; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
-.rpt-insight-item { font-size: 11px; color: #8b949e; line-height: 1.6; margin-bottom: 5px; padding-left: 12px; position: relative; }
-.rpt-insight-item::before { content: '·'; position: absolute; left: 0; color: #fbbf24; }
-
-/* ─── ⑦ 患者病情报告 ─── */
-.pat { height: 234px; padding: 28px 80px; background: #0f1623; }
-.pat-panel { background: #162035; border: 1px solid #1e2d45; border-radius: 14px; padding: 16px 20px; height: 100%; }
-.pat-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.pat-title { font-size: 14px; font-weight: 700; }
-.pat-meta  { font-size: 11px; color: #4a5d73; }
-.pat-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-.pat-table th {
-  background: #1c2a45; color: #8b949e; font-weight: 700;
-  padding: 5px 8px; text-align: left; border-bottom: 1px solid #1e2d45;
-  font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
-}
-.pat-table td { color: #8b949e; padding: 5px 8px; border-bottom: 1px solid rgba(30,45,69,0.5); line-height: 1.6; vertical-align: top; }
-.pat-table tr:last-child td { border-bottom: none; }
-.ptag { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 10px; font-weight: 700; }
-.ptag.ok  { background: rgba(74,222,128,0.12); color: #4ade80; }
-.ptag.neu { background: #1c2a45; color: #8b949e; }
-.pat-summary {
-  margin-top: 10px; font-size: 11px; color: #8b949e; line-height: 1.7;
-  border-top: 1px solid #1e2d45; padding-top: 10px;
-}
-.pat-summary strong { color: #dde6f0; }
-
-/* ─── ⑧ 核心功能 ─── */
-.feat { height: 160px; padding: 28px 80px; }
-.feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; height: 100%; align-content: start; }
-.feat-item {
-  background: #0f1623; border: 1px solid #1e2d45;
-  border-radius: 12px; padding: 12px 14px;
-  display: flex; align-items: flex-start; gap: 10px;
-}
-.feat-emoji { font-size: 20px; flex-shrink: 0; }
-.feat-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-.feat-desc  { font-size: 11px; color: #8b949e; line-height: 1.55; }
-
-/* ─── ⑨ 扩展方向 ─── */
-.exp { height: 94px; padding: 22px 80px; background: #0f1623; }
-.exp-tags { display: flex; gap: 10px; flex-wrap: wrap; }
-.exp-tag {
-  background: rgba(79,142,247,0.10); border: 1px solid rgba(79,142,247,0.25);
-  color: #4f8ef7; padding: 6px 18px; border-radius: 30px; font-size: 14px; font-weight: 500;
+  height: 370px;
+  padding: 32px 80px 36px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
 }
 
-/* ─── ⑩ FOOTER ─── */
-.foot { height: 98px; padding: 22px 80px; background: #0f1623; display: flex; align-items: center; justify-content: space-between; }
-.foot-name  { font-size: 20px; font-weight: 800; }
-.foot-school { font-size: 13px; color: #8b949e; margin-top: 4px; }
-.foot-mid {
-  font-size: 36px; font-weight: 900; letter-spacing: -1px;
-  background: linear-gradient(135deg,#a78bfa,#4f8ef7);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+/* 中心光晕 */
+.hero-glow {
+  position: absolute; top: -30px; left: 50%;
+  transform: translateX(-50%);
+  width: 760px; height: 360px;
+  background: radial-gradient(ellipse,
+    rgba(124,58,237,0.28) 0%,
+    rgba(59,130,246,0.12) 40%,
+    transparent 68%);
+  pointer-events: none; z-index: 0;
 }
-.foot-right { text-align: right; font-size: 12px; color: #8b949e; line-height: 2.2; }
-.foot-right a { color: #4f8ef7; text-decoration: none; }
+
+/* 四角装饰框 */
+.hero-frame {
+  position: absolute;
+  top: 80px; bottom: 28px;
+  left: 56px; right: 56px;
+  pointer-events: none; z-index: 1;
+}
+.hero-frame::before,
+.hero-frame::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+}
+.hero-frame::before {
+  top: 0; left: 0;
+  border-top: 1.5px solid rgba(124,58,237,0.45);
+  border-left: 1.5px solid rgba(124,58,237,0.45);
+}
+.hero-frame::after {
+  bottom: 0; right: 0;
+  border-bottom: 1.5px solid rgba(59,130,246,0.45);
+  border-right: 1.5px solid rgba(59,130,246,0.45);
+}
+
+.hero-inner {
+  position: relative; z-index: 2;
+  width: 100%;
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+
+/* 顶部徽章行 */
+.hero-badges {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; margin-bottom: 30px;
+}
+
+.contest-badge {
+  background: rgba(59,130,246,0.07);
+  border: 1px solid rgba(59,130,246,0.20);
+  color: var(--blue-l);
+  padding: 6px 18px; border-radius: 4px;
+  font-size: 13px; letter-spacing: 0.04em;
+}
+
+.finals-badge {
+  background: linear-gradient(135deg, #f0883e, #dc6a00);
+  color: #fff;
+  padding: 6px 18px; border-radius: 4px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+}
+
+/* 主标题 */
+.hero-title {
+  font-size: 118px; font-weight: 900;
+  letter-spacing: -3px; line-height: 1;
+  background: linear-gradient(140deg,
+    #ddd6fe  0%,
+    #8b5cf6 40%,
+    #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0;
+  filter: drop-shadow(0 0 32px rgba(124,58,237,0.40));
+}
+
+/* 装饰分割线 */
+.hero-divline {
+  width: 220px; height: 1px; margin: 18px 0 18px;
+  background: linear-gradient(90deg,
+    transparent, rgba(124,58,237,0.5) 30%,
+    rgba(59,130,246,0.5) 70%, transparent);
+  position: relative;
+}
+.hero-divline::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--purple-l);
+  box-shadow: 0 0 8px rgba(139,92,246,0.9);
+}
+
+/* 副标题 */
+.hero-subtitle {
+  font-size: 22px; color: var(--text2);
+  letter-spacing: 0.08em; margin-bottom: 26px;
+}
+
+/* 功能标签 */
+.hero-tags {
+  display: flex; gap: 10px; justify-content: center;
+}
+.hero-tag {
+  background: rgba(124,58,237,0.08);
+  border: 1px solid rgba(124,58,237,0.22);
+  color: var(--purple-l);
+  padding: 8px 22px; border-radius: 4px;
+  font-size: 14px; font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+
+/* ══════════════════════════════════
+   ② 痛点·钩子  ·  252px   [待实现]
+══════════════════════════════════ */
+
+
+/* ══════════════════════════════════
+   ③ 解决方案  ·  390px   [待实现]
+══════════════════════════════════ */
+
+
+/* ══════════════════════════════════
+   ④ 成效数据  ·  292px   [待实现]
+══════════════════════════════════ */
+
+
+/* ══════════════════════════════════
+   ⑤ 真实对话  ·  328px   [待实现]
+══════════════════════════════════ */
+
+
+/* ══════════════════════════════════
+   ⑥ 系统输出物  ·  348px   [待实现]
+══════════════════════════════════ */
+
+
+/* ══════════════════════════════════
+   ⑦ 社会价值 + Footer  ·  364px   [待实现]
+══════════════════════════════════ */
+
 </style>
 </head>
 <body>
 <div class="poster">
 
   <!-- ① HERO -->
-  <div class="hero">
-    <div class="hero-top">
-      <div class="badge">北纬 · 龙虾大赛（第一届）· OpenClaw Hackathon · 生产力赛道</div>
-      <div class="badge-finals">🏆 决赛入围</div>
-    </div>
-    <div class="hero-main">
-      <div class="pname">PatientClaw</div>
-      <div class="psub">患者诊后病情全自动跟踪统计系统</div>
-      <div class="tags">
-        <span class="tag">🤖 OpenClaw 驱动 · 全自动随访</span>
-        <span class="tag">📊 数据驱动 · 精准干预</span>
-        <span class="tag">🏥 助力分级诊疗</span>
+  <div class="hero section">
+    <div class="hero-glow"></div>
+    <div class="hero-frame"></div>
+    <div class="hero-inner">
+      <div class="hero-badges">
+        <div class="contest-badge">北纬 · 龙虾大赛（第一届）· OpenClaw Hackathon · 生产力赛道</div>
+        <div class="finals-badge">🏆 决赛入围</div>
       </div>
-    </div>
-    <div class="hero-foot">
-      <div class="doc-card">
-        <div class="doc-name">李晓峰 主任医师 · 心血管内科</div>
-        <div class="doc-info">北京协和医院 · 专长：冠心病介入 / 高血压管理 / 心律失常 / 心力衰竭<br>全系统唯一真实用户 · 每天只需查看飞书推送日报</div>
-      </div>
-      <div class="foot-r">
-        github.com/happytianhao/PatientClaw<br>zthwhucs@gmail.com<br>Powered by <strong style="color:#a78bfa">OpenClaw</strong>
+      <div class="hero-title">PatientClaw</div>
+      <div class="hero-divline"></div>
+      <div class="hero-subtitle">患者诊后病情全自动跟踪统计系统</div>
+      <div class="hero-tags">
+        <span class="hero-tag">🤖 OpenClaw 驱动 · 全自动随访</span>
+        <span class="hero-tag">💊 AI 智能解析 · 精准干预</span>
+        <span class="hero-tag">📱 飞书推送 · 医生零负担</span>
       </div>
     </div>
   </div>
   <div class="divider"></div>
 
-  <!-- ② 社会意义 -->
-  <div class="social section">
-    <div class="sec-label">应用价值与社会效益</div>
-    <div class="social-title">心血管病管理缺口巨大，患者离院后处于<em>"信息孤岛"</em></div>
-    <div class="social-desc">
-      中国心血管病（CVD）患者超 3.3 亿，年死亡超 400 万。70% 患者离院后因缺乏随访而延误干预；
-      医生日均接诊 30-50 人，无暇主动追踪每一位患者；高危患者病情加重时往往错过最佳干预窗口。
-      PatientClaw 将 AI Agent 自动化引入诊后管理，打通医患信息断点，让每一次就诊都有后续。
-    </div>
-    <div class="sv-cols">
-      <div class="sv-box pain">
-        <div class="sv-title">❌ 当前困境</div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>70% 患者离院后失联，病情变化无法追踪</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>医生日均接诊 30-50 人，无暇主动随访每位患者</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>高危患者病情加重时难以及时发现、错失最佳干预窗口</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>用药依从性无法追踪，处方效果难以客观评估</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>患者疑问无法及时解答，医患信任关系难以延续</span></div>
-      </div>
-      <div class="sv-box value">
-        <div class="sv-title">✅ PatientClaw 的核心价值</div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>AI Agent 全自动执行随访，100% 覆盖，无一遗漏</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>医生零负担：每天只需查看飞书日报，无需任何主动操作</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>urgent 预警自动触发，高危患者第一时间得到关注</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>每位患者独立病情档案，用药数据全记录、可溯源</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>真实世界用药数据积累，辅助医生优化临床决策</span></div>
-        <div class="sv-item"><span class="sv-bullet">·</span><span>可推广至内分泌科、社区卫生中心，赋能分级诊疗</span></div>
-      </div>
-    </div>
-    <div class="imp-row">
-      <div class="imp-card g">
-        <div class="imp-n">30</div>
-        <div class="imp-lbl"><strong>名患者 14 天随访零失联</strong>AI 全自动追踪，无一遗漏</div>
-      </div>
-      <div class="imp-card b">
-        <div class="imp-n">92%</div>
-        <div class="imp-lbl"><strong>患者回复率</strong>仅 3 条超时未回复</div>
-      </div>
-      <div class="imp-card p">
-        <div class="imp-n">75%</div>
-        <div class="imp-lbl"><strong>按时服药率</strong>处方真正发挥作用</div>
-      </div>
-      <div class="imp-card o">
-        <div class="imp-n">43%</div>
-        <div class="imp-lbl"><strong>症状改善率</strong>仅 6% 病情加重</div>
-      </div>
-    </div>
+  <!-- ② 痛点·钩子  [待实现] -->
+  <div class="section" style="height:252px; display:flex; align-items:center; justify-content:center;">
+    <span style="font-size:12px; color:var(--text3); letter-spacing:0.1em;">② 痛点·钩子 — 待实现</span>
   </div>
   <div class="divider"></div>
 
-  <!-- ③ 系统流程 -->
-  <div class="flow section">
-    <div class="sec-label">OpenClaw 自动触发 · 全流程</div>
-    <div class="flow-intro">
-      OpenClaw 每天自动扫描患者就诊信息，结合诊断、用药、历史随访记录生成个性化随访内容，
-      自动解析患者回复并更新病情档案，全程无需人工干预。医生每天只需打开飞书查看日报。
-    </div>
-    <div class="flow-cols">
-      <div>
-        <div class="flow-col-title">📅 随访全流程</div>
-        <div class="tl">
-          <div class="tl-r">
-            <div class="tl-dot p"></div>
-            <div class="tl-content">
-              <div class="tl-title">① 读取患者档案</div>
-              <div class="tl-desc">获取诊断（高血压/冠心病/心衰）、用药方案、就诊日期、既往随访记录</div>
-              <div class="tl-badge">触发依据：就诊日期 + 随访策略</div>
-            </div>
-          </div>
-          <div class="tl-arrow">↓</div>
-          <div class="tl-r">
-            <div class="tl-dot g"></div>
-            <div class="tl-content">
-              <div class="tl-title">② AI 生成个性化随访消息</div>
-              <div class="tl-desc">第3天问基础服药；第7天问效果+症状；第14天总结评估。结合诊断和用药，不使用通用模板</div>
-              <div class="tl-badge">个性化 · 动态生成</div>
-            </div>
-          </div>
-          <div class="tl-arrow">↓</div>
-          <div class="tl-r">
-            <div class="tl-dot b"></div>
-            <div class="tl-content">
-              <div class="tl-title">③ 发送随访 → 接收患者回复</div>
-              <div class="tl-desc">飞书发送；患者回复（含延迟、不回复）由 OpenClaw 模拟真实行为，含用药偏差和主动提问</div>
-              <div class="tl-badge">本轮回复 67% · 下轮回复 20%</div>
-            </div>
-          </div>
-          <div class="tl-arrow">↓</div>
-          <div class="tl-r">
-            <div class="tl-dot c"></div>
-            <div class="tl-content">
-              <div class="tl-title">④ AI 解析回复 → 写入结构化数据</div>
-              <div class="tl-desc">提取血压/心率、依从性、病情状态、不良反应 → JSON → followups.csv + chat_logs.csv</div>
-            </div>
-          </div>
-          <div class="tl-arrow">↓</div>
-          <div class="tl-r">
-            <div class="tl-dot o"></div>
-            <div class="tl-content">
-              <div class="tl-title">⑤ 生成病情报告 + 医生日报</div>
-              <div class="tl-desc">每位患者独立档案；每天汇总所有随访更新、患者提问，生成飞书推送日报</div>
-              <div class="tl-badge">实时推送飞书</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="flow-col-title">⏰ 定时任务（每天自动执行）</div>
-        <div class="cron-box">
-          <div class="cron-hdr">🤖 调度引擎 · 每天自动扫描 · 无需人工干预</div>
-          <div class="cron-item">
-            <span class="cron-tag">每天</span>
-            <div class="cron-text"><strong>检查需随访患者</strong> — 根据就诊日期和随访策略（标准/加密/高频）判定哪些患者需要接受随访</div>
-          </div>
-          <div class="cron-item">
-            <span class="cron-tag">每天</span>
-            <div class="cron-text"><strong>生成并发送随访消息</strong> — AI 读取诊断+用药+历史记录，通过飞书发送个性化随访消息</div>
-          </div>
-          <div class="cron-item">
-            <span class="cron-tag">实时</span>
-            <div class="cron-text"><strong>监听并解析患者回复</strong> — AI 提取血压/心率/依从性/症状，写入 followups.csv</div>
-          </div>
-          <div class="cron-item">
-            <span class="cron-tag">实时</span>
-            <div class="cron-text"><strong>更新患者病情档案</strong> — 追加最新随访摘要，14天随访后生成完整终期报告</div>
-          </div>
-          <div class="cron-item">
-            <span class="cron-tag">每天</span>
-            <div class="cron-text"><strong>生成医生综合日报</strong> — 汇总所有随访更新、用药效果数据、患者提问，生成飞书推送日报</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- ③ 解决方案  [待实现] -->
+  <div class="section" style="height:390px; background:var(--bg2); display:flex; align-items:center; justify-content:center;">
+    <span style="font-size:12px; color:var(--text3); letter-spacing:0.1em;">③ 解决方案 — 待实现</span>
   </div>
   <div class="divider"></div>
 
-  <!-- ④ 数据总览 -->
-  <div class="data section">
-    <div class="sec-label">真实运行数据 · 30 名患者 · 100 条随访记录</div>
-    <div class="data-grid">
-      <div class="dp">
-        <div class="dp-title">💊 用药依从性</div>
-        <div class="bar-row"><div class="bar-lbl">按时服药</div><div class="bar-track"><div class="br-fill g" style="width:75%"></div></div><div class="br-pct" style="color:#4ade80">75%</div></div>
-        <div class="bar-row"><div class="bar-lbl">部分漏服</div><div class="bar-track"><div class="br-fill o" style="width:21%"></div></div><div class="br-pct" style="color:#f0a04b">21%</div></div>
-        <div class="bar-row"><div class="bar-lbl">未回复/未知</div><div class="bar-track"><div class="br-fill y" style="width:3%"></div></div><div class="br-pct" style="color:#fbbf24">3%</div></div>
-        <div class="bar-row"><div class="bar-lbl">完全停药</div><div class="bar-track"><div class="br-fill r" style="width:1%"></div></div><div class="br-pct" style="color:#f25f5c">1%</div></div>
-      </div>
-      <div class="dp">
-        <div class="dp-title">📈 病情变化分布</div>
-        <div class="donut-row">
-          <div class="donut-wrap">
-            <svg width="120" height="120" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(30,45,69,0.4)" stroke-width="18"/>
-              <circle cx="60" cy="60" r="46" fill="none" stroke="#4ade80" stroke-width="18" stroke-dasharray="145.3 289.0" stroke-dashoffset="0"/>
-              <circle cx="60" cy="60" r="46" fill="none" stroke="#4f8ef7" stroke-width="18" stroke-dasharray="95.9 289.0" stroke-dashoffset="-145.3"/>
-              <circle cx="60" cy="60" r="46" fill="none" stroke="#fbbf24" stroke-width="18" stroke-dasharray="52.0 289.0" stroke-dashoffset="-241.2"/>
-              <circle cx="60" cy="60" r="46" fill="none" stroke="#f25f5c" stroke-width="18" stroke-dasharray="17.3 289.0" stroke-dashoffset="-293.2"/>
-            </svg>
-            <div class="donut-ctr"><div class="donut-total">100</div><div class="donut-sub">条随访</div></div>
-          </div>
-          <div class="leg">
-            <div class="leg-i"><div class="leg-dot" style="background:#4ade80"></div><div class="leg-nm">症状改善</div><div class="leg-n">43</div><div class="leg-p">43%</div></div>
-            <div class="leg-i"><div class="leg-dot" style="background:#4f8ef7"></div><div class="leg-nm">病情稳定</div><div class="leg-n">33</div><div class="leg-p">33%</div></div>
-            <div class="leg-i"><div class="leg-dot" style="background:#fbbf24"></div><div class="leg-nm">无变化</div><div class="leg-n">18</div><div class="leg-p">18%</div></div>
-            <div class="leg-i"><div class="leg-dot" style="background:#f25f5c"></div><div class="leg-nm">病情加重</div><div class="leg-n">6</div><div class="leg-p">6%</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="dp">
-        <div class="dp-title">📨 患者回复情况</div>
-        <div class="rstat">
-          <div class="rbig g">97%</div>
-          <div class="rlbl"><strong>已回复（97/100）</strong>仅 3 条超时无回复，已自动升级为紧急跟进</div>
-        </div>
-        <div class="bar-row"><div class="bar-lbl">本轮回复</div><div class="bar-track"><div class="br-fill g" style="width:67%"></div></div><div class="br-pct" style="color:#4ade80">67%</div></div>
-        <div class="bar-row"><div class="bar-lbl">下一轮回复</div><div class="bar-track"><div class="br-fill b" style="width:20%"></div></div><div class="br-pct" style="color:#4f8ef7">20%</div></div>
-        <div class="bar-row"><div class="bar-lbl">更晚/未回复</div><div class="bar-track"><div class="br-fill y" style="width:13%"></div></div><div class="br-pct" style="color:#fbbf24">13%</div></div>
-      </div>
-      <div class="dp">
-        <div class="dp-title">💬 患者主动提问</div>
-        <div class="rstat">
-          <div class="rbig o">92 条</div>
-          <div class="rlbl"><strong>来自 25 位患者</strong>系统自动记录并纳入医生日报，医生实时掌握患者疑虑</div>
-        </div>
-        <div class="bar-row"><div class="bar-lbl" style="color:#f25f5c">🔴 紧急</div><div class="bar-track"><div class="br-fill r" style="width:3%"></div></div><div class="br-pct" style="color:#f25f5c">3条</div></div>
-        <div class="bar-row"><div class="bar-lbl" style="color:#f0a04b">🟡 建议</div><div class="bar-track"><div class="br-fill o" style="width:8%"></div></div><div class="br-pct" style="color:#f0a04b">8条</div></div>
-        <div class="bar-row"><div class="bar-lbl">⚪ 常规</div><div class="bar-track"><div class="br-fill b" style="width:81%"></div></div><div class="br-pct" style="color:#4f8ef7">81条</div></div>
-        <div class="q-note">问题类型：用药疑问 > 生活建议 > 症状咨询 > 复诊安排</div>
-      </div>
-    </div>
+  <!-- ④ 成效数据  [待实现] -->
+  <div class="section" style="height:292px; display:flex; align-items:center; justify-content:center;">
+    <span style="font-size:12px; color:var(--text3); letter-spacing:0.1em;">④ 成效数据 — 待实现</span>
   </div>
   <div class="divider"></div>
 
-  <!-- ⑤ 典型案例 -->
-  <div class="cases section">
-    <div class="sec-label">典型案例 · 真实数据展示</div>
-    <div class="case-grid">
-      <div class="cc ok">
-        <div class="cc-top">
-          <span class="cc-badge ok">✅ 依从良好 · 症状改善</span>
-          <span class="cc-pid">P001 · 王建国</span>
-        </div>
-        <div class="msg-label">🤖 OpenClaw 第7天自动发送随访消息</div>
-        <div class="msg-box">王建国您好！我是李晓峰主任诊室的随访助理小龙虾。您就诊已满一周。请问氨氯地平片、厄贝沙坦片、氯吡格雷片是否坚持每日服用？血压近两日测了多少？请简要回复，感谢配合，祝您健康！</div>
-        <div class="reply-label">👤 患者回复</div>
-        <div class="reply-box">三种药一直在吃，血压124/78，没有头晕，感觉很好，比刚吃药时好多了。还有个问题想问：我请问李主任，请问可以稍微放宽点盐吗？</div>
-        <div class="tags-row">
-          <span class="tag-s">按时服药 ✅</span>
-          <span class="tag-s">血压正常 124/78</span>
-          <span class="tag-s">症状改善 ↑</span>
-          <span class="tag-s">主动提问 💬</span>
-        </div>
-      </div>
-      <div class="cc alert">
-        <div class="cc-top">
-          <span class="cc-badge alert">⚠️ 依从不佳 · 病情加重</span>
-          <span class="cc-pid">P008 · 黄丽</span>
-        </div>
-        <div class="msg-label">🤖 OpenClaw 第7天自动发送随访消息</div>
-        <div class="msg-box">黄丽您好！我是李晓峰主任诊室的随访助理小龙虾。您就诊已满一周。请问苯磺酸氨氯地平片是否坚持每日服用？血压近两日测了多少？请简要回复…</div>
-        <div class="reply-label">👤 患者回复</div>
-        <div class="reply-box">氨氯地平都在吃，但这周加班太多没测血压，今天测了148/96，头有点晕，不知道是不是血压高了，感觉比上周差了一些。</div>
-        <div class="tags-row">
-          <span class="tag-s">部分漏服</span>
-          <span class="tag-s">血压升高 148/96</span>
-          <span class="tag-s">头晕症状</span>
-          <span class="tag-s">病情加重 ↓</span>
-          <span class="tag-s alert">🔴 触发预警</span>
-        </div>
-      </div>
-    </div>
+  <!-- ⑤ 真实对话  [待实现] -->
+  <div class="section" style="height:328px; background:var(--bg2); display:flex; align-items:center; justify-content:center;">
+    <span style="font-size:12px; color:var(--text3); letter-spacing:0.1em;">⑤ 真实对话演示 — 待实现</span>
   </div>
   <div class="divider"></div>
 
-  <!-- ⑥ 医生日报 -->
-  <div class="rpt section">
-    <div class="sec-label">医生每日综合日报 · 飞书推送格式（示例）</div>
-    <div class="rpt-panel">
-      <div class="rpt-hdr">
-        <div class="rpt-title">PatientClaw 日报 · 李晓峰主任 · 系统第7天</div>
-        <div class="rpt-meta">今日随访更新：6人 · 在管患者总计：30人</div>
-      </div>
-      <div class="rpt-body">
-        <div>
-          <div class="rpt-col-title">📉 病情恶化（1人）</div>
-          <div class="ri r">方远（P017）· 病情加重：利伐沙班漏服2天，地高辛漏服2天，心悸明显，血压142/94</div>
-          <div class="rpt-col-title" style="margin-top:12px">🟡 需持续关注（1人）</div>
-          <div class="ri o">段勇（P019）· 阿司匹林漏服2天，胃不舒服、反酸</div>
-          <div class="rpt-col-title" style="margin-top:12px">📈 今日好转（3人）</div>
-          <div class="ri g">张伟（P003）· 14天 · 血压126/80，心率68，无胸闷，感觉很好</div>
-          <div class="ri g">邵杰（P018）· 7天 · 五种药都在吃，血压128/80，无胸痛</div>
-          <div class="ri g">刘静（P004）· 14天 · 肌肉酸痛消失，血压124/78</div>
-        </div>
-        <div>
-          <div class="rpt-col-title">🍬 今日用药情况</div>
-          <div class="ri g">✅ 按时服药：4人（张伟、邵杰、刘静、王建国）</div>
-          <div class="ri o">⚠️ 漏服：2人（方远、段勇）</div>
-          <div class="rpt-col-title" style="margin-top:12px">📭 未回复患者</div>
-          <div class="ri b">2名患者随访未回复，建议电话跟进确认安全</div>
-          <div class="rpt-col-title" style="margin-top:12px">💬 患者提问汇总</div>
-          <div class="ri b">共30条提问来自25人，3条紧急提问需优先电话回复</div>
-        </div>
-        <div class="rpt-divider"></div>
-        <div class="rpt-insight-title">💡 今日洞察与建议</div>
-        <div class="rpt-insight-item">⚠️ 方远（高血压/房颤）：病情加重，需评估调整方案</div>
-        <div class="rpt-insight-item">🔴 今日 2 条紧急提问需立即电话回复</div>
-        <div class="rpt-insight-item">❤️ 心衰 GDMT 方案（沙库巴曲缬沙坦/螺内酯/达格列净）应用效果良好，建议继续滴定</div>
-        <div class="rpt-insight-item">⚠️ 阿司匹林（33%不良反应率）、地高辛（50%不良反应率）建议评估是否调整剂量</div>
-      </div>
-    </div>
+  <!-- ⑥ 系统输出物  [待实现] -->
+  <div class="section" style="height:348px; display:flex; align-items:center; justify-content:center;">
+    <span style="font-size:12px; color:var(--text3); letter-spacing:0.1em;">⑥ 系统输出物（日报 + 患者报告）— 待实现</span>
   </div>
   <div class="divider"></div>
 
-  <!-- ⑦ 患者病情报告 -->
-  <div class="pat section">
-    <div class="sec-label">患者病情追踪报告 · 每位患者独立档案（示例：P003 张伟）</div>
-    <div class="pat-panel">
-      <div class="pat-hdr">
-        <div class="pat-title">张伟（P003）· 65岁 · 高血压合并冠心病</div>
-        <div class="pat-meta">北京协和医院 · 李晓峰 主任医师 · 共 3 次就诊 · 14天完整随访</div>
-      </div>
-      <table class="pat-table">
-        <thead>
-          <tr>
-            <th>随访节点</th><th>日期</th><th>医 生 提 问</th><th>患 者 回 复</th><th>依从</th><th>病情</th><th>回复</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>第3天</td><td>2026-03-13</td>
-            <td>就诊已满3天。请问三种药是否已规律服用？有无头晕或不适？</td>
-            <td>三种药都在吃，血压130/82，没有胸闷，感觉还好。请问可以坐飞机吗？</td>
-            <td><span class="ptag ok">✓规律</span></td><td><span class="ptag neu">稳定</span></td><td><span class="ptag ok">本轮</span></td>
-          </tr>
-          <tr>
-            <td>第7天</td><td>2026-03-17</td>
-            <td>就诊已满一周。请问三种药是否坚持服用？血压怎么样？</td>
-            <td>三种药都在吃，血压126/80，心率72，没有胸闷，感觉比上周好多了。</td>
-            <td><span class="ptag ok">✓规律</span></td><td><span class="ptag ok">改善</span></td><td><span class="ptag ok">本轮</span></td>
-          </tr>
-          <tr>
-            <td>第14天</td><td>2026-03-24</td>
-            <td>就诊已满两周，整体情况如何？请问三种药是否坚持服用？</td>
-            <td>三种药一直在吃，血压126/80，心率68，没有胸闷，走路爬楼都没问题，感觉很好。</td>
-            <td><span class="ptag ok">✓规律</span></td><td><span class="ptag ok">改善</span></td><td><span class="ptag ok">本轮</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="pat-summary">
-        <strong>病情趋势：</strong>14天随访期间依从性持续良好（100%），血压从130/82降至126/80，心率从82bpm降至68bpm，
-        胸闷症状完全消失，活动耐量显著改善。建议维持当前方案，定期复查，半年后复诊。
-      </div>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- ⑧ 核心功能 -->
-  <div class="feat section">
-    <div class="sec-label">核心功能</div>
-    <div class="feat-grid">
-      <div class="feat-item">
-        <div class="feat-emoji">🤖</div>
-        <div><div class="feat-title">AI 个性化随访生成</div><div class="feat-desc">结合诊断、用药、就诊天数动态生成，第3/7/14天重点各有不同</div></div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-emoji">⏰</div>
-        <div><div class="feat-title">OpenClaw 定时自动触发</div><div class="feat-desc">每天自动扫描就诊记录，判定随访节点，发送消息，全程无需人工干预</div></div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-emoji">👤</div>
-        <div><div class="feat-title">患者回复模拟</div><div class="feat-desc">含延迟回复、不回复真实建模，模拟患者用药偏差和主动提问</div></div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-emoji">🔍</div>
-        <div><div class="feat-title">AI 回复解析</div><div class="feat-desc">自然语言回复 → JSON（依从性/病情状态/不良反应），写入 followups.csv</div></div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-emoji">📋</div>
-        <div><div class="feat-title">患者病情档案</div><div class="feat-desc">每位患者独立 Markdown 档案，历史记录全部保留，14天后生成完整终期报告</div></div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-emoji">📱</div>
-        <div><div class="feat-title">医生综合日报推送</div><div class="feat-desc">每天汇总紧急预警、关注患者、用药效果、患者提问，生成飞书推送，手机友好</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- ⑨ 扩展方向 -->
-  <div class="exp section">
-    <div class="sec-label">可扩展方向</div>
-    <div class="exp-tags">
-      <span class="exp-tag">内分泌科 ↗</span>
-      <span class="exp-tag">社区卫生中心 ↗</span>
-      <span class="exp-tag">微信 / 短信渠道 ↗</span>
-      <span class="exp-tag">EMR 医保系统对接 ↗</span>
-      <span class="exp-tag">多中心临床研究数据积累 ↗</span>
-      <span class="exp-tag">AI 用药方案推荐 ↗</span>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- ⑩ FOOTER -->
-  <div class="foot">
-    <div>
-      <div class="foot-name">赵天浩</div>
-      <div class="foot-school">北京中关村学院 · 生产力赛道</div>
-    </div>
-    <div class="foot-mid">PatientClaw</div>
-    <div class="foot-right">
-      github.com/happytianhao/PatientClaw<br>zthwhucs@gmail.com<br>Powered by <strong style="color:#a78bfa">OpenClaw</strong>
-    </div>
+  <!-- ⑦ 社会价值 + Footer  [待实现] -->
+  <div class="section" style="height:364px; background:var(--bg2); display:flex; align-items:center; justify-content:center;">
+    <span style="font-size:12px; color:var(--text3); letter-spacing:0.1em;">⑦ 社会价值 + Footer — 待实现</span>
   </div>
 
 </div>
